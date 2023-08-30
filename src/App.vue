@@ -13,6 +13,8 @@ const value1 = ref(200)
 const value2 = ref(100)
 
 const freza = ref('')
+
+const checked1 = ref(false)
 </script>
 
 <template>
