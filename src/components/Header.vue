@@ -1,8 +1,5 @@
 <script setup>
-import { ElButton, ElDatePicker } from "element-plus";
-import { ref } from "vue";
-
-const value1 = ref("");
+import { ElButton } from 'element-plus'
 </script>
 
 <template>
@@ -16,14 +13,19 @@ const value1 = ref("");
                 />
                 <span class="fs-14 ls-2 fw-500">Кировская обл.</span>
             </div>
-            <ElButton class="upper-case region__button" type="info">
+            <ElButton
+                class="upper-case region__button"
+                type="info"
+            >
                 Изменить регион
             </ElButton>
         </div>
-        <div
-            class="lk d-flex flex-column align-items-center justify-content-center"
-        >
-            <img src="../assets/icons/user.svg" alt="person" class="icon" />
+        <div class="lk d-flex flex-column align-items-center justify-content-center">
+            <img
+                src="../assets/icons/user.svg"
+                alt="person"
+                class="icon"
+            />
 
             <span class="fw-600 mt-10">ВХОД</span>
         </div>
@@ -48,8 +50,5 @@ const value1 = ref("");
         color: #000;
         border-radius: 30px;
     }
-}
-
-@media (min-width: 1024px) {
 }
 </style>

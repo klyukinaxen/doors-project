@@ -1,8 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&display=swap");
-@import "./base.css";
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&display=swap');
+@import './base.css';
 
 * {
-    font-family: "Raleway", sans-serif;
+    font-family: 'Raleway', sans-serif;
 }
 
 body {
@@ -156,7 +156,7 @@ textarea {
 }
 
 .mw-250 {
-    max-width: 250px;
+    max-width: 200px;
 }
 
 .h-100 {
@@ -577,13 +577,11 @@ textarea {
 }
 
 .shadow {
-    box-shadow: 10px 10px 20px rgba(213, 216, 218, 0.35),
-        -10px -10px 30px rgba(255, 255, 255, 0.15);
+    box-shadow: 10px 10px 20px rgba(213, 216, 218, 0.35), -10px -10px 30px rgba(255, 255, 255, 0.15);
 }
 
 .card-shadow {
-    box-shadow: 7px 7px 20px 5px rgba(208, 205, 221, 0.5),
-        -10px -10px 30px rgba(255, 255, 255, 0.15);
+    box-shadow: 7px 7px 20px 5px rgba(208, 205, 221, 0.5), -10px -10px 30px rgba(255, 255, 255, 0.15);
 }
 
 .mt-auto {

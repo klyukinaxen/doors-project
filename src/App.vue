@@ -1,76 +1,59 @@
 <script setup>
-import Header from './components/Header.vue';
-import {
-    ElButton,
-    ElRadioGroup,
-    ElRadio,
-    ElSlider,
-    ElDropdown,
-    ElDropdownItem,
-    ElDropdownMenu,
-    ElCol,
-    ElOption,
-    ElSelect,
-} from "element-plus";
-import { ref } from "vue";
-import data from "./stores/data.json";
+import Header from './components/Header.vue'
+import { ElButton, ElRadioGroup, ElRadio, ElSlider, ElOption, ElSelect, ElInput, ElCheckbox } from 'element-plus'
+import { ref } from 'vue'
+import data from './stores/data.json'
 
-const radio1 = ref("1");
+const radio1 = ref('1')
 
-console.log("data panel", data[0]);
-const insidePanel = ref(`${data[0].insidePanel[0].title}`);
-const insidePanelParam = ref(`${data[0].insidePanel[0].param[0].name}`);
-const value1 = ref(200);
-const value2 = ref(100);
+console.log('data panel', data[0])
+const insidePanel = ref(`${data[0].insidePanel[0].title}`)
+const insidePanelParam = ref(`${data[0].insidePanel[0].params[0].name}`)
+const value1 = ref(200)
+const value2 = ref(100)
 
-let dropdown = '';
-let dropdownPanel = '';
-
-const handleDropdown = (command) => {
-    dropdown = command;
-};
-
-const handleDropdownPanel = (command) => {
-    dropdownPanel = command;
-};
+const freza = ref('')
 </script>
 
 <template>
     <div class="main mx-15">
         <Header />
 
-        <span class="upper-case fw-600 fs-25 ls-3 my-30 text-center">
-            конфигуратор дверей
-        </span>
+        <span class="upper-case fw-600 fs-25 ls-3 my-30 text-center"> конфигуратор дверей </span>
 
         <div class="d-flex flex-column">
-            <span class="upper-case fs-16 ls-2 mb-40 ml-20">
-                Выберите тип двери
-            </span>
+            <span class="upper-case fs-16 ls-2 mb-40 ml-20"> Выберите тип двери </span>
 
             <div class="d-flex justify-content-around w-100 primary-bg py-30">
                 <div class="door-type">
-                    <img src="./assets/icons/door-1.svg" alt="" />
-                                
+                    <img
+                        src="./assets/icons/door-1.svg"
+                        alt=""
+                    />
+
                     <ElButton class="button"> однопольная </ElButton>
                 </div>
 
                 <div class="door-type">
-                    <img src="./assets/icons/door-2.svg" alt="" />
+                    <img
+                        src="./assets/icons/door-2.svg"
+                        alt=""
+                    />
 
                     <ElButton class="button">двупольная</ElButton>
                 </div>
 
                 <div class="door-type">
-                    <img src="./assets/icons/door-2.1.svg" alt="" />
+                    <img
+                        src="./assets/icons/door-2.1.svg"
+                        alt=""
+                    />
 
                     <ElButton class="button">двупольная с импостом</ElButton>
                 </div>
             </div>
 
-            <span class="upper-case fs-16 ls-2 my-45">
-                укажите размер и способ открывания:
-            </span>
+            <span class="upper-case fs-16 ls-2 my-45"> укажите размер и способ открывания: </span>
 
             <div class="d-flex justify-content-around w-100 primary-bg py-30">
                 <div class="d-none">
@@ -94,25 +77,37 @@ const handleDropdownPanel = (command) => {
                             size="small"
                         />
 
-                        <img src="./assets/icons/door-1.0.svg" alt="" />
+                        <img
+                            src="./assets/icons/door-1.0.svg"
+                            alt=""
+                        />
                     </div>
                 </div>
 
                 <!-- checkbox -->
                 <div class="d-flex flex-column">
-                    <span class="fs-18 fw-600 ls-2 upper-case">
-                        открывание двери
-                    </span>
+                    <span class="fs-18 fw-600 ls-2 upper-case"> открывание двери </span>
 
                     <ElRadioGroup
                         v-model="radio1"
                         class="d-flex flex-column radio-group"
                     >
-                        <ElRadio label="1" size="large" class="my-30" border>
+                        <ElRadio
+                            label="1"
+                            size="large"
+                            class="my-30"
+                            border
+                        >
                             Правое
                         </ElRadio>
 
-                        <ElRadio label="2" size="large" border> Левое </ElRadio>
+                        <ElRadio
+                            label="2"
+                            size="large"
+                            border
+                        >
+                            Левое
+                        </ElRadio>
                     </ElRadioGroup>
                 </div>
 
@@ -148,21 +143,19 @@ const handleDropdownPanel = (command) => {
                 </div>
             </div>
 
-            <span class="upper-case fs-16 ls-2 my-45">
-                выберите тип петлей:
-            </span>
+            <span class="upper-case fs-16 ls-2 my-45"> выберите тип петлей: </span>
 
-            <div
-                class="container-3 d-flex justify-content-around w-100 primary-bg py-30"
-            >
+            <div class="container-3 d-flex justify-content-around w-100 primary-bg py-30">
                 <div class="door-type">
-                    <img src="./assets/icons/door-standart.svg" alt="" />
+                    <img
+                        src="./assets/icons/door-standart.svg"
+                        alt=""
+                    />
 
                     <ElButton class="button"> Стандарт </ElButton>
 
                     <span class="fs-14 ls-2 mw-250 fw-300">
-                        Стандартная конструкция на двух «шарикоподшипниковых»
-                        петлях, без возможности установить МДФ панель снаружи.
+                        Стандартная конструкция на двух «шарикоподшипниковых» петлях, без возможности установить МДФ панель снаружи.
                         <br />
                         <br />
                         - Толщина листа 2мм
@@ -172,13 +165,15 @@ const handleDropdownPanel = (command) => {
                 </div>
 
                 <div class="door-type">
-                    <img src="./assets/icons/door-bark.svg" alt="" />
+                    <img
+                        src="./assets/icons/door-bark.svg"
+                        alt=""
+                    />
 
                     <ElButton class="button">Петли барк</ElButton>
 
                     <span class="fs-14 ls-2 mw-250 fw-300">
-                        Усовершенствованная конструкция на двух петлях «Барк» с
-                        возможностью выбора расширенных характеристик.
+                        Усовершенствованная конструкция на двух петлях «Барк» с возможностью выбора расширенных характеристик.
                         <br />
                         <br />
                         - толщина листа 2мм <br />
@@ -188,24 +183,22 @@ const handleDropdownPanel = (command) => {
                 </div>
 
                 <div class="door-type">
-                    <img src="./assets/icons/door-thermo.svg" alt="" />
+                    <img
+                        src="./assets/icons/door-thermo.svg"
+                        alt=""
+                    />
 
                     <ElButton class="button">Терморазрыв</ElButton>
 
                     <span class="fs-14 ls-2 mw-250 fw-300">
-                        Конструкция, которая предназначена для проёмов, которые
-                        граничат с улицей.
+                        Конструкция, которая предназначена для проёмов, которые граничат с улицей.
                     </span>
                 </div>
             </div>
 
-            <span class="upper-case fs-16 ls-2 my-45">
-                выберите дополнительные параметры:
-            </span>
+            <span class="upper-case fs-16 ls-2 my-45"> выберите дополнительные параметры: </span>
 
-            <div
-                class="container-4 d-flex justify-content-center w-100 primary-bg py-30"
-            >
+            <div class="container-4 d-flex justify-content-center w-100 primary-bg py-30">
                 <img
                     src="./assets/icons/door-1.0.svg"
                     alt=""
@@ -215,61 +208,95 @@ const handleDropdownPanel = (command) => {
                 <div>
                     <div class="dropdowns d-grid grid-3">
                         <div class="d-flex flex-column">
-                            <span class="upper-case mb-15 fs-12">
-                                внутренняя панель
-                            </span>
+                            <span class="upper-case mb-15 fs-12"> внутренняя панель </span>
 
-                            <el-select
+                            <ElSelect
                                 v-model="insidePanel"
-                                class="m-2"
+                                class="m-2 mw-250"
                                 placeholder="Select"
                                 size="large"
                             >
-                                <el-option
+                                <ElOption
                                     v-for="item in data[0].insidePanel"
                                     :key="item.title"
                                     :label="item.title"
                                     :value="item.title"
                                 />
-                            </el-select>
+                            </ElSelect>
                         </div>
 
-                        <!-- dropdown insidePanelParam -->
-                        <el-select
-                            v-model="insidePanelParam"
-                            class="m-2"
-                            placeholder="Select"
-                            size="large"
-                        >
-                            <el-option
-                                v-for="item in data[0].insidePanel[0].params"
-                                :key="item.title"
-                                :label="item.title"
-                                :value="item.title"
+                        <!-- dropdown insidePanelParam  толщина панели-->
+                        <div class="d-flex flex-column">
+                            <span class="upper-case mb-15 fs-12"> толщина панели </span>
+
+                            <ElSelect
+                                v-model="insidePanelParam"
+                                class="m-2 mw-250"
+                                placeholder="Select"
+                                size="large"
+                            >
+                                <ElOption
+                                    v-for="item in data[0].insidePanel[0].params"
+                                    :key="item.name"
+                                    :label="item.name"
+                                    :value="item.name"
+                                />
+                            </ElSelect>
+                        </div>
+
+                        <div class="d-flex flex-column">
+                            <span class="upper-case mb-15 fs-12"> фреза </span>
+
+                            <ElInput
+                                v-model="freza"
+                                class="w-50 mw-250"
+                                size="large"
+                                placeholder="Введите id"
                             />
-                        </el-select>
-
-                        <div></div>
-                        <!-- dropdown -->
+                        </div>
                     </div>
 
-                    <div class="dropdowns">
-                        <span>цвет конструкции</span>
-                        <!-- dropdown -->
-                        <span>цвет панели</span>
-                        <!-- dropdown -->
+                    <div class="dropdowns d-grid grid-3 mt-30">
+                        <div class="d-flex flex-column">
+                            <span class="upper-case mb-15 fs-12"> цвет конструкции </span>
+
+                            <ElInput
+                                v-model="freza"
+                                class="w-50 mw-250"
+                                size="large"
+                                placeholder="Введите id"
+                            />
+                        </div>
+
+                        <div class="d-flex flex-column">
+                            <span class="upper-case mb-15 fs-12"> цвет панели </span>
+
+                            <ElInput
+                                v-model="freza"
+                                class="w-50 mw-250"
+                                size="large"
+                                placeholder="Введите id"
+                            />
+                        </div>
                     </div>
 
-                    <div class="checkboxes">
+                    <div class="checkboxes mt-30">
+                        <ElCheckbox
+                            v-for="item in data[0].modifiersWithPrice"
+                            :key="item"
+                            v-model="checked1"
+                            :label="item.title"
+                            size="large"
+                            class="mw-250"
+                            border
+                        />
+
                         <!-- Багеты снаружи -->
                         <!-- ночной страж и тд -->
                     </div>
                 </div>
             </div>
-
-            <span class="upper-case fs-16 ls-2 my-45">
-                предварительная стоимость:
-            </span>
+            <span class="upper-case fs-16 ls-2 my-45"> предварительная стоимость: </span>
         </div>
     </div>
 </template>
@@ -343,9 +370,7 @@ header {
         background-color: var(--secondary);
         color: #fff;
         border: none;
-        box-shadow: 0px 0px 40px 0px rgba(255, 255, 255, 0.25),
-            0px 4px 4px 0px rgba(0, 0, 0, 0.25),
-            0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        box-shadow: 0px 0px 40px 0px rgba(255, 255, 255, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     }
 
     transition: box-shadow 0.3s ease;
@@ -356,6 +381,23 @@ header {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: flex-start;
+}
+
+.checkboxes {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+
+    :deep(.el-checkbox.is-bordered.el-checkbox--large .el-checkbox__label) {
+        font-size: 12px;
+        text-transform: uppercase;
+        margin-right: 0;
+        white-space: pre-line;
+    }
+
+    :deep(.el-checkbox.is-bordered.el-checkbox--large) {
+        color: #fff;
+    }
 }
 
 @media (min-width: 1024px) {
