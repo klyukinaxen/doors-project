@@ -8,11 +8,18 @@ import {
     ElDropdown,
     ElDropdownItem,
     ElDropdownMenu,
-    ElCol
-} from 'element-plus';
-import { ref } from 'vue';
+    ElCol,
+    ElOption,
+    ElSelect,
+} from "element-plus";
+import { ref } from "vue";
+import data from "./stores/data.json";
 
-const radio1 = ref('1');
+const radio1 = ref("1");
+
+console.log("data panel", data[0]);
+const insidePanel = ref(`${data[0].insidePanel[0].title}`);
+const insidePanelParam = ref(`${data[0].insidePanel[0].param[0].name}`);
 const value1 = ref(200);
 const value2 = ref(100);
 
@@ -32,9 +39,10 @@ const handleDropdownPanel = (command) => {
     <div class="main mx-15">
         <Header />
 
-        <span class="upper-case fw-600 fs-25 ls-3 my-30 text-center"
-            >конфигуратор дверей</span
-        >
+        <span class="upper-case fw-600 fs-25 ls-3 my-30 text-center">
+            конфигуратор дверей
+        </span>
+
         <div class="d-flex flex-column">
             <span class="upper-case fs-16 ls-2 mb-40 ml-20">
                 Выберите тип двери
@@ -196,67 +204,52 @@ const handleDropdownPanel = (command) => {
             </span>
 
             <div
-                class="container-4 d-flex justify-content-around w-100 primary-bg py-30"
+                class="container-4 d-flex justify-content-center w-100 primary-bg py-30"
             >
-                <img src="./assets/icons/door-1.0.svg" alt="" />
+                <img
+                    src="./assets/icons/door-1.0.svg"
+                    alt=""
+                    class="p-50 pr-80"
+                />
 
                 <div>
                     <div class="dropdowns d-grid grid-3">
-                        <ElCol class="d-flex flex-column" :span="8">
-                            <span class="demonstration upper-case mb-15">
+                        <div class="d-flex flex-column">
+                            <span class="upper-case mb-15 fs-12">
                                 внутренняя панель
                             </span>
 
-                            <ElDropdown
-                                trigger="click"
-                                @command="handleDropdown"
+                            <el-select
+                                v-model="insidePanel"
+                                class="m-2"
+                                placeholder="Select"
+                                size="large"
                             >
-                                <span class="el-dropdown-link dropdown-click">
-                                    {{ dropdown }}
+                                <el-option
+                                    v-for="item in data[0].insidePanel"
+                                    :key="item.title"
+                                    :label="item.title"
+                                    :value="item.title"
+                                />
+                            </el-select>
+                        </div>
 
-                                    <img
-                                        src="./assets/icons/arrow.svg"
-                                        alt=""
-                                    />
-                                </span>
+                        <!-- dropdown insidePanelParam -->
+                        <el-select
+                            v-model="insidePanelParam"
+                            class="m-2"
+                            placeholder="Select"
+                            size="large"
+                        >
+                            <el-option
+                                v-for="item in data[0].insidePanel[0].params"
+                                :key="item.title"
+                                :label="item.title"
+                                :value="item.title"
+                            />
+                        </el-select>
 
-                                <template #dropdown>
-                                    <ElDropdownMenu>
-                                        <ElDropdownItem command="Крашенная">
-                                            Крашенная
-                                        </ElDropdownItem>
-                                    </ElDropdownMenu>
-                                </template>
-                            </ElDropdown>
-                        </ElCol>
-                        <!-- dropdown -->
-                        <ElCol class="d-flex flex-column" :span="8">
-                            <span class="demonstration upper-case mb-15">
-                                толщина панели
-                            </span>
-
-                            <ElDropdown
-                                trigger="click"
-                                @command="handleDropdownPanel"
-                            >
-                                <span class="el-dropdown-link dropdown-click">
-                                    {{ dropdownPanel }}
-
-                                    <img
-                                        src="./assets/icons/arrow.svg"
-                                        alt=""
-                                    />
-                                </span>
-
-                                <template #dropdown>
-                                    <ElDropdownMenu>
-                                        <ElDropdownItem command="6 мм">
-                                            6 мм
-                                        </ElDropdownItem>
-                                    </ElDropdownMenu>
-                                </template>
-                            </ElDropdown>
-                        </ElCol>
+                        <div></div>
                         <!-- dropdown -->
                     </div>
 
