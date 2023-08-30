@@ -8,12 +8,13 @@ import {
     ElDropdown,
     ElDropdownItem,
     ElDropdownMenu,
+    ElCol,
 } from "element-plus";
 import { ref } from "vue";
 
 const radio1 = ref("1");
-const value1 = ref("200");
-const value2 = ref("100");
+const value1 = ref(200);
+const value2 = ref(100);
 
 let dropdown = "";
 let dropdownPanel = "";
@@ -28,38 +29,42 @@ const handleDropdownPanel = (command) => {
 </script>
 
 <template>
-    <div class="main">
+    <div class="main mx-15">
         <Header />
 
         <span class="upper-case fw-600 fs-25 ls-3 my-30 text-center"
             >конфигуратор дверей</span
         >
         <div class="d-flex flex-column">
-            <span class="upper-case fs-16 ls-2 mb-40">Выберите тип двери</span>
+            <span class="upper-case fs-16 ls-2 mb-40 ml-20">
+                Выберите тип двери
+            </span>
 
             <div class="d-flex justify-content-around w-100 primary-bg py-30">
                 <div class="door-type">
                     <img src="./assets/icons/door-1.svg" alt="" />
-                    <el-button class="button">однопольная</el-button>
+
+                    <el-button class="button"> однопольная </el-button>
                 </div>
 
                 <div class="door-type">
                     <img src="./assets/icons/door-2.svg" alt="" />
+
                     <el-button class="button">двупольная</el-button>
                 </div>
 
                 <div class="door-type">
                     <img src="./assets/icons/door-2.1.svg" alt="" />
+
                     <el-button class="button">двупольная с импостом</el-button>
                 </div>
             </div>
 
             <span class="upper-case fs-16 ls-2 my-45">
-                укажите размер и способ открывания:</span
-            >
+                укажите размер и способ открывания:
+            </span>
 
             <div class="d-flex justify-content-around w-100 primary-bg py-30">
-                <!-- range -->
                 <div class="d-none">
                     <el-slider
                         class="row-reverse"
@@ -70,7 +75,7 @@ const handleDropdownPanel = (command) => {
                         show-input
                         v-model="value2"
                         size="small"
-                    ></el-slider>
+                    />
 
                     <div class="door-1-range">
                         <el-slider
@@ -79,26 +84,30 @@ const handleDropdownPanel = (command) => {
                             v-model="value1"
                             show-input
                             size="small"
-                        ></el-slider>
+                        />
+
                         <img src="./assets/icons/door-1.0.svg" alt="" />
                     </div>
                 </div>
 
                 <!-- checkbox -->
                 <div class="d-flex flex-column">
-                    <span class="fs-18 fw-600 ls-2 upper-case"
-                        >открывание двери</span
-                    >
+                    <span class="fs-18 fw-600 ls-2 upper-case">
+                        открывание двери
+                    </span>
+
                     <el-radio-group
                         v-model="radio1"
                         class="d-flex flex-column radio-group"
                     >
-                        <el-radio label="1" size="large" class="my-30" border
-                            >Правое</el-radio
-                        >
-                        <el-radio label="2" size="large" border>Левое</el-radio>
+                        <el-radio label="1" size="large" class="my-30" border>
+                            Правое
+                        </el-radio>
+
+                        <el-radio label="2" size="large" border>
+                            Левое
+                        </el-radio>
                     </el-radio-group>
-                    <!-- left or right -->
                 </div>
 
                 <!-- or -->
@@ -112,7 +121,7 @@ const handleDropdownPanel = (command) => {
                         show-input
                         v-model="value2"
                         size="small"
-                    ></el-slider>
+                    />
 
                     <div class="door-2-range">
                         <el-slider
@@ -122,7 +131,7 @@ const handleDropdownPanel = (command) => {
                             show-input
                             size="small"
                             class="mb-10 ml-15"
-                        ></el-slider>
+                        />
 
                         <img
                             class="door-2"
@@ -134,8 +143,8 @@ const handleDropdownPanel = (command) => {
             </div>
 
             <span class="upper-case fs-16 ls-2 my-45">
-                выберите тип петлей:</span
-            >
+                выберите тип петлей:
+            </span>
 
             <div
                 class="container-3 d-flex justify-content-around w-100 primary-bg py-30"
@@ -143,7 +152,7 @@ const handleDropdownPanel = (command) => {
                 <div class="door-type">
                     <img src="./assets/icons/door-standart.svg" alt="" />
 
-                    <el-button class="button">Стандарт</el-button>
+                    <el-button class="button"> Стандарт </el-button>
 
                     <span class="fs-14 ls-2 mw-250 fw-300">
                         Стандартная конструкция на двух «шарикоподшипниковых»
@@ -196,20 +205,23 @@ const handleDropdownPanel = (command) => {
                 <div>
                     <div class="dropdowns d-grid grid-3">
                         <el-col class="d-flex flex-column" :span="8">
-                            <span class="demonstration upper-case mb-15"
-                                >внутренняя панель</span
-                            >
+                            <span class="demonstration upper-case mb-15">
+                                внутренняя панель
+                            </span>
+
                             <el-dropdown
                                 trigger="click"
                                 @command="handleDropdown"
                             >
                                 <span class="el-dropdown-link dropdown-click">
                                     {{ dropdown }}
+
                                     <img
                                         src="./assets/icons/arrow.svg"
                                         alt=""
                                     />
                                 </span>
+
                                 <template #dropdown>
                                     <el-dropdown-menu>
                                         <el-dropdown-item command="Крашенная">
@@ -221,20 +233,23 @@ const handleDropdownPanel = (command) => {
                         </el-col>
                         <!-- dropdown -->
                         <el-col class="d-flex flex-column" :span="8">
-                            <span class="demonstration upper-case mb-15"
-                                >толщина панели</span
-                            >
+                            <span class="demonstration upper-case mb-15">
+                                толщина панели
+                            </span>
+
                             <el-dropdown
                                 trigger="click"
                                 @command="handleDropdownPanel"
                             >
                                 <span class="el-dropdown-link dropdown-click">
                                     {{ dropdownPanel }}
+
                                     <img
                                         src="./assets/icons/arrow.svg"
                                         alt=""
                                     />
                                 </span>
+
                                 <template #dropdown>
                                     <el-dropdown-menu>
                                         <el-dropdown-item command="6 мм">
@@ -261,7 +276,9 @@ const handleDropdownPanel = (command) => {
                 </div>
             </div>
 
-            <span>предварительная стоимость:</span>
+            <span class="upper-case fs-16 ls-2 my-45">
+                предварительная стоимость:
+            </span>
         </div>
     </div>
 </template>
@@ -274,37 +291,26 @@ const handleDropdownPanel = (command) => {
     border-radius: 10%;
     color: #fff;
 }
+
 .radio-group {
     align-items: flex-start;
-}
-
-.el-checkbox__inner {
-    width: 50px;
-    height: 50px;
-}
-
-.el-slider__bar {
-    width: 150px;
 }
 
 .main {
     display: flex;
     flex-direction: column;
-    margin: 0;
 }
 
 header {
     line-height: 1.5;
-    /* display: flex; */
-    /* flex-direction: row; */
-    /* margin: auto; */
 }
 
 .logo {
     display: block;
     margin: 0 auto 2rem;
 }
-.slider-demo-block .el-slider {
+
+.el-slider {
     margin-top: 12px;
     margin-left: 12px;
 }
@@ -321,14 +327,9 @@ header {
 .door-2 {
     height: 350px;
 }
+
 .range-2 {
     display: flex;
-    // margin-bottom: 30px;
-}
-.container-2 {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
 }
 
 .door-type {
@@ -355,6 +356,7 @@ header {
             0px 4px 4px 0px rgba(0, 0, 0, 0.25),
             0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     }
+
     transition: box-shadow 0.3s ease;
     transition: background-color 0.5s ease;
 }

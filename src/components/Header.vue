@@ -1,13 +1,5 @@
 <script setup>
-defineProps({
-    msg: {
-        type: String,
-        required: true,
-    },
-});
-
 import { ElButton, ElDatePicker } from "element-plus";
-
 import { ref } from "vue";
 
 const value1 = ref("");
@@ -24,14 +16,15 @@ const value1 = ref("");
                 />
                 <span class="fs-14 ls-2 fw-500">Кировская обл.</span>
             </div>
-            <el-button class="upper-case region__button" type="info"
-                >Изменить регион</el-button
-            >
+            <el-button class="upper-case region__button" type="info">
+                Изменить регион
+            </el-button>
         </div>
         <div
             class="lk d-flex flex-column align-items-center justify-content-center"
         >
             <img src="../assets/icons/user.svg" alt="person" class="icon" />
+
             <span class="fw-600 mt-10">ВХОД</span>
         </div>
     </div>
