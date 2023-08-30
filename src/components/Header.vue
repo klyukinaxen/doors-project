@@ -16,9 +16,9 @@ const value1 = ref("");
                 />
                 <span class="fs-14 ls-2 fw-500">Кировская обл.</span>
             </div>
-            <el-button class="upper-case region__button" type="info">
+            <ElButton class="upper-case region__button" type="info">
                 Изменить регион
-            </el-button>
+            </ElButton>
         </div>
         <div
             class="lk d-flex flex-column align-items-center justify-content-center"

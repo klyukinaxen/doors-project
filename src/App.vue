@@ -1,5 +1,5 @@
 <script setup>
-import Header from "./components/Header.vue";
+import Header from './components/Header.vue';
 import {
     ElButton,
     ElRadioGroup,
@@ -8,16 +8,16 @@ import {
     ElDropdown,
     ElDropdownItem,
     ElDropdownMenu,
-    ElCol,
-} from "element-plus";
-import { ref } from "vue";
+    ElCol
+} from 'element-plus';
+import { ref } from 'vue';
 
-const radio1 = ref("1");
+const radio1 = ref('1');
 const value1 = ref(200);
 const value2 = ref(100);
 
-let dropdown = "";
-let dropdownPanel = "";
+let dropdown = '';
+let dropdownPanel = '';
 
 const handleDropdown = (command) => {
     dropdown = command;
@@ -43,20 +43,20 @@ const handleDropdownPanel = (command) => {
             <div class="d-flex justify-content-around w-100 primary-bg py-30">
                 <div class="door-type">
                     <img src="./assets/icons/door-1.svg" alt="" />
-
-                    <el-button class="button"> однопольная </el-button>
+                                
+                    <ElButton class="button"> однопольная </ElButton>
                 </div>
 
                 <div class="door-type">
                     <img src="./assets/icons/door-2.svg" alt="" />
 
-                    <el-button class="button">двупольная</el-button>
+                    <ElButton class="button">двупольная</ElButton>
                 </div>
 
                 <div class="door-type">
                     <img src="./assets/icons/door-2.1.svg" alt="" />
 
-                    <el-button class="button">двупольная с импостом</el-button>
+                    <ElButton class="button">двупольная с импостом</ElButton>
                 </div>
             </div>
 
@@ -66,22 +66,22 @@ const handleDropdownPanel = (command) => {
 
             <div class="d-flex justify-content-around w-100 primary-bg py-30">
                 <div class="d-none">
-                    <el-slider
+                    <ElSlider
+                        v-model="value2"
                         class="row-reverse"
                         vertical
                         :min="0"
                         :max="2550"
                         height="230px"
                         show-input
-                        v-model="value2"
                         size="small"
                     />
 
                     <div class="door-1-range">
-                        <el-slider
+                        <ElSlider
+                            v-model="value1"
                             :min="0"
                             :max="1080"
-                            v-model="value1"
                             show-input
                             size="small"
                         />
@@ -96,38 +96,36 @@ const handleDropdownPanel = (command) => {
                         открывание двери
                     </span>
 
-                    <el-radio-group
+                    <ElRadioGroup
                         v-model="radio1"
                         class="d-flex flex-column radio-group"
                     >
-                        <el-radio label="1" size="large" class="my-30" border>
+                        <ElRadio label="1" size="large" class="my-30" border>
                             Правое
-                        </el-radio>
+                        </ElRadio>
 
-                        <el-radio label="2" size="large" border>
-                            Левое
-                        </el-radio>
-                    </el-radio-group>
+                        <ElRadio label="2" size="large" border> Левое </ElRadio>
+                    </ElRadioGroup>
                 </div>
 
                 <!-- or -->
                 <div class="d-flex">
-                    <el-slider
+                    <ElSlider
+                        v-model="value2"
                         class="row-reverse range-2"
                         vertical
                         :min="0"
                         :max="2550"
                         height="280px"
                         show-input
-                        v-model="value2"
                         size="small"
                     />
 
                     <div class="door-2-range">
-                        <el-slider
+                        <ElSlider
+                            v-model="value1"
                             :min="0"
                             :max="1600"
-                            v-model="value1"
                             show-input
                             size="small"
                             class="mb-10 ml-15"
@@ -152,7 +150,7 @@ const handleDropdownPanel = (command) => {
                 <div class="door-type">
                     <img src="./assets/icons/door-standart.svg" alt="" />
 
-                    <el-button class="button"> Стандарт </el-button>
+                    <ElButton class="button"> Стандарт </ElButton>
 
                     <span class="fs-14 ls-2 mw-250 fw-300">
                         Стандартная конструкция на двух «шарикоподшипниковых»
@@ -168,7 +166,7 @@ const handleDropdownPanel = (command) => {
                 <div class="door-type">
                     <img src="./assets/icons/door-bark.svg" alt="" />
 
-                    <el-button class="button">Петли барк</el-button>
+                    <ElButton class="button">Петли барк</ElButton>
 
                     <span class="fs-14 ls-2 mw-250 fw-300">
                         Усовершенствованная конструкция на двух петлях «Барк» с
@@ -184,7 +182,7 @@ const handleDropdownPanel = (command) => {
                 <div class="door-type">
                     <img src="./assets/icons/door-thermo.svg" alt="" />
 
-                    <el-button class="button">Терморазрыв</el-button>
+                    <ElButton class="button">Терморазрыв</ElButton>
 
                     <span class="fs-14 ls-2 mw-250 fw-300">
                         Конструкция, которая предназначена для проёмов, которые
@@ -204,12 +202,12 @@ const handleDropdownPanel = (command) => {
 
                 <div>
                     <div class="dropdowns d-grid grid-3">
-                        <el-col class="d-flex flex-column" :span="8">
+                        <ElCol class="d-flex flex-column" :span="8">
                             <span class="demonstration upper-case mb-15">
                                 внутренняя панель
                             </span>
 
-                            <el-dropdown
+                            <ElDropdown
                                 trigger="click"
                                 @command="handleDropdown"
                             >
@@ -223,21 +221,21 @@ const handleDropdownPanel = (command) => {
                                 </span>
 
                                 <template #dropdown>
-                                    <el-dropdown-menu>
-                                        <el-dropdown-item command="Крашенная">
+                                    <ElDropdownMenu>
+                                        <ElDropdownItem command="Крашенная">
                                             Крашенная
-                                        </el-dropdown-item>
-                                    </el-dropdown-menu>
+                                        </ElDropdownItem>
+                                    </ElDropdownMenu>
                                 </template>
-                            </el-dropdown>
-                        </el-col>
+                            </ElDropdown>
+                        </ElCol>
                         <!-- dropdown -->
-                        <el-col class="d-flex flex-column" :span="8">
+                        <ElCol class="d-flex flex-column" :span="8">
                             <span class="demonstration upper-case mb-15">
                                 толщина панели
                             </span>
 
-                            <el-dropdown
+                            <ElDropdown
                                 trigger="click"
                                 @command="handleDropdownPanel"
                             >
@@ -251,14 +249,14 @@ const handleDropdownPanel = (command) => {
                                 </span>
 
                                 <template #dropdown>
-                                    <el-dropdown-menu>
-                                        <el-dropdown-item command="6 мм">
+                                    <ElDropdownMenu>
+                                        <ElDropdownItem command="6 мм">
                                             6 мм
-                                        </el-dropdown-item>
-                                    </el-dropdown-menu>
+                                        </ElDropdownItem>
+                                    </ElDropdownMenu>
                                 </template>
-                            </el-dropdown>
-                        </el-col>
+                            </ElDropdown>
+                        </ElCol>
                         <!-- dropdown -->
                     </div>
 
