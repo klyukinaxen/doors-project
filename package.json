@@ -1,22 +1,26 @@
 {
-  "name": "doors-project",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "element-plus": "^2.3.10",
-    "pinia": "^2.1.6",
-    "sacc": "^0.0.1",
-    "sass": "^1.66.1",
-    "scss": "^0.2.4",
-    "vue": "^3.3.4"
-  },
-  "devDependencies": {
-    "@vitejs/plugin-vue": "^4.3.1",
-    "vite": "^4.4.9"
-  }
+    "name": "doors-project",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview",
+        "lint": "eslint --fix **/*.{js,vue}"
+    },
+    "dependencies": {
+        "axios": "^1.5.0",
+        "element-plus": "^2.3.10",
+        "pinia": "^2.1.6",
+        "sass": "^1.66.1",
+        "scss": "^0.2.4",
+        "vue": "^3.3.4"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-vue": "^4.3.1",
+        "eslint": "^8.48.0",
+        "eslint-config-prettier": "^9.0.0",
+        "eslint-plugin-vue": "^9.17.0",
+        "vite": "^4.4.9"
+    }
 }
