@@ -8,5 +8,5 @@
 import { useCalculatorStore } from '../stores/calculator'
 
 const calculatorStore = useCalculatorStore()
-calculatorStore.getDoorParams()
+calculatorStore.recieveDoorParams()
 </script>
