@@ -3,6 +3,7 @@ import Header from './components/Header.vue'
 import { ElButton, ElRadioGroup, ElRadio, ElSlider, ElOption, ElSelect, ElInput, ElCheckbox } from 'element-plus'
 import { ref } from 'vue'
 import data from './stores/data.json'
+import Calculator from './components/Calculator.vue'
 
 const radio1 = ref('1')
 
@@ -21,6 +22,8 @@ const checked = ref([false, false, false, false, false, false, false, false, fal
     <div class="main mx-15">
         <Header />
 
+        <Calculator />
+
         <span class="upper-case fw-600 fs-25 ls-3 my-30 text-center"> конфигуратор дверей </span>
 
         <div class="d-flex flex-column">
@@ -28,19 +31,28 @@ const checked = ref([false, false, false, false, false, false, false, false, fal
 
             <div class="d-flex justify-content-around w-100 primary-bg py-30">
                 <div class="door-type">
-                    <img src="./assets/icons/door-1.svg" alt="" />
+                    <img
+                        src="./assets/icons/door-1.svg"
+                        alt=""
+                    />
 
                     <ElButton class="button-door"> однопольная </ElButton>
                 </div>
 
                 <div class="door-type">
-                    <img src="./assets/icons/door-2.svg" alt="" />
+                    <img
+                        src="./assets/icons/door-2.svg"
+                        alt=""
+                    />
 
                     <ElButton class="button-door">двупольная</ElButton>
                 </div>
 
                 <div class="door-type">
-                    <img src="./assets/icons/door-2.1.svg" alt="" />
+                    <img
+                        src="./assets/icons/door-2.1.svg"
+                        alt=""
+                    />
 
                     <ElButton class="button-door">двупольная с импостом</ElButton>
                 </div>
@@ -50,13 +62,30 @@ const checked = ref([false, false, false, false, false, false, false, false, fal
 
             <div class="d-flex justify-content-around w-100 primary-bg py-30">
                 <div class="d-none">
-                    <ElSlider v-model="value2" class="row-reverse" vertical :min="0" :max="2550" height="230px" show-input
-                        size="small" />
+                    <ElSlider
+                        v-model="value2"
+                        class="row-reverse"
+                        vertical
+                        :min="0"
+                        :max="2550"
+                        height="230px"
+                        show-input
+                        size="small"
+                    />
 
                     <div class="door-1-range">
-                        <ElSlider v-model="value1" :min="0" :max="1080" show-input size="small" />
+                        <ElSlider
+                            v-model="value1"
+                            :min="0"
+                            :max="1080"
+                            show-input
+                            size="small"
+                        />
 
-                        <img src="./assets/icons/door-1.0.svg" alt="" />
+                        <img
+                            src="./assets/icons/door-1.0.svg"
+                            alt=""
+                        />
                     </div>
                 </div>
 
@@ -64,12 +93,24 @@ const checked = ref([false, false, false, false, false, false, false, false, fal
                 <div class="d-flex flex-column">
                     <span class="fs-18 fw-600 ls-2 upper-case"> открывание двери </span>
 
-                    <ElRadioGroup v-model="radio1" class="d-flex flex-column radio-group">
-                        <ElRadio label="1" size="large" class="my-30" border>
+                    <ElRadioGroup
+                        v-model="radio1"
+                        class="d-flex flex-column radio-group"
+                    >
+                        <ElRadio
+                            label="1"
+                            size="large"
+                            class="my-30"
+                            border
+                        >
                             Правое
                         </ElRadio>
 
-                        <ElRadio label="2" size="large" border>
+                        <ElRadio
+                            label="2"
+                            size="large"
+                            border
+                        >
                             Левое
                         </ElRadio>
                     </ElRadioGroup>
@@ -77,13 +118,32 @@ const checked = ref([false, false, false, false, false, false, false, false, fal
 
                 <!-- or -->
                 <div class="d-flex">
-                    <ElSlider v-model="value2" class="row-reverse range-2" vertical :min="0" :max="2550" height="280px"
-                        show-input size="small" />
+                    <ElSlider
+                        v-model="value2"
+                        class="row-reverse range-2"
+                        vertical
+                        :min="0"
+                        :max="2550"
+                        height="280px"
+                        show-input
+                        size="small"
+                    />
 
                     <div class="door-2-range">
-                        <ElSlider v-model="value1" :min="0" :max="1600" show-input size="small" class="mb-10 ml-15" />
+                        <ElSlider
+                            v-model="value1"
+                            :min="0"
+                            :max="1600"
+                            show-input
+                            size="small"
+                            class="mb-10 ml-15"
+                        />
 
-                        <img class="door-2" src="./assets/icons/door-2.0.svg" alt="" />
+                        <img
+                            class="door-2"
+                            src="./assets/icons/door-2.0.svg"
+                            alt=""
+                        />
                     </div>
                 </div>
             </div>
@@ -92,13 +152,15 @@ const checked = ref([false, false, false, false, false, false, false, false, fal
 
             <div class="container-3 d-flex justify-content-around w-100 primary-bg py-30">
                 <div class="door-type">
-                    <img src="./assets/icons/door-standart.svg" alt="" />
+                    <img
+                        src="./assets/icons/door-standart.svg"
+                        alt=""
+                    />
 
                     <ElButton class="button-door"> Стандарт </ElButton>
 
                     <span class="fs-14 ls-2 mw-250 fw-300">
-                        Стандартная конструкция на двух «шарикоподшипниковых» петлях, без возможности установить МДФ панель
-                        снаружи.
+                        Стандартная конструкция на двух «шарикоподшипниковых» петлях, без возможности установить МДФ панель снаружи.
                         <br />
                         <br />
                         - Толщина листа 2мм
@@ -108,13 +170,15 @@ const checked = ref([false, false, false, false, false, false, false, false, fal
                 </div>
 
                 <div class="door-type">
-                    <img src="./assets/icons/door-bark.svg" alt="" />
+                    <img
+                        src="./assets/icons/door-bark.svg"
+                        alt=""
+                    />
 
                     <ElButton class="button-door">Петли барк</ElButton>
 
                     <span class="fs-14 ls-2 mw-250 fw-300">
-                        Усовершенствованная конструкция на двух петлях «Барк» с возможностью выбора расширенных
-                        характеристик.
+                        Усовершенствованная конструкция на двух петлях «Барк» с возможностью выбора расширенных характеристик.
                         <br />
                         <br />
                         - толщина листа 2мм <br />
@@ -124,7 +188,10 @@ const checked = ref([false, false, false, false, false, false, false, false, fal
                 </div>
 
                 <div class="door-type">
-                    <img src="./assets/icons/door-thermo.svg" alt="" />
+                    <img
+                        src="./assets/icons/door-thermo.svg"
+                        alt=""
+                    />
 
                     <ElButton class="button-door">Терморазрыв</ElButton>
 
@@ -137,9 +204,13 @@ const checked = ref([false, false, false, false, false, false, false, false, fal
             <span class="upper-case fs-16 ls-2 my-45"> выберите дополнительные параметры: </span>
 
             <div class="container-4 d-flex justify-content-center w-100 primary-bg py-30">
-                <div class='d-flex flex-column align-items-center justify-content-center'>
-                    <span class='upper-case fs-16 ls-2 fw-600'>{{ data[0].title }}</span>
-                    <img src="./assets/icons/door-1.0.svg" alt="" class="p-50 pr-80 pt-20" />
+                <div class="d-flex flex-column align-items-center justify-content-center">
+                    <span class="upper-case fs-16 ls-2 fw-600">{{ data[0].title }}</span>
+                    <img
+                        src="./assets/icons/door-1.0.svg"
+                        alt=""
+                        class="p-50 pr-80 pt-20"
+                    />
                 </div>
 
                 <div>
@@ -147,9 +218,18 @@ const checked = ref([false, false, false, false, false, false, false, false, fal
                         <div class="d-flex flex-column">
                             <span class="upper-case mb-15 fs-12"> внутренняя панель </span>
 
-                            <ElSelect v-model="insidePanel" class="m-2 mw-250" placeholder="Select" size="large">
-                                <ElOption v-for="item in data[0].insidePanel" :key="item.title" :label="item.title"
-                                    :value="item.title" />
+                            <ElSelect
+                                v-model="insidePanel"
+                                class="m-2 mw-250"
+                                placeholder="Select"
+                                size="large"
+                            >
+                                <ElOption
+                                    v-for="item in data[0].insidePanel"
+                                    :key="item.title"
+                                    :label="item.title"
+                                    :value="item.title"
+                                />
                             </ElSelect>
                         </div>
 
@@ -157,16 +237,30 @@ const checked = ref([false, false, false, false, false, false, false, false, fal
                         <div class="d-flex flex-column">
                             <span class="upper-case mb-15 fs-12"> толщина панели </span>
 
-                            <ElSelect v-model="insidePanelParam" class="m-2 mw-250" placeholder="Select" size="large">
-                                <ElOption v-for="item in data[0].insidePanel[0].params" :key="item.name" :label="item.name"
-                                    :value="item.name" />
+                            <ElSelect
+                                v-model="insidePanelParam"
+                                class="m-2 mw-250"
+                                placeholder="Select"
+                                size="large"
+                            >
+                                <ElOption
+                                    v-for="item in data[0].insidePanel[0].params"
+                                    :key="item.name"
+                                    :label="item.name"
+                                    :value="item.name"
+                                />
                             </ElSelect>
                         </div>
 
                         <div class="d-flex flex-column">
                             <span class="upper-case mb-15 fs-12"> фреза </span>
 
-                            <ElInput v-model="freza" class="w-50 mw-250" size="large" placeholder="Введите id" />
+                            <ElInput
+                                v-model="freza"
+                                class="w-50 mw-250"
+                                size="large"
+                                placeholder="Введите id"
+                            />
                         </div>
                     </div>
 
@@ -174,19 +268,36 @@ const checked = ref([false, false, false, false, false, false, false, false, fal
                         <div class="d-flex flex-column">
                             <span class="upper-case mb-15 fs-12"> цвет конструкции </span>
 
-                            <ElInput v-model="freza" class="w-50 mw-250" size="large" placeholder="Введите id" />
+                            <ElInput
+                                v-model="freza"
+                                class="w-50 mw-250"
+                                size="large"
+                                placeholder="Введите id"
+                            />
                         </div>
 
                         <div class="d-flex flex-column">
                             <span class="upper-case mb-15 fs-12"> цвет панели </span>
 
-                            <ElInput v-model="freza" class="w-50 mw-250" size="large" placeholder="Введите id" />
+                            <ElInput
+                                v-model="freza"
+                                class="w-50 mw-250"
+                                size="large"
+                                placeholder="Введите id"
+                            />
                         </div>
                     </div>
 
                     <div class="checkboxes mt-30">
-                        <ElCheckbox v-for="item, key in data[0].modifiersWithPrice" :key="key" v-model="checked[key]"
-                            :label="item.title" size="large" class="mw-250" border />
+                        <ElCheckbox
+                            v-for="(item, key) in data[0].modifiersWithPrice"
+                            :key="key"
+                            v-model="checked[key]"
+                            :label="item.title"
+                            size="large"
+                            class="mw-250"
+                            border
+                        />
 
                         <!-- Багеты снаружи -->
                         <!-- ночной страж и тд -->
@@ -269,14 +380,15 @@ header {
         background-color: var(--secondary);
         color: #fff;
         border: none;
-        box-shadow: 0px 0px 40px 0px rgba(255, 255, 255, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        box-shadow:
+            0px 0px 40px 0px rgba(255, 255, 255, 0.25),
+            0px 4px 4px 0px rgba(0, 0, 0, 0.25),
+            0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     }
 
     transition: box-shadow 0.3s ease;
     transition: background-color 0.5s ease;
 }
-
-
 
 .container-3 {
     display: grid;
@@ -309,5 +421,6 @@ header {
     }
 }
 
-@media (min-width: 1024px) {}
+@media (min-width: 1024px) {
+}
 </style>
