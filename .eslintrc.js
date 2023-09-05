@@ -10,5 +10,9 @@ module.exports = {
     rules: {
         'vue/component-name-in-template-casing': ['error', 'PascalCase'],
         'vue/multi-word-component-names': 'off'
+    },
+    parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module'
     }
 }
