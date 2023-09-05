@@ -1,295 +1,296 @@
 <template>
-    <div>
-        <pre>doorParams={{ calculatorStore.doorParams }}</pre>
-    </div>
+    <div v-if="calculatorStore.doorParams">
+        <span class="upper-case fw-600 fs-25 ls-3 my-30 text-center"> конфигуратор дверей </span>
 
-    <span class="upper-case fw-600 fs-25 ls-3 my-30 text-center"> конфигуратор дверей </span>
+        <div class="d-flex flex-column">
+            <span class="upper-case fs-16 ls-2 mb-40 ml-20"> Выберите тип двери </span>
 
-    <div class="d-flex flex-column">
-        <span class="upper-case fs-16 ls-2 mb-40 ml-20"> Выберите тип двери </span>
+            <div class="d-flex justify-content-around w-100 primary-bg py-30">
+                <div class="door-type">
+                    <img
+                        src="../assets/icons/door-1.svg"
+                        alt=""
+                    />
 
-        <div class="d-flex justify-content-around w-100 primary-bg py-30">
-            <div class="door-type">
-                <img
-                    src="../assets/icons/door-1.svg"
-                    alt=""
-                />
+                    <ElButton class="button-door"> {{ calculatorStore.doorParams.door_type[0].type_name }} </ElButton>
+                </div>
 
-                <ElButton class="button-door"> {{ calculatorStore.doorParams.door_type[0].type_name }} </ElButton>
+                <div class="door-type">
+                    <img
+                        src="../assets/icons/door-2.svg"
+                        alt=""
+                    />
+
+                    <ElButton class="button-door">{{ calculatorStore.doorParams.door_type[1].type_name }}</ElButton>
+                </div>
+
+                <div class="door-type">
+                    <img
+                        src="../assets/icons/door-2.1.svg"
+                        alt=""
+                    />
+
+                    <ElButton class="button-door">{{ calculatorStore.doorParams.door_type[2].type_name }}</ElButton>
+                </div>
             </div>
 
-            <div class="door-type">
-                <img
-                    src="../assets/icons/door-2.svg"
-                    alt=""
-                />
+            <span class="upper-case fs-16 ls-2 my-45"> укажите размер и способ открывания: </span>
 
-                <ElButton class="button-door">{{ calculatorStore.doorParams.door_type[1].type_name }}</ElButton>
-            </div>
-
-            <div class="door-type">
-                <img
-                    src="../assets/icons/door-2.1.svg"
-                    alt=""
-                />
-
-                <ElButton class="button-door">{{ calculatorStore.doorParams.door_type[2].type_name }}</ElButton>
-            </div>
-        </div>
-
-        <span class="upper-case fs-16 ls-2 my-45"> укажите размер и способ открывания: </span>
-
-        <div class="d-flex justify-content-around w-100 primary-bg py-30">
-            <div class="d-none">
-                <ElSlider
-                    v-model="value2"
-                    class="row-reverse"
-                    vertical
-                    :min="0"
-                    :max="2550"
-                    height="230px"
-                    show-input
-                    size="small"
-                />
-
-                <div class="door-1-range">
+            <div class="d-flex justify-content-around w-100 primary-bg py-30">
+                <div class="d-none">
                     <ElSlider
-                        v-model="value1"
+                        v-model="value2"
+                        class="row-reverse"
+                        vertical
                         :min="0"
-                        :max="1080"
+                        :max="2550"
+                        height="230px"
                         show-input
                         size="small"
                     />
 
+                    <div class="door-1-range">
+                        <ElSlider
+                            v-model="value1"
+                            :min="0"
+                            :max="1080"
+                            show-input
+                            size="small"
+                        />
+
+                        <img
+                            src="../assets/icons/door-1.0.svg"
+                            alt=""
+                        />
+                    </div>
+                </div>
+
+                <!-- checkbox -->
+                <div class="d-flex flex-column">
+                    <span class="fs-18 fw-600 ls-2 upper-case"> открывание двери </span>
+
+                    <ElRadioGroup
+                        v-model="radio1"
+                        class="d-flex flex-column radio-group"
+                    >
+                        <ElRadio
+                            label="1"
+                            size="large"
+                            class="my-30"
+                            border
+                        >
+                            Правое
+                        </ElRadio>
+
+                        <ElRadio
+                            label="2"
+                            size="large"
+                            border
+                        >
+                            Левое
+                        </ElRadio>
+                    </ElRadioGroup>
+                </div>
+
+                <!-- or -->
+                <div class="d-flex">
+                    <ElSlider
+                        v-model="value2"
+                        class="row-reverse range-2"
+                        vertical
+                        :min="0"
+                        :max="2550"
+                        height="280px"
+                        show-input
+                        size="small"
+                    />
+
+                    <div class="door-2-range">
+                        <ElSlider
+                            v-model="value1"
+                            :min="0"
+                            :max="1600"
+                            show-input
+                            size="small"
+                            class="mb-10 ml-15"
+                        />
+
+                        <img
+                            class="door-2"
+                            src="../assets/icons/door-2.0.svg"
+                            alt=""
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <span class="upper-case fs-16 ls-2 my-45"> Выберите конструкцию дверей: </span>
+
+            <div class="container-3 d-flex justify-content-around w-100 primary-bg py-30">
+                <div class="door-type">
+                    <img
+                        src="../assets/icons/door-standart.svg"
+                        alt=""
+                    />
+
+                    <ElButton class="button-door"> Стандарт </ElButton>
+
+                    <span class="fs-14 ls-2 mw-250 fw-300">
+                        Стандартная конструкция на двух «шарикоподшипниковых» петлях, без возможности установить МДФ панель снаружи.
+                        <br />
+                        <br />
+                        - Толщина листа 2мм
+                        <br />
+                        - 2 контура уплотнения
+                    </span>
+                </div>
+
+                <div class="door-type">
+                    <img
+                        src="../assets/icons/door-bark.svg"
+                        alt=""
+                    />
+
+                    <ElButton class="button-door">Петли барк</ElButton>
+
+                    <span class="fs-14 ls-2 mw-250 fw-300">
+                        Усовершенствованная конструкция на двух петлях «Барк» с возможностью выбора расширенных характеристик.
+                        <br />
+                        <br />
+                        - толщина листа 2мм <br />
+                        - 2 контура уплотнения<br />
+                        - есть возможность установить панель снаружи
+                    </span>
+                </div>
+
+                <div class="door-type">
+                    <img
+                        src="../assets/icons/door-thermo.svg"
+                        alt=""
+                    />
+
+                    <ElButton class="button-door">Терморазрыв</ElButton>
+
+                    <span class="fs-14 ls-2 mw-250 fw-300">
+                        Конструкция, которая предназначена для проёмов, которые граничат с улицей.
+                    </span>
+                </div>
+            </div>
+
+            <span class="upper-case fs-16 ls-2 my-45"> выберите дополнительные параметры: </span>
+
+            <div class="container-4 d-flex justify-content-center w-100 primary-bg py-30">
+                <div class="d-flex flex-column align-items-center justify-content-center">
+                    <span class="upper-case fs-16 ls-2 fw-600">{{ data[0].title }}</span>
                     <img
                         src="../assets/icons/door-1.0.svg"
                         alt=""
+                        class="p-50 pr-80 pt-20"
                     />
                 </div>
-            </div>
 
-            <!-- checkbox -->
-            <div class="d-flex flex-column">
-                <span class="fs-18 fw-600 ls-2 upper-case"> открывание двери </span>
+                <div>
+                    <div class="dropdowns d-grid grid-3">
+                        <div class="d-flex flex-column">
+                            <span class="upper-case mb-15 fs-12"> внутренняя панель </span>
 
-                <ElRadioGroup
-                    v-model="radio1"
-                    class="d-flex flex-column radio-group"
-                >
-                    <ElRadio
-                        label="1"
-                        size="large"
-                        class="my-30"
-                        border
-                    >
-                        Правое
-                    </ElRadio>
+                            <ElSelect
+                                v-model="insidePanel"
+                                class="m-2 mw-250"
+                                placeholder="Select"
+                                size="large"
+                            >
+                                <ElOption
+                                    v-for="item in data[0].insidePanel"
+                                    :key="item.title"
+                                    :label="item.title"
+                                    :value="item.title"
+                                />
+                            </ElSelect>
+                        </div>
 
-                    <ElRadio
-                        label="2"
-                        size="large"
-                        border
-                    >
-                        Левое
-                    </ElRadio>
-                </ElRadioGroup>
-            </div>
+                        <!-- dropdown insidePanelParam  толщина панели-->
+                        <div class="d-flex flex-column">
+                            <span class="upper-case mb-15 fs-12"> толщина панели </span>
 
-            <!-- or -->
-            <div class="d-flex">
-                <ElSlider
-                    v-model="value2"
-                    class="row-reverse range-2"
-                    vertical
-                    :min="0"
-                    :max="2550"
-                    height="280px"
-                    show-input
-                    size="small"
-                />
+                            <ElSelect
+                                v-model="insidePanelParam"
+                                class="m-2 mw-250"
+                                placeholder="Select"
+                                size="large"
+                            >
+                                <ElOption
+                                    v-for="item in data[0].insidePanel[0].params"
+                                    :key="item.name"
+                                    :label="item.name"
+                                    :value="item.name"
+                                />
+                            </ElSelect>
+                        </div>
 
-                <div class="door-2-range">
-                    <ElSlider
-                        v-model="value1"
-                        :min="0"
-                        :max="1600"
-                        show-input
-                        size="small"
-                        class="mb-10 ml-15"
-                    />
+                        <div class="d-flex flex-column">
+                            <span class="upper-case mb-15 fs-12"> фреза </span>
 
-                    <img
-                        class="door-2"
-                        src="../assets/icons/door-2.0.svg"
-                        alt=""
-                    />
-                </div>
-            </div>
-        </div>
-
-        <span class="upper-case fs-16 ls-2 my-45"> Выберите конструкцию дверей: </span>
-
-        <div class="container-3 d-flex justify-content-around w-100 primary-bg py-30">
-            <div class="door-type">
-                <img
-                    src="../assets/icons/door-standart.svg"
-                    alt=""
-                />
-
-                <ElButton class="button-door"> Стандарт </ElButton>
-
-                <span class="fs-14 ls-2 mw-250 fw-300">
-                    Стандартная конструкция на двух «шарикоподшипниковых» петлях, без возможности установить МДФ панель снаружи.
-                    <br />
-                    <br />
-                    - Толщина листа 2мм
-                    <br />
-                    - 2 контура уплотнения
-                </span>
-            </div>
-
-            <div class="door-type">
-                <img
-                    src="../assets/icons/door-bark.svg"
-                    alt=""
-                />
-
-                <ElButton class="button-door">Петли барк</ElButton>
-
-                <span class="fs-14 ls-2 mw-250 fw-300">
-                    Усовершенствованная конструкция на двух петлях «Барк» с возможностью выбора расширенных характеристик.
-                    <br />
-                    <br />
-                    - толщина листа 2мм <br />
-                    - 2 контура уплотнения<br />
-                    - есть возможность установить панель снаружи
-                </span>
-            </div>
-
-            <div class="door-type">
-                <img
-                    src="../assets/icons/door-thermo.svg"
-                    alt=""
-                />
-
-                <ElButton class="button-door">Терморазрыв</ElButton>
-
-                <span class="fs-14 ls-2 mw-250 fw-300"> Конструкция, которая предназначена для проёмов, которые граничат с улицей. </span>
-            </div>
-        </div>
-
-        <span class="upper-case fs-16 ls-2 my-45"> выберите дополнительные параметры: </span>
-
-        <div class="container-4 d-flex justify-content-center w-100 primary-bg py-30">
-            <div class="d-flex flex-column align-items-center justify-content-center">
-                <span class="upper-case fs-16 ls-2 fw-600">{{ data[0].title }}</span>
-                <img
-                    src="../assets/icons/door-1.0.svg"
-                    alt=""
-                    class="p-50 pr-80 pt-20"
-                />
-            </div>
-
-            <div>
-                <div class="dropdowns d-grid grid-3">
-                    <div class="d-flex flex-column">
-                        <span class="upper-case mb-15 fs-12"> внутренняя панель </span>
-
-                        <ElSelect
-                            v-model="insidePanel"
-                            class="m-2 mw-250"
-                            placeholder="Select"
-                            size="large"
-                        >
-                            <ElOption
-                                v-for="item in data[0].insidePanel"
-                                :key="item.title"
-                                :label="item.title"
-                                :value="item.title"
+                            <ElInput
+                                v-model="freza"
+                                class="w-50 mw-250"
+                                size="large"
+                                placeholder="Введите id"
                             />
-                        </ElSelect>
+                        </div>
                     </div>
 
-                    <!-- dropdown insidePanelParam  толщина панели-->
-                    <div class="d-flex flex-column">
-                        <span class="upper-case mb-15 fs-12"> толщина панели </span>
+                    <div class="dropdowns d-grid grid-3 mt-30">
+                        <div class="d-flex flex-column">
+                            <span class="upper-case mb-15 fs-12"> цвет конструкции </span>
 
-                        <ElSelect
-                            v-model="insidePanelParam"
-                            class="m-2 mw-250"
-                            placeholder="Select"
-                            size="large"
-                        >
-                            <ElOption
-                                v-for="item in data[0].insidePanel[0].params"
-                                :key="item.name"
-                                :label="item.name"
-                                :value="item.name"
+                            <ElInput
+                                v-model="freza"
+                                class="w-50 mw-250"
+                                size="large"
+                                placeholder="Введите id"
                             />
-                        </ElSelect>
+                        </div>
+
+                        <div class="d-flex flex-column">
+                            <span class="upper-case mb-15 fs-12"> цвет панели </span>
+
+                            <ElInput
+                                v-model="freza"
+                                class="w-50 mw-250"
+                                size="large"
+                                placeholder="Введите id"
+                            />
+                        </div>
                     </div>
 
-                    <div class="d-flex flex-column">
-                        <span class="upper-case mb-15 fs-12"> фреза </span>
-
-                        <ElInput
-                            v-model="freza"
-                            class="w-50 mw-250"
+                    <div class="checkboxes mt-30">
+                        <ElCheckbox
+                            v-for="(item, key) in data[0].modifiersWithPrice"
+                            :key="key"
+                            v-model="checked[key]"
+                            :label="item.title"
                             size="large"
-                            placeholder="Введите id"
+                            class="mw-250"
+                            border
                         />
+
+                        <!-- Багеты снаружи -->
+                        <!-- ночной страж и тд -->
                     </div>
-                </div>
-
-                <div class="dropdowns d-grid grid-3 mt-30">
-                    <div class="d-flex flex-column">
-                        <span class="upper-case mb-15 fs-12"> цвет конструкции </span>
-
-                        <ElInput
-                            v-model="freza"
-                            class="w-50 mw-250"
-                            size="large"
-                            placeholder="Введите id"
-                        />
-                    </div>
-
-                    <div class="d-flex flex-column">
-                        <span class="upper-case mb-15 fs-12"> цвет панели </span>
-
-                        <ElInput
-                            v-model="freza"
-                            class="w-50 mw-250"
-                            size="large"
-                            placeholder="Введите id"
-                        />
-                    </div>
-                </div>
-
-                <div class="checkboxes mt-30">
-                    <ElCheckbox
-                        v-for="(item, key) in data[0].modifiersWithPrice"
-                        :key="key"
-                        v-model="checked[key]"
-                        :label="item.title"
-                        size="large"
-                        class="mw-250"
-                        border
-                    />
-
-                    <!-- Багеты снаружи -->
-                    <!-- ночной страж и тд -->
                 </div>
             </div>
+            <span class="upper-case fs-16 ls-2 my-45"> предварительная стоимость: </span>
         </div>
-        <span class="upper-case fs-16 ls-2 my-45"> предварительная стоимость: </span>
     </div>
 </template>
 
 <script setup>
 import { useCalculatorStore } from '../stores/calculator'
 import { ElButton, ElRadioGroup, ElRadio, ElSlider, ElOption, ElSelect, ElInput, ElCheckbox } from 'element-plus'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import data from '../stores/data.json'
+import { useAuthStore } from '../stores/auth'
 
 const radio1 = ref('1')
 
@@ -301,9 +302,18 @@ const value2 = ref(100)
 const freza = ref('')
 
 const checked = ref([false, false, false, false, false, false, false, false, false, false])
+
+const authStore = useAuthStore()
 const calculatorStore = useCalculatorStore()
 await calculatorStore.recieveDoorParams()
 console.log('data', calculatorStore.doorParams)
+
+watch(
+    () => authStore.accessToken,
+    () => {
+        calculatorStore.recieveDoorParams()
+    }
+)
 </script>
 
 <style scoped lang="scss">
