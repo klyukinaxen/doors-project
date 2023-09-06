@@ -1,18 +1,28 @@
 <template>
-    <div v-if="calculatorStore.doorParams">
+    <div
+        v-if="calculatorStore.doorParams"
+        class="d-flex flex-column justify-content-center"
+    >
         <span class="upper-case fw-600 fs-25 ls-3 my-30 text-center"> конфигуратор дверей </span>
 
         <div class="d-flex flex-column">
             <span class="upper-case fs-16 ls-2 mb-40 ml-20"> Выберите тип двери </span>
 
             <div class="d-flex justify-content-around w-100 primary-bg py-30">
+                <!-- TODO: v-for for door types-->
                 <div class="door-type">
                     <img
                         src="../assets/icons/door-1.svg"
                         alt=""
                     />
 
-                    <ElButton class="button-door"> {{ calculatorStore.doorParams.door_type[0].type_name }} </ElButton>
+                    <ElButton
+                        class="button-door"
+                        :class="{ active: doorType === calculatorStore.doorParams.door_type[0].id }"
+                        @click="changeDoorType(calculatorStore.doorParams.door_type[0].id)"
+                    >
+                        {{ calculatorStore.doorParams.door_type[0].type_name }}
+                    </ElButton>
                 </div>
 
                 <div class="door-type">
@@ -21,7 +31,13 @@
                         alt=""
                     />
 
-                    <ElButton class="button-door">{{ calculatorStore.doorParams.door_type[1].type_name }}</ElButton>
+                    <ElButton
+                        class="button-door"
+                        :class="{ active: doorType === calculatorStore.doorParams.door_type[1].id }"
+                        @click="changeDoorType(calculatorStore.doorParams.door_type[1].id)"
+                    >
+                        {{ calculatorStore.doorParams.door_type[1].type_name }}
+                    </ElButton>
                 </div>
 
                 <div class="door-type">
@@ -30,16 +46,22 @@
                         alt=""
                     />
 
-                    <ElButton class="button-door">{{ calculatorStore.doorParams.door_type[2].type_name }}</ElButton>
+                    <ElButton
+                        class="button-door"
+                        :class="{ active: doorType === calculatorStore.doorParams.door_type[2].id }"
+                        @click="doorType = calculatorStore.doorParams.door_type[2].id"
+                    >
+                        {{ calculatorStore.doorParams.door_type[2].type_name }}
+                    </ElButton>
                 </div>
             </div>
 
             <span class="upper-case fs-16 ls-2 my-45"> укажите размер и способ открывания: </span>
 
             <div class="d-flex justify-content-around w-100 primary-bg py-30">
-                <div class="d-none">
+                <div :class="doorType === 2 || doorType === 3 ? 'd-none' : 'd-flex'">
                     <ElSlider
-                        v-model="value2"
+                        v-model="doorSizeHeight"
                         class="row-reverse"
                         vertical
                         :min="0"
@@ -47,55 +69,58 @@
                         height="230px"
                         show-input
                         size="small"
+                        @change="doorSizeHeight = $event"
                     />
 
                     <div class="door-1-range">
                         <ElSlider
-                            v-model="value1"
+                            v-model="doorSizeWidth"
                             :min="0"
                             :max="1080"
                             show-input
                             size="small"
+                            @change="doorSizeWidth = $event"
                         />
 
                         <img
+                            class="door-1"
                             src="../assets/icons/door-1.0.svg"
                             alt=""
                         />
                     </div>
                 </div>
 
-                <!-- checkbox -->
                 <div class="d-flex flex-column">
                     <span class="fs-18 fw-600 ls-2 upper-case"> открывание двери </span>
 
                     <ElRadioGroup
-                        v-model="radio1"
+                        v-model="doorOpenType"
                         class="d-flex flex-column radio-group"
                     >
                         <ElRadio
-                            label="1"
+                            label="right"
                             size="large"
                             class="my-30"
                             border
+                            @click="doorOpenType = label"
                         >
                             Правое
                         </ElRadio>
 
                         <ElRadio
-                            label="2"
+                            label="left"
                             size="large"
                             border
+                            @click="doorOpenType = label"
                         >
                             Левое
                         </ElRadio>
                     </ElRadioGroup>
                 </div>
 
-                <!-- or -->
-                <div class="d-flex">
+                <div :class="doorType === 1 ? 'd-none' : 'd-flex'">
                     <ElSlider
-                        v-model="value2"
+                        v-model="doorSizeHeight"
                         class="row-reverse range-2"
                         vertical
                         :min="0"
@@ -103,16 +128,18 @@
                         height="280px"
                         show-input
                         size="small"
+                        @change="doorSizeHeight = $event"
                     />
 
                     <div class="door-2-range">
                         <ElSlider
-                            v-model="value1"
+                            v-model="doorSizeWidth"
                             :min="0"
                             :max="1600"
                             show-input
                             size="small"
                             class="mb-10 ml-15"
+                            @change="doorSizeWidth = $event"
                         />
 
                         <img
@@ -133,7 +160,7 @@
                         alt=""
                     />
 
-                    <ElButton class="button-door"> Стандарт </ElButton>
+                    <ElButton class="button-door"> СТ </ElButton>
 
                     <span class="fs-14 ls-2 mw-250 fw-300">
                         Стандартная конструкция на двух «шарикоподшипниковых» петлях, без возможности установить МДФ панель снаружи.
@@ -151,7 +178,7 @@
                         alt=""
                     />
 
-                    <ElButton class="button-door">Петли барк</ElButton>
+                    <ElButton class="button-door">СТБР</ElButton>
 
                     <span class="fs-14 ls-2 mw-250 fw-300">
                         Усовершенствованная конструкция на двух петлях «Барк» с возможностью выбора расширенных характеристик.
@@ -169,7 +196,7 @@
                         alt=""
                     />
 
-                    <ElButton class="button-door">Терморазрыв</ElButton>
+                    <ElButton class="button-door">ТР</ElButton>
 
                     <span class="fs-14 ls-2 mw-250 fw-300">
                         Конструкция, которая предназначена для проёмов, которые граничат с улицей.
@@ -292,21 +319,29 @@ import { ref, watch } from 'vue'
 import data from '../stores/data.json'
 import { useAuthStore } from '../stores/auth'
 
-const radio1 = ref('1')
+const calculatorStore = useCalculatorStore()
+await calculatorStore.recieveDoorParams()
+
+const doorType = ref(calculatorStore.doorParams.door_type[0].id)
+const changeDoorType = (event) => {
+    doorType.value = event
+}
+
+const doorOpenType = ref('left')
+
+const doorSizeWidth = ref(180)
+const doorSizeHeight = ref(550)
 
 const insidePanel = ref(`${data[0].insidePanel[0].title}`)
 const insidePanelParam = ref(`${data[0].insidePanel[0].params[0].name}`)
-const value1 = ref(200)
-const value2 = ref(100)
+
+// const doorTypeS = ref('st_config')
 
 const freza = ref('')
 
 const checked = ref([false, false, false, false, false, false, false, false, false, false])
 
 const authStore = useAuthStore()
-const calculatorStore = useCalculatorStore()
-await calculatorStore.recieveDoorParams()
-console.log('data', calculatorStore.doorParams)
 
 watch(
     () => authStore.accessToken,
@@ -344,7 +379,7 @@ header {
 }
 
 .door-1-range {
-    width: 330px;
+    width: 350px;
 }
 
 .door-2-range {
@@ -352,7 +387,8 @@ header {
     width: 460px;
 }
 
-.door-2 {
+.door-2,
+.door-1 {
     height: 350px;
 }
 
@@ -378,7 +414,8 @@ header {
 
     &:hover,
     &:focus,
-    &:active {
+    &:active,
+    &.active {
         background-color: var(--secondary);
         color: #fff;
         border: none;
