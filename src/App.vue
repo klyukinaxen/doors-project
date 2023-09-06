@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from 'vue'
-import { ElDialog, ElButton, ElInput } from 'element-plus'
+import { reactive } from 'vue'
+import { ElDialog, ElButton, ElInput, ElForm, ElFormItem } from 'element-plus'
 
 import Header from './components/Header.vue'
 import Calculator from './components/Calculator.vue'
@@ -11,11 +11,13 @@ import { useCalculatorStore } from './stores/calculator'
 const authStore = useAuthStore()
 const calculatorStore = useCalculatorStore()
 
-const login = ref('')
-const password = ref('')
+const authForm = reactive({
+    login: '',
+    password: ''
+})
 
 function signInHandler() {
-    authStore.signIn({ login: login.value, password: password.value })
+    authStore.signIn({ login: authForm.login, password: authForm.password })
 }
 
 console.log('accessTokenDecode', authStore.accessTokenDecode)
@@ -32,32 +34,41 @@ console.log('accessTokenDecode', authStore.accessTokenDecode)
                 v-model="authStore.signInModalVisible"
                 title="Авторизация"
                 center
+                :close-on-click-modal="false"
+                :close-on-press-escape="false"
+                :show-close="false"
             >
                 <!--
                     "login": "test"
                     "password": "123456"
                 -->
-                <form @submit.prevent="signInHandler">
-                    <ElInput
-                        v-model="login"
-                        placeholder="Логин"
-                        class="mb-8"
-                        name="login"
-                    />
-                    <ElInput
-                        v-model="password"
-                        placeholder="Пароль"
-                        class="mb-8"
-                        name="password"
-                    />
+                <ElForm
+                    :model="authForm"
+                    @submit.prevent="signInHandler"
+                >
+                    <ElFormItem label="Логин">
+                        <ElInput
+                            v-model="authForm.login"
+                            name="login"
+                        />
+                    </ElFormItem>
 
-                    <ElButton
-                        type="primary"
-                        native-type="submit"
-                    >
-                        Войти
-                    </ElButton>
-                </form>
+                    <ElFormItem label="Пароль">
+                        <ElInput
+                            v-model="authForm.password"
+                            name="password"
+                        />
+                    </ElFormItem>
+
+                    <ElFormItem>
+                        <ElButton
+                            type="primary"
+                            native-type="submit"
+                        >
+                            Войти
+                        </ElButton>
+                    </ElFormItem>
+                </ElForm>
             </ElDialog>
         </div>
     </Suspense>

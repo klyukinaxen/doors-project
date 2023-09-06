@@ -21,7 +21,7 @@ import { ElButton } from 'element-plus'
                 Изменить регион
             </ElButton>
         </div>
-        <div class="lk d-flex flex-column align-items-center justify-content-center">
+        <!-- <div class="lk d-flex flex-column align-items-center justify-content-center">
             <img
                 src="../assets/icons/user.svg"
                 alt="person"
@@ -29,7 +29,7 @@ import { ElButton } from 'element-plus'
             />
 
             <span class="fw-600 mt-10">ВХОД</span>
-        </div>
+        </div> -->
     </div>
 </template>
 
