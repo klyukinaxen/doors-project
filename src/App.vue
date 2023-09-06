@@ -1,6 +1,6 @@
 <script setup>
-import { reactive } from 'vue'
-import { ElDialog, ElButton, ElInput, ElForm, ElFormItem } from 'element-plus'
+import { reactive, ref, computed, watch } from 'vue'
+import { ElDialog, ElButton, ElInput, ElForm, ElFormItem, ElTabs, ElTabPane } from 'element-plus'
 
 import Header from './components/Header.vue'
 import Calculator from './components/Calculator.vue'
@@ -16,11 +16,40 @@ const authForm = reactive({
     password: ''
 })
 
+const menuItems = computed(() => {
+    const items = []
+
+    if (calculatorStore.doorParams) {
+        items.push({
+            id: 'calculator',
+            name: 'Конфигуратор дверей'
+        })
+    }
+
+    if (authStore.isAdmin || authStore.isOwner) {
+        items.push({
+            id: 'userManagement',
+            name: 'Пользователи'
+        })
+    }
+
+    return items
+})
+
+const activeMenuItem = ref('calculator')
+
 function signInHandler() {
     authStore.signIn({ login: authForm.login, password: authForm.password })
 }
 
 console.log('accessTokenDecode', authStore.accessTokenDecode)
+
+watch(
+    () => authStore.accessToken,
+    () => {
+        calculatorStore.recieveDoorParams()
+    }
+)
 </script>
 
 <template>
@@ -28,7 +57,18 @@ console.log('accessTokenDecode', authStore.accessTokenDecode)
         <div class="d-flex flex-column mx-15">
             <Header />
 
-            <Calculator />
+            <ElTabs v-model="activeMenuItem">
+                <ElTabPane
+                    v-for="(item, index) in menuItems"
+                    :key="index"
+                    :label="item.name"
+                    :name="item.id"
+                >
+                    <Calculator v-if="item.id === 'calculator'" />
+
+                    <div v-else>{{ item.name }}</div>
+                </ElTabPane>
+            </ElTabs>
 
             <ElDialog
                 v-model="authStore.signInModalVisible"

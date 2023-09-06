@@ -15,11 +15,12 @@ app.use(pinia)
 const authStore = useAuthStore(pinia)
 
 const accessToken = localStorage.getItem('accessToken')
+
+app.mount('#app')
+
 console.log({ accessToken })
 if (accessToken) {
     authStore.accessToken = accessToken
 } else {
     authStore.signInModalVisible = true
 }
-
-app.mount('#app')

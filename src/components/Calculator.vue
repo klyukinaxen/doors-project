@@ -3,8 +3,6 @@
         v-if="calculatorStore.doorParams"
         class="d-flex flex-column justify-content-center"
     >
-        <span class="upper-case fw-600 fs-25 ls-3 my-30 text-center"> конфигуратор дверей </span>
-
         <div class="d-flex flex-column">
             <span class="upper-case fs-16 ls-2 mb-40 ml-20"> Выберите тип двери </span>
 
@@ -315,12 +313,10 @@
 <script setup>
 import { useCalculatorStore } from '../stores/calculator'
 import { ElButton, ElRadioGroup, ElRadio, ElSlider, ElOption, ElSelect, ElInput, ElCheckbox } from 'element-plus'
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 import data from '../stores/data.json'
-import { useAuthStore } from '../stores/auth'
 
 const calculatorStore = useCalculatorStore()
-await calculatorStore.recieveDoorParams()
 
 const doorType = ref(calculatorStore.doorParams.door_type[0].id)
 const changeDoorType = (event) => {
@@ -340,15 +336,6 @@ const insidePanelParam = ref(`${data[0].insidePanel[0].params[0].name}`)
 const freza = ref('')
 
 const checked = ref([false, false, false, false, false, false, false, false, false, false])
-
-const authStore = useAuthStore()
-
-watch(
-    () => authStore.accessToken,
-    () => {
-        calculatorStore.recieveDoorParams()
-    }
-)
 </script>
 
 <style scoped lang="scss">

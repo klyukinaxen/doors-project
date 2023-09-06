@@ -16,7 +16,7 @@ apiInstance.interceptors.response.use(
     },
     (error) => {
         // Any status codes that falls outside the range of 2xx cause this function to trigger
-        if (axios.isAxiosError(error) && error.response.status === 401) {
+        if (axios.isAxiosError(error) && error.response?.status === 401) {
             localStorage.removeItem('accessToken')
             location.reload()
         }
