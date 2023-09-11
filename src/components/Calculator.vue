@@ -242,12 +242,16 @@
                                 placeholder="Выберите:"
                                 size="large"
                             >
-                                <ElOption
+                                <template
                                     v-for="item in selected_construction[`${typeOfConstruction}_inner_panel`]"
                                     :key="item.id"
-                                    :label="item.param_name"
-                                    :value="item.param_name"
-                                />
+                                >
+                                    <ElOption
+                                        v-if="item.param_name !== 'Фреза' && item.param_name !== 'Цвет панели'"
+                                        :label="item.param_name"
+                                        :value="item.param_name"
+                                    />
+                                </template>
                             </ElSelect>
                         </div>
 
@@ -273,6 +277,37 @@
                         </div>
 
                         <div
+                            :class="typeOfConstruction === 'tr' ? 'd-flex' : ''"
+                            class="d-none checkboxes w-100"
+                        >
+                            <ElRadioGroup
+                                v-model="tr_type_panel"
+                                class="d-flex flex-column radio-group"
+                            >
+                                <ElRadio
+                                    label="tr_outside_panel_9_5"
+                                    size="large"
+                                    class="my-30 mw-300"
+                                    border
+                                    @click="tr_type_panel = label"
+                                >
+                                    Панель снаружи 9.5мм<br />
+                                    корабельная фанера
+                                </ElRadio>
+
+                                <ElRadio
+                                    label="tr_outside_panel_10"
+                                    size="large"
+                                    class="mw-300"
+                                    border
+                                    @click="tr_type_panel = label"
+                                >
+                                    Панель снаружи 10мм мдф
+                                </ElRadio>
+                            </ElRadioGroup>
+                        </div>
+
+                        <div
                             v-if="typeOfConstruction"
                             class="d-none flex-column"
                             :class="typeOfConstruction === 'stbr' || typeOfConstruction === 'tr' ? 'stbr_active' : ''"
@@ -280,18 +315,42 @@
                             <span class="upper-case mb-15 fs-12"> внешняя панель </span>
 
                             <ElSelect
+                                v-if="typeOfConstruction !== 'tr'"
+                                v-model="outsidePanel"
+                                value-key="id"
+                                class="m-2 mw-250"
+                                placeholder="Выберите:"
+                                size="large"
+                            >
+                                <template
+                                    v-for="item in selected_construction[`${typeOfConstruction}_outside_panel`]"
+                                    :key="item.id"
+                                >
+                                    <ElOption
+                                        v-if="item.param_name !== 'Фреза' && item.param_name !== 'Цвет панели'"
+                                        :label="item.param_name"
+                                        :value="item.param_name"
+                                    />
+                                </template>
+                            </ElSelect>
+                            <ElSelect
+                                v-else
                                 v-model="outsidePanel"
                                 value-key="id"
                                 class="m-2 mw-250"
                                 placeholder="Select"
                                 size="large"
                             >
-                                <ElOption
-                                    v-for="item in selected_construction[`${typeOfConstruction}_outside_panel`]"
+                                <template
+                                    v-for="item in selected_construction[`${tr_type_panel}`]"
                                     :key="item.id"
-                                    :label="item.param_name"
-                                    :value="item.param_name"
-                                />
+                                >
+                                    <ElOption
+                                        v-if="item.param_name !== 'Фреза' && item.param_name !== 'Цвет панели'"
+                                        :label="item.param_name"
+                                        :value="item.param_name"
+                                    />
+                                </template>
                             </ElSelect>
                         </div>
                         <div></div>
@@ -358,7 +417,12 @@
                             :key="property.id"
                         >
                             <ElCheckbox
-                                v-if="property.param_name !== 'Цвет конструкции' || property.param_name !== 'Внутрення панель'"
+                                v-if="
+                                    property.param_name !== 'Цвет конструкции' &&
+                                    property.param_name !== 'Внутрення панель' &&
+                                    property.param_name !== 'Панель снаружи 9.5мм корабельная фанера' &&
+                                    property.param_name !== 'Панель снаружи 10мм мдф'
+                                "
                                 :label="property.param_name"
                                 size="large"
                                 class="mw-250"
@@ -418,6 +482,8 @@ const film_type = ref('')
 const freza = ref('')
 const construction_color = ref('')
 const panel_color = ref('')
+
+const tr_type_panel = ref('')
 </script>
 
 <style scoped lang="scss">
@@ -431,6 +497,7 @@ const panel_color = ref('')
 
 .radio-group {
     align-items: flex-start;
+    white-space: pre-line;
 }
 
 header {
