@@ -16,13 +16,13 @@
                     </template>
                 </ElTableColumn>
 
-                <ElTableColumn label="im">
+                <ElTableColumn label="Имя">
                     <template #default="scope">
                         {{ scope.row.im }}
                     </template>
                 </ElTableColumn>
 
-                <ElTableColumn label="fm">
+                <ElTableColumn label="Фамилия">
                     <template #default="scope">
                         {{ scope.row.fm }}
                     </template>

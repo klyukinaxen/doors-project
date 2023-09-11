@@ -14,7 +14,7 @@ export const useAdminStore = defineStore('admin', () => {
     }
 
     async function deleteUser(id) {
-        const response = await apiInstance.delete(`/admin/deleteUser/${id}`).catch(console.log)
+        const response = await apiInstance.delete(`/admin/delUser/${id}`).catch(console.log)
         const message = response?.data.message
         if (message?.info === 'success') {
             recieveUsers()
