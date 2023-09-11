@@ -158,7 +158,13 @@
                         alt=""
                     />
 
-                    <ElButton class="button-door"> СТ </ElButton>
+                    <ElButton
+                        class="button-door"
+                        :class="{ active: typeOfConstruction === 'st' }"
+                        @click="selectConstruction('st')"
+                    >
+                        СТ
+                    </ElButton>
 
                     <span class="fs-14 ls-2 mw-250 fw-300">
                         Стандартная конструкция на двух «шарикоподшипниковых» петлях, без возможности установить МДФ панель снаружи.
@@ -176,7 +182,13 @@
                         alt=""
                     />
 
-                    <ElButton class="button-door">СТБР</ElButton>
+                    <ElButton
+                        class="button-door"
+                        :class="{ active: typeOfConstruction === 'stbr' }"
+                        @click="selectConstruction('stbr')"
+                    >
+                        СТБР
+                    </ElButton>
 
                     <span class="fs-14 ls-2 mw-250 fw-300">
                         Усовершенствованная конструкция на двух петлях «Барк» с возможностью выбора расширенных характеристик.
@@ -194,7 +206,13 @@
                         alt=""
                     />
 
-                    <ElButton class="button-door">ТР</ElButton>
+                    <ElButton
+                        class="button-door"
+                        :class="{ active: typeOfConstruction === 'tr' }"
+                        @click="selectConstruction('tr')"
+                    >
+                        ТР
+                    </ElButton>
 
                     <span class="fs-14 ls-2 mw-250 fw-300">
                         Конструкция, которая предназначена для проёмов, которые граничат с улицей.
@@ -206,14 +224,13 @@
 
             <div class="container-4 d-flex justify-content-center w-100 primary-bg py-30">
                 <div class="d-flex flex-column align-items-center justify-content-center">
-                    <span class="upper-case fs-16 ls-2 fw-600">{{ data[0].title }}</span>
+                    <span class="upper-case fs-16 ls-2 fw-600">{{ construction_title }}</span>
                     <img
-                        src="../assets/icons/door-1.0.svg"
+                        :src="construction_image"
                         alt=""
                         class="p-50 pr-80 pt-20"
                     />
                 </div>
-
                 <div>
                     <div class="dropdowns d-grid grid-3">
                         <div class="d-flex flex-column">
@@ -222,37 +239,85 @@
                             <ElSelect
                                 v-model="insidePanel"
                                 class="m-2 mw-250"
-                                placeholder="Select"
+                                placeholder="Выберите:"
                                 size="large"
                             >
                                 <ElOption
-                                    v-for="item in data[0].insidePanel"
-                                    :key="item.title"
-                                    :label="item.title"
-                                    :value="item.title"
+                                    v-for="item in selected_construction[`${typeOfConstruction}_inner_panel`]"
+                                    :key="item.id"
+                                    :label="item.param_name"
+                                    :value="item.param_name"
                                 />
                             </ElSelect>
                         </div>
 
-                        <!-- dropdown insidePanelParam  толщина панели-->
-                        <div class="d-flex flex-column">
-                            <span class="upper-case mb-15 fs-12"> толщина панели </span>
+                        <div
+                            :class="insidePanel.startsWith('В плёнке') ? 'd-flex' : ''"
+                            class="d-none flex-column"
+                        >
+                            <span class="upper-case mb-15 fs-12"> тип пленки внутренней панели </span>
 
                             <ElSelect
-                                v-model="insidePanelParam"
+                                v-model="film_type"
+                                class="m-2 mw-250"
+                                placeholder="Выберите"
+                                size="large"
+                            >
+                                <ElOption
+                                    v-for="item in calculatorStore.doorParams.film_type"
+                                    :key="item.id"
+                                    :label="item.type_name"
+                                    :value="item.id"
+                                />
+                            </ElSelect>
+                        </div>
+
+                        <div
+                            v-if="typeOfConstruction"
+                            class="d-none flex-column"
+                            :class="typeOfConstruction === 'stbr' || typeOfConstruction === 'tr' ? 'stbr_active' : ''"
+                        >
+                            <span class="upper-case mb-15 fs-12"> внешняя панель </span>
+
+                            <ElSelect
+                                v-model="outsidePanel"
+                                value-key="id"
                                 class="m-2 mw-250"
                                 placeholder="Select"
                                 size="large"
                             >
                                 <ElOption
-                                    v-for="item in data[0].insidePanel[0].params"
-                                    :key="item.name"
-                                    :label="item.name"
-                                    :value="item.name"
+                                    v-for="item in selected_construction[`${typeOfConstruction}_outside_panel`]"
+                                    :key="item.id"
+                                    :label="item.param_name"
+                                    :value="item.param_name"
                                 />
                             </ElSelect>
                         </div>
+                        <div></div>
+                        <div
+                            :class="outsidePanel.startsWith('В плёнке') ? 'd-flex' : ''"
+                            class="d-none flex-column"
+                        >
+                            <span class="upper-case mb-15 fs-12"> тип пленки внешней панели </span>
 
+                            <ElSelect
+                                v-model="film_type"
+                                class="m-2 mw-250"
+                                placeholder="Выберите"
+                                size="large"
+                            >
+                                <ElOption
+                                    v-for="item in calculatorStore.doorParams.film_type"
+                                    :key="item.id"
+                                    :label="item.type_name"
+                                    :value="item.id"
+                                />
+                            </ElSelect>
+                        </div>
+                    </div>
+
+                    <div class="dropdowns d-grid grid-3 mt-30">
                         <div class="d-flex flex-column">
                             <span class="upper-case mb-15 fs-12"> фреза </span>
 
@@ -263,14 +328,12 @@
                                 placeholder="Введите id"
                             />
                         </div>
-                    </div>
 
-                    <div class="dropdowns d-grid grid-3 mt-30">
                         <div class="d-flex flex-column">
                             <span class="upper-case mb-15 fs-12"> цвет конструкции </span>
 
                             <ElInput
-                                v-model="freza"
+                                v-model="construction_color"
                                 class="w-50 mw-250"
                                 size="large"
                                 placeholder="Введите id"
@@ -281,7 +344,7 @@
                             <span class="upper-case mb-15 fs-12"> цвет панели </span>
 
                             <ElInput
-                                v-model="freza"
+                                v-model="panel_color"
                                 class="w-50 mw-250"
                                 size="large"
                                 placeholder="Введите id"
@@ -290,18 +353,18 @@
                     </div>
 
                     <div class="checkboxes mt-30">
-                        <ElCheckbox
-                            v-for="(item, key) in data[0].modifiersWithPrice"
-                            :key="key"
-                            v-model="checked[key]"
-                            :label="item.title"
-                            size="large"
-                            class="mw-250"
-                            border
-                        />
-
-                        <!-- Багеты снаружи -->
-                        <!-- ночной страж и тд -->
+                        <template
+                            v-for="property in selected_construction[`${typeOfConstruction}_properties`]"
+                            :key="property.id"
+                        >
+                            <ElCheckbox
+                                v-if="property.param_name !== 'Цвет конструкции' || property.param_name !== 'Внутрення панель'"
+                                :label="property.param_name"
+                                size="large"
+                                class="mw-250"
+                                border
+                            />
+                        </template>
                     </div>
                 </div>
             </div>
@@ -314,7 +377,6 @@
 import { useCalculatorStore } from '../stores/calculator'
 import { ElButton, ElRadioGroup, ElRadio, ElSlider, ElOption, ElSelect, ElInput, ElCheckbox } from 'element-plus'
 import { ref } from 'vue'
-import data from '../stores/data.json'
 
 const calculatorStore = useCalculatorStore()
 
@@ -328,14 +390,34 @@ const doorOpenType = ref('left')
 const doorSizeWidth = ref(180)
 const doorSizeHeight = ref(550)
 
-const insidePanel = ref(`${data[0].insidePanel[0].title}`)
-const insidePanelParam = ref(`${data[0].insidePanel[0].params[0].name}`)
+const typeOfConstruction = ref('')
+const selected_construction = ref(0)
+const construction_title = ref('')
+const construction_image = ref('../assets/icons/door-1.0.svg')
 
-// const doorTypeS = ref('st_config')
+const selectConstruction = (event) => {
+    typeOfConstruction.value = event
+    selected_construction.value = calculatorStore.doorParams[`${event}_config`]
+    if (event === 'st') {
+        construction_title.value = 'СТ'
+        construction_image.value = '../assets/icons/door-1.svg'
+    } else if (event === 'stbr') {
+        construction_title.value = 'СТБР'
+        construction_image.value = '../assets/icons/door-2.svg'
+    } else {
+        construction_title.value = 'ТР'
+        construction_image.value = '../assets/icons/door-2.svg'
+    }
+}
+
+const insidePanel = ref('')
+const outsidePanel = ref('')
+
+const film_type = ref('')
 
 const freza = ref('')
-
-const checked = ref([false, false, false, false, false, false, false, false, false, false])
+const construction_color = ref('')
+const panel_color = ref('')
 </script>
 
 <style scoped lang="scss">
@@ -446,6 +528,18 @@ header {
     :deep(span.el-checkbox__label) {
         color: #fff;
     }
+}
+
+.st_active {
+    display: flex;
+}
+
+.stbr_active {
+    display: flex;
+}
+
+.tr_active {
+    display: flex;
 }
 
 @media (min-width: 1024px) {
