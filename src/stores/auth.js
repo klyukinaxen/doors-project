@@ -4,11 +4,11 @@ import jwtDecode from 'jwt-decode'
 
 import { apiInstance } from '../api/instance'
 
-export const Roles = {
+export const Roles = Object.freeze({
     User: 1,
     Admin: 2,
     Owner: 3
-}
+})
 
 export const useAuthStore = defineStore('auth', () => {
     const signInModalVisible = ref(false)

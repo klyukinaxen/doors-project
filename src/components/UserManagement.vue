@@ -4,7 +4,7 @@
             <ElButton
                 class="mb-16"
                 type="success"
-                @click="console.log"
+                @click="handleCreate"
             >
                 Создать пользователя
             </ElButton>
@@ -18,13 +18,13 @@
 
                 <ElTableColumn label="Имя">
                     <template #default="scope">
-                        {{ scope.row.im }}
+                        {{ scope.row.name }}
                     </template>
                 </ElTableColumn>
 
                 <ElTableColumn label="Фамилия">
                     <template #default="scope">
-                        {{ scope.row.fm }}
+                        {{ scope.row.surname }}
                     </template>
                 </ElTableColumn>
 
@@ -33,7 +33,7 @@
                     label="Роль"
                 >
                     <template #default="scope">
-                        {{ scope.row.role_id === Roles.Admin ? 'Админ' : 'Пользователь' }}
+                        {{ scope.row.roleId === Roles.Admin ? 'Админ' : 'Пользователь' }}
                     </template>
                 </ElTableColumn>
 
@@ -57,22 +57,49 @@
                 </ElTableColumn>
             </ElTable>
 
-            <!-- <pre>adminStore.users={{ adminStore.users }}</pre> -->
+            <ElDialog
+                :model-value="userActionModalState?.visible"
+                center
+                destroy-on-close
+                @close="userActionModalState = null"
+            >
+                <UserAction
+                    :user-id="userActionModalState?.userId"
+                    :type="userActionModalState?.type"
+                    @close="userActionModalState = null"
+                />
+            </ElDialog>
         </div>
     </div>
 </template>
 
 <script setup>
-import { ElButton, ElTable, ElTableColumn } from 'element-plus'
+import { ElButton, ElTable, ElTableColumn, ElDialog } from 'element-plus'
+import { ref } from 'vue'
 
 import { useAdminStore } from '../stores/admin'
 import { useAuthStore, Roles } from '../stores/auth'
 
+import UserAction, { UserActionType } from './UserAction.vue'
+
 const adminStore = useAdminStore()
 const authStore = useAuthStore()
 
-const handleEdit = (index, row) => {
-    console.log('handleEdit', index, row)
+const userActionModalState = ref()
+
+const handleCreate = () => {
+    userActionModalState.value = {
+        visible: true,
+        type: UserActionType.CREATE
+    }
+}
+
+const handleEdit = (_index, row) => {
+    userActionModalState.value = {
+        visible: true,
+        userId: row.id,
+        type: UserActionType.EDIT
+    }
 }
 
 if (!adminStore.users.length) {

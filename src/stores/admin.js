@@ -10,6 +10,13 @@ export const useAdminStore = defineStore('admin', () => {
         const message = response?.data.message
         if (message?.data?.length) {
             users.value = message.data
+                // TODO: временно до стандартизации со стороны api
+                .map((user) => ({
+                    ...user,
+                    roleId: user.role_id,
+                    name: user.im,
+                    surname: user.fm
+                }))
         }
     }
 
