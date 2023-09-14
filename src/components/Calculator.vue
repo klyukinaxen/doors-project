@@ -225,15 +225,17 @@
             <div class="container-4 d-flex justify-content-center w-100 primary-bg py-30">
                 <div class="d-flex flex-column align-items-center justify-content-center">
                     <span class="upper-case fs-16 ls-2 fw-600">{{ construction_title }}</span>
+
                     <img
                         :src="construction_image"
                         alt=""
                         class="p-50 pr-80 pt-20"
                     />
                 </div>
+
                 <div>
                     <!-- INSIDE PANEL -->
-                    <div class="dropdowns d-grid grid-3">
+                    <div class="dropdowns d-grid grid-3 mb-20">
                         <div class="d-flex flex-column">
                             <span class="upper-case mb-15 fs-12"> внутренняя панель </span>
 
@@ -317,7 +319,7 @@
                                 <ElRadio
                                     label="tr_outside_panel_9_5"
                                     size="large"
-                                    class="my-30 mw-300"
+                                    class="my-30 mw-260"
                                     border
                                     @click="tr_type_panel = label"
                                 >
@@ -328,7 +330,7 @@
                                 <ElRadio
                                     label="tr_outside_panel_10"
                                     size="large"
-                                    class="mw-300"
+                                    class="mw-260"
                                     border
                                     @click="tr_type_panel = label"
                                 >
@@ -434,17 +436,6 @@
 
                     <div class="line"></div>
 
-                    <!-- <div class="d-flex flex-column">
-                        <span class="upper-case mb-15 fs-12"> цвет конструкции </span>
-
-                        <ElInput
-                            v-model="construction_color"
-                            class="mw-250"
-                            size="large"
-                            placeholder="Введите id"
-                        />
-                    </div>
-                     -->
                     <div class="d-grid input-properties">
                         <template
                             v-for="property in selected_construction[`${typeOfConstruction}_properties`]"
@@ -488,20 +479,6 @@
                                 class="mw-250"
                                 border
                             />
-
-                            <!-- <div
-                                v-else
-                                class="d-flex flex-column"
-                            >
-                                <span class="upper-case mb-5 fs-12"> {{ property.param_name }} </span>
-
-                                <ElInput
-                                    v-model="construction_color"
-                                    class="mw-250"
-                                    size="large"
-                                    placeholder="Введите id"
-                                />
-                            </div> -->
                         </template>
                     </div>
                 </div>
@@ -653,7 +630,7 @@ header {
 
 .checkboxes {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     box-sizing: border-box;
     gap: 10px;
 
@@ -687,6 +664,11 @@ header {
 
 .tr_active {
     display: flex;
+}
+
+:deep(.el-radio.is-bordered.el-radio--large .el-radio__label) {
+    white-space: pre-line;
+    width: 100%;
 }
 
 .input-properties {
