@@ -666,7 +666,7 @@ header {
     display: flex;
 }
 
-:deep(.el-radio.is-bordered.el-radio--large .el-radio__label) {
+:deep(.el-radio.is-bordered.el-radio--large) {
     white-space: pre-line;
     width: 100%;
 }
