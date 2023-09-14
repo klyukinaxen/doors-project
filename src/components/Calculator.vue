@@ -232,6 +232,7 @@
                     />
                 </div>
                 <div>
+                    <!-- INSIDE PANEL -->
                     <div class="dropdowns d-grid grid-3">
                         <div class="d-flex flex-column">
                             <span class="upper-case mb-15 fs-12"> внутренняя панель </span>
@@ -276,9 +277,38 @@
                             </ElSelect>
                         </div>
 
+                        <!-- <div class="dropdowns d-grid grid-3 mt-30"> -->
+                        <div class="d-flex flex-column">
+                            <span class="upper-case mb-15 fs-12"> фреза </span>
+
+                            <ElInput
+                                v-model="freza"
+                                class="mw-250"
+                                size="large"
+                                placeholder="Введите id"
+                            />
+                        </div>
+
+                        <div class="d-flex flex-column">
+                            <span class="upper-case mb-15 fs-12"> цвет панели </span>
+
+                            <ElInput
+                                v-model="panel_color"
+                                class="mw-250"
+                                size="large"
+                                placeholder="Введите id"
+                            />
+                        </div>
+                        <!-- </div> -->
+                    </div>
+
+                    <div class="line"></div>
+
+                    <!-- OUTSIDE PANEL -->
+                    <div class="outside_panel dropdowns d-grid grid-3 my-20">
                         <div
                             :class="typeOfConstruction === 'tr' ? 'd-flex' : ''"
-                            class="d-none checkboxes w-100"
+                            class="d-none w-100"
                         >
                             <ElRadioGroup
                                 v-model="tr_type_panel"
@@ -333,6 +363,7 @@
                                     />
                                 </template>
                             </ElSelect>
+
                             <ElSelect
                                 v-else
                                 v-model="outsidePanel"
@@ -353,7 +384,6 @@
                                 </template>
                             </ElSelect>
                         </div>
-                        <div></div>
                         <div
                             :class="outsidePanel.startsWith('В плёнке') ? 'd-flex' : ''"
                             class="d-none flex-column"
@@ -376,24 +406,15 @@
                         </div>
                     </div>
 
-                    <div class="dropdowns d-grid grid-3 mt-30">
+                    <!--  -->
+
+                    <div class="dropdowns d-grid grid-3 my-20">
                         <div class="d-flex flex-column">
                             <span class="upper-case mb-15 fs-12"> фреза </span>
 
                             <ElInput
                                 v-model="freza"
-                                class="w-50 mw-250"
-                                size="large"
-                                placeholder="Введите id"
-                            />
-                        </div>
-
-                        <div class="d-flex flex-column">
-                            <span class="upper-case mb-15 fs-12"> цвет конструкции </span>
-
-                            <ElInput
-                                v-model="construction_color"
-                                class="w-50 mw-250"
+                                class="mw-250"
                                 size="large"
                                 placeholder="Введите id"
                             />
@@ -404,11 +425,50 @@
 
                             <ElInput
                                 v-model="panel_color"
-                                class="w-50 mw-250"
+                                class="mw-250"
                                 size="large"
                                 placeholder="Введите id"
                             />
                         </div>
+                    </div>
+
+                    <div class="line"></div>
+
+                    <!-- <div class="d-flex flex-column">
+                        <span class="upper-case mb-15 fs-12"> цвет конструкции </span>
+
+                        <ElInput
+                            v-model="construction_color"
+                            class="mw-250"
+                            size="large"
+                            placeholder="Введите id"
+                        />
+                    </div>
+                     -->
+                    <div class="d-grid input-properties">
+                        <template
+                            v-for="property in selected_construction[`${typeOfConstruction}_properties`]"
+                            :key="property.id"
+                        >
+                            <div
+                                v-if="
+                                    property.param_name === 'Цвет конструкции' ||
+                                    property.param_name === 'Внутрення панель' ||
+                                    property.param_name === 'Панель снаружи 9.5мм корабельная фанера' ||
+                                    property.param_name === 'Панель снаружи 10мм мдф'
+                                "
+                                class="d-flex flex-column mt-5"
+                            >
+                                <span class="upper-case mb-5 fs-12 mt-10"> {{ property.param_name }} </span>
+
+                                <ElInput
+                                    v-model="construction_color"
+                                    class="mw-250"
+                                    size="large"
+                                    placeholder="Введите id"
+                                />
+                            </div>
+                        </template>
                     </div>
 
                     <div class="checkboxes mt-30">
@@ -428,6 +488,20 @@
                                 class="mw-250"
                                 border
                             />
+
+                            <!-- <div
+                                v-else
+                                class="d-flex flex-column"
+                            >
+                                <span class="upper-case mb-5 fs-12"> {{ property.param_name }} </span>
+
+                                <ElInput
+                                    v-model="construction_color"
+                                    class="mw-250"
+                                    size="large"
+                                    placeholder="Введите id"
+                                />
+                            </div> -->
                         </template>
                     </div>
                 </div>
@@ -487,6 +561,12 @@ const tr_type_panel = ref('')
 </script>
 
 <style scoped lang="scss">
+.line {
+    border-top: 1px solid #fff;
+    margin: 10px 0;
+    width: 100%;
+}
+
 .dropdown-click {
     background-color: black;
     box-sizing: border-box;
@@ -607,6 +687,10 @@ header {
 
 .tr_active {
     display: flex;
+}
+
+.input-properties {
+    grid-template-columns: repeat(3, 1fr);
 }
 
 @media (min-width: 1024px) {
