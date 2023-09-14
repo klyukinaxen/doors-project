@@ -483,7 +483,15 @@
                     </div>
                 </div>
             </div>
-            <span class="upper-case fs-16 ls-2 my-45"> предварительная стоимость: </span>
+
+            <div class="w-100 d-flex align-items-center justify-content-center">
+                <button
+                    class="upper-case count fs-16 ls-2 my-45 mw-270 fw-600"
+                    @click="sendForm()"
+                >
+                    рассчитать стоимость
+                </button>
+            </div>
         </div>
     </div>
 </template>
@@ -538,6 +546,24 @@ const tr_type_panel = ref('')
 </script>
 
 <style scoped lang="scss">
+.count {
+    border-radius: 10px;
+    max-width: 400px;
+    background: #fff;
+    color: #7c7c7c;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.5s ease;
+    border: none;
+}
+
+.count:hover {
+    background: var(--secondary);
+    color: #fff;
+    transition: background 0.5s ease;
+}
+
 .line {
     border-top: 1px solid #fff;
     margin: 10px 0;
