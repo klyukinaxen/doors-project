@@ -19,7 +19,8 @@
             <ElInput
                 v-model="userForm.password"
                 name="password"
-                required
+                :required="type === UserActionType.CREATE"
+                show-password
             />
         </ElFormItem>
 
@@ -43,7 +44,7 @@
             v-if="authStore.isOwner"
             label="Роль"
         >
-            <ElRadioGroup v-model="userForm.roleId">
+            <ElRadioGroup v-model="userForm.role_id">
                 <ElRadioButton :label="String(Roles.User)">Пользователь</ElRadioButton>
                 <ElRadioButton :label="String(Roles.Admin)">Админ</ElRadioButton>
             </ElRadioGroup>
@@ -93,11 +94,27 @@ const userForm = reactive({
     password: '',
     name: '',
     surname: '',
-    roleId: String(Roles.User)
+    role_id: String(Roles.User)
 })
 
 function userFormSubmitHandler() {
-    console.log('userForm', userForm)
+    if (props.type === UserActionType.CREATE) {
+        adminStore.createUser({
+            login: userForm.login,
+            password: userForm.password,
+            name: userForm.name,
+            surname: userForm.surname,
+            role_id: Number(userForm.role_id)
+        })
+    } else {
+        adminStore.changeUser({
+            user_id: props.userId,
+            name: userForm.name,
+            surname: userForm.surname,
+            role_id: Number(userForm.role_id),
+            password: userForm.password
+        })
+    }
 
     emit('close')
 }
@@ -115,6 +132,6 @@ onMounted(() => {
     userForm.password = user.password
     userForm.name = user.name
     userForm.surname = user.surname
-    userForm.roleId = String(user.roleId)
+    userForm.role_id = String(user.role_id)
 })
 </script>
