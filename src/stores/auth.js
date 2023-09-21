@@ -15,7 +15,7 @@ export const useAuthStore = defineStore('auth', () => {
     const accessToken = ref('')
 
     /**
-     * @example `{ "userId": 2, "roleId": 3, "exp": 1694070098}`
+     * @example `{ "user_id": 2, "role_id": 3, "exp": 1694070098}`
      */
     const accessTokenDecode = computed(() => {
         if (!accessToken.value) {
@@ -26,15 +26,15 @@ export const useAuthStore = defineStore('auth', () => {
     })
 
     const isUser = computed(() => {
-        return accessTokenDecode.value?.roleId === Roles.User
+        return accessTokenDecode.value?.role_id === Roles.User
     })
 
     const isAdmin = computed(() => {
-        return accessTokenDecode.value?.roleId === Roles.Admin
+        return accessTokenDecode.value?.role_id === Roles.Admin
     })
 
     const isOwner = computed(() => {
-        return accessTokenDecode.value?.roleId === Roles.Owner
+        return accessTokenDecode.value?.role_id === Roles.Owner
     })
 
     async function signIn({ login, password }) {

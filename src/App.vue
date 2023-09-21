@@ -48,6 +48,7 @@
                             v-model="authForm.password"
                             name="password"
                             required
+                            show-password
                         />
                     </ElFormItem>
 
@@ -109,8 +110,6 @@ const activeMenuItem = ref('calculator')
 function signInHandler() {
     authStore.signIn({ login: authForm.login, password: authForm.password })
 }
-
-console.log('accessTokenDecode', authStore.accessTokenDecode)
 
 watch(
     () => authStore.accessToken,

@@ -4,29 +4,42 @@ import { apiInstance } from '../api/instance'
 
 export const useAdminStore = defineStore('admin', () => {
     const users = ref([])
+    const usersPageCount = ref()
 
-    async function recieveUsers() {
-        const response = await apiInstance.get('/admin/getUsers').catch(console.log)
-        const message = response?.data.message
-        if (message?.data?.length) {
-            users.value = message.data
-                // TODO: временно до стандартизации со стороны api
-                .map((user) => ({
-                    ...user,
-                    roleId: user.role_id,
-                    name: user.im,
-                    surname: user.fm
-                }))
+    async function recieveUsers(page = 1) {
+        const response = await apiInstance
+            .get('/admin/getUsers', {
+                params: { page }
+            })
+            .catch(console.log)
+        const data = response?.data.message?.data
+
+        if (data?.users?.length) {
+            users.value = data.users
+            usersPageCount.value = data.page_count
         }
     }
 
     async function deleteUser(id) {
         const response = await apiInstance.delete(`/admin/delUser/${id}`).catch(console.log)
-        const message = response?.data.message
-        if (message?.info === 'success') {
+        if (response?.data?.status === 'ok') {
             recieveUsers()
         }
     }
 
-    return { users, recieveUsers, deleteUser }
+    async function createUser(data) {
+        const response = await apiInstance.post(`/admin/createUser`, data).catch(console.log)
+        if (response?.data?.status === 'ok') {
+            recieveUsers()
+        }
+    }
+
+    async function changeUser(data) {
+        const response = await apiInstance.patch(`/admin/changeUser`, data).catch(console.log)
+        if (response?.data?.status === 'ok') {
+            recieveUsers()
+        }
+    }
+
+    return { users, usersPageCount, recieveUsers, deleteUser, createUser, changeUser }
 })

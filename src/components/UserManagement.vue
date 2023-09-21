@@ -33,7 +33,7 @@
                     label="Роль"
                 >
                     <template #default="scope">
-                        {{ scope.row.roleId === Roles.Admin ? 'Админ' : 'Пользователь' }}
+                        {{ scope.row.role_id === Roles.Admin ? 'Админ' : 'Пользователь' }}
                     </template>
                 </ElTableColumn>
 
@@ -56,6 +56,8 @@
                     </template>
                 </ElTableColumn>
             </ElTable>
+
+            <pre>usersPageCount={{ adminStore.usersPageCount }}</pre>
 
             <ElDialog
                 :model-value="userActionModalState?.visible"
