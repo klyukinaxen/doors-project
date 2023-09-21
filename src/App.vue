@@ -15,6 +15,8 @@
 
                     <UserManagement v-else-if="item.id === 'userManagement'" />
 
+                    <ChangeParams v-else-if="item.id === 'changeParams'" />
+
                     <div v-else>{{ item.name }}</div>
                 </ElTabPane>
             </ElTabs>
@@ -73,6 +75,7 @@ import { ElDialog, ElButton, ElInput, ElForm, ElFormItem, ElTabs, ElTabPane } fr
 import Header from './components/Header.vue'
 import Calculator from './components/Calculator.vue'
 import UserManagement from './components/UserManagement.vue'
+import ChangeParams from './components/ChangeParams.vue'
 
 import { useAuthStore } from './stores/auth'
 import { useCalculatorStore } from './stores/calculator'
@@ -99,6 +102,13 @@ const menuItems = computed(() => {
         items.push({
             id: 'userManagement',
             name: 'Пользователи'
+        })
+    }
+
+    if (authStore.isOwner) {
+        items.push({
+            id: 'changeParams',
+            name: 'Редактирование параметров'
         })
     }
 
