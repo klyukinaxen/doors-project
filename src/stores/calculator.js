@@ -40,5 +40,9 @@ export const useCalculatorStore = defineStore('calculator', () => {
         }
     }
 
-    return { doorConstructions, doorParams, recieveDoorParams }
+    async function sendForm(data) {
+        console.log(data);
+    }
+
+    return { doorConstructions, doorParams, recieveDoorParams, sendForm }
 })
