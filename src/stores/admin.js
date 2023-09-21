@@ -1,10 +1,13 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
+
 import { apiInstance } from '../api/instance'
 
 export const useAdminStore = defineStore('admin', () => {
-    const users = ref([])
-    const usersPageCount = ref()
+    const users = ref({
+        1: []
+    })
+    const usersPageCount = ref(1)
 
     async function recieveUsers(page = 1) {
         const response = await apiInstance
@@ -14,16 +17,16 @@ export const useAdminStore = defineStore('admin', () => {
             .catch(console.log)
         const data = response?.data.message?.data
 
-        if (data?.users?.length) {
-            users.value = data.users
-            usersPageCount.value = data.page_count
+        if (data) {
+            users.value[page] = data.users || []
+            usersPageCount.value = data.page_count || 1
         }
     }
 
-    async function deleteUser(id) {
+    async function deleteUser(id, page = 1) {
         const response = await apiInstance.delete(`/admin/delUser/${id}`).catch(console.log)
         if (response?.data?.status === 'ok') {
-            recieveUsers()
+            recieveUsers(page)
         }
     }
 
@@ -31,6 +34,7 @@ export const useAdminStore = defineStore('admin', () => {
         const response = await apiInstance.post(`/admin/createUser`, data).catch(console.log)
         if (response?.data?.status === 'ok') {
             recieveUsers()
+            return true
         }
     }
 
@@ -38,6 +42,7 @@ export const useAdminStore = defineStore('admin', () => {
         const response = await apiInstance.patch(`/admin/changeUser`, data).catch(console.log)
         if (response?.data?.status === 'ok') {
             recieveUsers()
+            return true
         }
     }
 
