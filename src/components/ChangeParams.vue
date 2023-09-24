@@ -66,7 +66,7 @@
 </template>
 
 <script setup>
-import { ElButton, ElCard, ElDivider, ElForm, ElFormItem, ElInput, ElText } from 'element-plus'
+import { ElButton, ElCard, ElDivider, ElForm, ElFormItem, ElInput, ElMessage, ElText } from 'element-plus'
 import { Check } from '@element-plus/icons-vue'
 import { ref } from 'vue'
 
@@ -138,6 +138,11 @@ async function changeParams(doorType, category, param) {
     }
 
     if (await adminStore.changeParams(doorType, category, param.id, data)) {
+        ElMessage({
+            message: 'Успешно изменено',
+            type: 'success'
+        })
+
         calculatorStore.recieveDoorParams()
     }
 }

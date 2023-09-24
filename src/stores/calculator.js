@@ -34,7 +34,7 @@ export const useCalculatorStore = defineStore('calculator', () => {
 
         const response = await apiInstance.get('/door/params').catch(console.log)
         const message = response?.data.message
-        console.log('doorParams', message)
+        // console.log('doorParams', message)
         if (message) {
             doorParams.value = message
         }

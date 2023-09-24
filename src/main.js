@@ -5,8 +5,6 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import { useAuthStore } from './stores/auth'
 
-import 'element-plus/dist/index.css'
-
 const app = createApp(App)
 const pinia = createPinia()
 
