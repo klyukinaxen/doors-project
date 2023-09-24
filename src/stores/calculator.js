@@ -40,19 +40,6 @@ export const useCalculatorStore = defineStore('calculator', () => {
         }
     }
 
-    async function recieveDoorParams() {
-        if (!authStore.accessToken) {
-            return
-        }
-
-        const response = await apiInstance.get('/door/params').catch(console.log)
-        const message = response?.data.message
-        console.log('doorParams', message)
-        if (message) {
-            doorParams.value = message
-        }
-    }
-
     async function recieveTotalPrice(type, data) {
         if (!authStore.accessToken) {
             return
@@ -61,23 +48,6 @@ export const useCalculatorStore = defineStore('calculator', () => {
         const response = await apiInstance.post(`door/totalPrice/${String(type).toUpperCase()}`, data).catch(console.log)
         const message = response?.data.message
         return message?.total_price
-    }
-
-    async function recieveDoorParams() {
-        if (!authStore.accessToken) {
-            return
-        }
-
-        const response = await apiInstance.get('/door/params').catch(console.log)
-        const message = response?.data.message
-        console.log('doorParams', message)
-        if (message) {
-            doorParams.value = message
-        }
-    }
-
-    async function sendForm(data) {
-        console.log(data);
     }
 
     return { doorConstructions, doorParams, recieveDoorParams, recieveTotalPrice }

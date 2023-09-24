@@ -24,4 +24,4 @@ if (accessToken) {
     authStore.signInModalVisible = true
 }
 
-console.log('accessTokenDecode', authStore.accessTokenDecode)
+// console.log('accessTokenDecode', authStore.accessTokenDecode)

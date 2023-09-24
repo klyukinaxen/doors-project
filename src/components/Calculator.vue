@@ -26,36 +26,6 @@
                         {{ doorType.type_name }}
                     </ElButton>
                 </div>
-                <!-- 
-                <div class="door-type">
-                    <img
-                        src="../assets/icons/door-2.svg"
-                        alt=""
-                    />
-
-                    <ElButton
-                        class="button-door"
-                        :class="{ active: door_type === calculatorStore.doorParams.door_type[1].id }"
-                        @click="changeDoorType(calculatorStore.doorParams.door_type[1].id)"
-                    >
-                        {{ calculatorStore.doorParams.door_type[1].type_name }}
-                    </ElButton>
-                </div> -->
-
-                <!-- <div class="door-type">
-                    <img
-                        src="../assets/icons/door-2.1.svg"
-                        alt=""
-                    />
-
-                    <ElButton
-                        class="button-door"
-                        :class="{ active: door_type === calculatorStore.doorParams.door_type[2].id }"
-                        @click="changeDoorType(calculatorStore.doorParams.door_type[2].id)"
-                    >
-                        {{ calculatorStore.doorParams.door_type[2].type_name }}
-                    </ElButton>
-                </div> -->
             </div>
 
             <!-- DOOR OPEN TYPE -->
@@ -286,8 +256,6 @@
                                         type="number"
                                         placeholder="Введите id"
                                     />
-                                    {{ construction_inner_color }} <br />
-                                    construction_inner_color
                                 </div>
                             </template>
 
@@ -395,8 +363,6 @@
                                             type="number"
                                             placeholder="Введите id"
                                         />
-
-                                        {{ tr_type_items }}
                                     </div>
                                 </template>
                             </div>
@@ -468,8 +434,6 @@
                                         type="number"
                                         placeholder="Введите id"
                                     />
-
-                                    {{ construction_color }}
                                 </div>
                             </template>
 
@@ -550,7 +514,7 @@
                                 />
                             </template>
                         </div>
-                        {{ properties }}
+
                         <!-- PROPERTIES: LOCKS AND COVER -->
                         <div class="d-grid locks mt-20">
                             <div
@@ -623,26 +587,11 @@
                 <div class="w-100 d-flex align-items-center justify-content-center">
                     <button
                         class="upper-case count fs-16 ls-2 my-45 mw-270 fw-600"
-                        @click="sendForm"
+                        @click="recieveTotalPrice"
                     >
                         рассчитать стоимость
                     </button>
                 </div>
-
-                <!-- info:
-                {{ door_type }} doorType <br />
-                {{ doorOpenType }} doorOpenType <br />
-                {{ typeOfConstruction }} typeOfConstruction <br />
-                {{ construction_title }} construction_title <br />
-                {{ construction_inner_color }} construction_inner_color <br />
-                {{ inner_panel }}insidePanel <br />
-                {{ outside_panel }} outsidePanel <br /> -->
-                <!-- {{ film_type }} film_type <br /> -->
-                <!-- {{ freza }} freza <br />
-                {{ construction_color }} construction_color <br />
-                {{ panel_color }} panel_color <br />
-                {{ tr_type_panel }} tr_type_panel <br />
-                {{ properties }} properties -->
             </div>
         </div>
     </div>
@@ -650,7 +599,7 @@
 
 <script setup>
 import { useCalculatorStore } from '../stores/calculator'
-import { ElButton, ElRadioGroup, ElRadio, ElSlider, ElOption, ElSelect, ElInput, ElCheckbox } from 'element-plus'
+import { ElButton, ElRadioGroup, ElRadio, ElSlider, ElOption, ElSelect, ElInput, ElCheckbox, ElMessageBox } from 'element-plus'
 import { ref } from 'vue'
 
 const calculatorStore = useCalculatorStore()
@@ -703,7 +652,7 @@ const tr_type_panel = ref('')
 const tr_type = ref({})
 const tr_type_items = ref([])
 
-const sendForm = () => {
+const getFormData = () => {
     let data = {}
     if (typeOfConstruction.value === 'tr') {
         data = {
@@ -729,7 +678,7 @@ const sendForm = () => {
 
         if (construction_inner_color.value !== undefined) {
             for (const key in construction_inner_color.value) {
-                console.log(construction_inner_color, 'construction_inner_color')
+                // console.log(construction_inner_color, 'construction_inner_color')
                 const element = construction_inner_color.value[key]
                 data.tr_inner_panel_ids.push({ id: Number(key), id_properties: Number(element) })
             }
@@ -857,9 +806,20 @@ const sendForm = () => {
 
         data.price_default = { width: Number(doorSizeWidth.value), height: Number(doorSizeHeight.value) }
     }
-    console.log(data, 'data')
+    // console.log(data, 'data')
 
-    calculatorStore.recieveTotalPrice(typeOfConstruction.value, data)
+    return data
+}
+
+const recieveTotalPrice = async () => {
+    const totalPrice = await calculatorStore.recieveTotalPrice(typeOfConstruction.value, getFormData())
+    if (!totalPrice) {
+        return
+    }
+
+    ElMessageBox.alert(new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB' }).format(totalPrice), 'Итоговая цена', {
+        confirmButtonText: 'ОК'
+    })
 }
 </script>
 
@@ -1006,6 +966,8 @@ header {
     white-space: pre-line;
     width: 100%;
 }
+// #tab-userManagement
+
 
 .input-properties {
     grid-template-columns: repeat(3, 1fr);

@@ -1,5 +1,5 @@
 <script setup>
-import { ElButton } from 'element-plus'
+// import { ElButton } from 'element-plus'
 </script>
 
 <template>
@@ -13,12 +13,12 @@ import { ElButton } from 'element-plus'
                 />
                 <span class="fs-14 ls-2 fw-500">Кировская обл.</span>
             </div>
-            <ElButton
+            <!-- <ElButton
                 class="upper-case region__button"
                 type="info"
             >
                 Изменить регион
-            </ElButton>
+            </ElButton> -->
         </div>
         <!-- <div class="lk d-flex flex-column align-items-center justify-content-center">
             <img

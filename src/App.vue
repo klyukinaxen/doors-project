@@ -128,3 +128,13 @@ watch(
     }
 )
 </script>
+<!-- is-active -->
+<style scoped>
+:deep(.el-tabs__item.is-top) {
+    color: #fff;
+}
+
+:deep(.el-tabs__item.is-top.is-active) {
+    color: var(--el-color-primary);
+}
+</style>
