@@ -1,0 +1,728 @@
+{
+    "door_type": [
+        {
+            "id": 1,
+            "type_name": "Однопольная"
+        },
+        {
+            "id": 2,
+            "type_name": "Двупольная"
+        },
+        {
+            "id": 3,
+            "type_name": "Двупольная с импостом"
+        }
+    ],
+    "st_config": {
+        "st_properties": [
+            {
+                "id": 3,
+                "price": 5000,
+                "required": false,
+                "param_name": "Багеты снаружи",
+                "id_properties": false
+            },
+            {
+                "id": 4,
+                "price": 1200,
+                "required": false,
+                "param_name": "Ночной страж",
+                "id_properties": false
+            },
+            {
+                "id": 5,
+                "price": 500,
+                "required": false,
+                "param_name": "Глазок",
+                "id_properties": false
+            },
+            {
+                "id": 6,
+                "price": 1500,
+                "required": false,
+                "param_name": "Накладка на порог",
+                "id_properties": false
+            },
+            {
+                "id": 8,
+                "price": -1000,
+                "required": false,
+                "param_name": "Ручка заказчика",
+                "id_properties": false
+            },
+            {
+                "id": 9,
+                "price": 1200,
+                "required": false,
+                "param_name": "Цинкогрунт",
+                "id_properties": false
+            },
+            {
+                "id": 10,
+                "price": 5500,
+                "required": false,
+                "param_name": "Стеклопакет",
+                "id_properties": false
+            },
+            {
+                "id": 11,
+                "price": 5000,
+                "required": false,
+                "param_name": "Скрытое крепление мдф",
+                "id_properties": false
+            },
+            {
+                "id": 2,
+                "price": 0,
+                "required": false,
+                "param_name": "Внутрення панель",
+                "id_properties": false
+            },
+            {
+                "id": 12,
+                "price": 0,
+                "required": false,
+                "param_name": "Замки",
+                "id_properties": true
+            },
+            {
+                "id": 13,
+                "price": 0,
+                "required": false,
+                "param_name": "Накладки",
+                "id_properties": true
+            },
+            {
+                "id": 7,
+                "price": 0,
+                "required": false,
+                "param_name": "Заменить ручку",
+                "id_properties": true
+            },
+            {
+                "id": 1,
+                "price": 0,
+                "required": true,
+                "param_name": "Цвет конструкции",
+                "id_properties": true
+            }
+        ],
+        "st_inner_panel": [
+            {
+                "id": 4,
+                "price": 5100,
+                "param_name": "В плёнке 6мм",
+                "id_properties": false
+            },
+            {
+                "id": 5,
+                "price": 6100,
+                "param_name": "В плёнке 10мм",
+                "id_properties": false
+            },
+            {
+                "id": 6,
+                "price": 8100,
+                "param_name": "В плёнке 16мм ",
+                "id_properties": false
+            },
+            {
+                "id": 7,
+                "price": 11100,
+                "param_name": "В плёнке 16мм с зеркалом",
+                "id_properties": false
+            },
+            {
+                "id": 1,
+                "price": 25350,
+                "param_name": "Крашеная 10мм",
+                "id_properties": false
+            },
+            {
+                "id": 2,
+                "price": 27950,
+                "param_name": "Крашеная 16мм",
+                "id_properties": false
+            },
+            {
+                "id": 3,
+                "price": 30950,
+                "param_name": "Крашеная 16мм с зеркалом",
+                "id_properties": false
+            },
+            {
+                "id": 8,
+                "price": 0,
+                "param_name": "Цвет панели",
+                "id_properties": true
+            },
+            {
+                "id": 9,
+                "price": 0,
+                "param_name": "Фреза",
+                "id_properties": true
+            }
+        ],
+        "st_price_default": [
+            {
+                "id": 2,
+                "price": 17700,
+                "formula": "width*height*1.2",
+                "width_to": 1080,
+                "height_to": 2250,
+                "width_from": 0,
+                "double_door": false,
+                "height_from": 2100
+            },
+            {
+                "id": 6,
+                "price": 17700,
+                "formula": "width*height*1.4",
+                "width_to": 1080,
+                "height_to": 2550,
+                "width_from": 0,
+                "double_door": false,
+                "height_from": 2250
+            },
+            {
+                "id": 7,
+                "price": 17700,
+                "formula": "width*height",
+                "width_to": 1600,
+                "height_to": 2550,
+                "width_from": 0,
+                "double_door": true,
+                "height_from": 0
+            },
+            {
+                "id": 1,
+                "price": 35400,
+                "formula": "",
+                "width_to": 1080,
+                "height_to": 2100,
+                "width_from": 0,
+                "double_door": false,
+                "height_from": 0
+            }
+        ]
+    },
+    "stbr_config": {
+        "stbr_properties": [
+            {
+                "id": 1,
+                "price": 0,
+                "required": true,
+                "param_name": "Цвет конструкции",
+                "id_properties": true
+            },
+            {
+                "id": 2,
+                "price": 0,
+                "required": false,
+                "param_name": "Внутрення панель",
+                "id_properties": false
+            },
+            {
+                "id": 7,
+                "price": 0,
+                "required": false,
+                "param_name": "Заменить ручку",
+                "id_properties": true
+            },
+            {
+                "id": 12,
+                "price": 0,
+                "required": false,
+                "param_name": "Замки",
+                "id_properties": false
+            },
+            {
+                "id": 13,
+                "price": 0,
+                "required": false,
+                "param_name": "Накладки",
+                "id_properties": false
+            },
+            {
+                "id": 3,
+                "price": 5000,
+                "required": false,
+                "param_name": "Багеты снаружи",
+                "id_properties": false
+            },
+            {
+                "id": 4,
+                "price": 1200,
+                "required": false,
+                "param_name": "Ночной страж",
+                "id_properties": false
+            },
+            {
+                "id": 5,
+                "price": 500,
+                "required": false,
+                "param_name": "Глазок",
+                "id_properties": false
+            },
+            {
+                "id": 6,
+                "price": 1500,
+                "required": false,
+                "param_name": "Накладка на порог",
+                "id_properties": false
+            },
+            {
+                "id": 8,
+                "price": -1000,
+                "required": false,
+                "param_name": "Ручка заказчика",
+                "id_properties": false
+            },
+            {
+                "id": 9,
+                "price": 1200,
+                "required": false,
+                "param_name": "Цинкогрунт",
+                "id_properties": false
+            },
+            {
+                "id": 10,
+                "price": 5500,
+                "required": false,
+                "param_name": "Стеклопакет",
+                "id_properties": false
+            },
+            {
+                "id": 11,
+                "price": 5000,
+                "required": false,
+                "param_name": "Скрытое крепление мдф",
+                "id_properties": false
+            },
+            {
+                "id": 14,
+                "price": 0,
+                "required": false,
+                "param_name": "Панель снаружи 10мм",
+                "id_properties": false
+            }
+        ],
+        "stbr_inner_panel": [
+            {
+                "id": 1,
+                "price": 0,
+                "param_name": "Цвет панели",
+                "id_properties": true
+            },
+            {
+                "id": 5,
+                "price": 5100,
+                "param_name": "В плёнке 6мм",
+                "id_properties": false
+            },
+            {
+                "id": 6,
+                "price": 6100,
+                "param_name": "В плёнке 10мм",
+                "id_properties": false
+            },
+            {
+                "id": 7,
+                "price": 8100,
+                "param_name": "В плёнке 16мм ",
+                "id_properties": false
+            },
+            {
+                "id": 8,
+                "price": 11100,
+                "param_name": "В плёнке 16мм с зеркалом",
+                "id_properties": false
+            },
+            {
+                "id": 9,
+                "price": 0,
+                "param_name": "Фреза",
+                "id_properties": true
+            },
+            {
+                "id": 2,
+                "price": 25350,
+                "param_name": "Крашеная 10мм",
+                "id_properties": false
+            },
+            {
+                "id": 3,
+                "price": 27950,
+                "param_name": "Крашеная 16мм",
+                "id_properties": false
+            },
+            {
+                "id": 4,
+                "price": 30950,
+                "param_name": "Крашеная 16мм с зеркалом",
+                "id_properties": false
+            }
+        ],
+        "stbr_price_default": [
+            {
+                "id": 1,
+                "price": 40850,
+                "formula": "",
+                "width_to": 1080,
+                "height_to": 2100,
+                "width_from": 0,
+                "double_door": false,
+                "height_from": 0
+            },
+            {
+                "id": 2,
+                "price": 19750,
+                "formula": "width*height*1.2",
+                "width_to": 1080,
+                "height_to": 2250,
+                "width_from": 0,
+                "double_door": false,
+                "height_from": 2100
+            },
+            {
+                "id": 6,
+                "price": 19750,
+                "formula": "width*height*1.4",
+                "width_to": 1080,
+                "height_to": 2550,
+                "width_from": 0,
+                "double_door": false,
+                "height_from": 2250
+            },
+            {
+                "id": 7,
+                "price": 19750,
+                "formula": "width*height",
+                "width_to": 1600,
+                "height_to": 2550,
+                "width_from": 0,
+                "double_door": true,
+                "height_from": 0
+            }
+        ],
+        "stbr_outside_panel": [
+            {
+                "id": 2,
+                "price": 6100,
+                "param_name": "В плёнке",
+                "id_properties": false
+            },
+            {
+                "id": 3,
+                "price": 0,
+                "param_name": "Фреза",
+                "id_properties": true
+            },
+            {
+                "id": 4,
+                "price": 0,
+                "param_name": "Цвет панели",
+                "id_properties": true
+            },
+            {
+                "id": 1,
+                "price": 25350,
+                "param_name": "Крашеная",
+                "id_properties": false
+            }
+        ]
+    },
+    "tr_config": {
+        "tr_properties": [
+            {
+                "id": 1,
+                "price": 0,
+                "required": true,
+                "param_name": "Цвет конструкции",
+                "id_properties": true
+            },
+            {
+                "id": 2,
+                "price": 0,
+                "required": false,
+                "param_name": "Внутрення панель",
+                "id_properties": false
+            },
+            {
+                "id": 7,
+                "price": 0,
+                "required": false,
+                "param_name": "Заменить ручку",
+                "id_properties": true
+            },
+            {
+                "id": 12,
+                "price": 0,
+                "required": false,
+                "param_name": "Замки",
+                "id_properties": false
+            },
+            {
+                "id": 13,
+                "price": 0,
+                "required": false,
+                "param_name": "Накладки",
+                "id_properties": false
+            },
+            {
+                "id": 3,
+                "price": 5000,
+                "required": false,
+                "param_name": "Багеты снаружи",
+                "id_properties": false
+            },
+            {
+                "id": 4,
+                "price": 1200,
+                "required": false,
+                "param_name": "Ночной страж",
+                "id_properties": false
+            },
+            {
+                "id": 5,
+                "price": 500,
+                "required": false,
+                "param_name": "Глазок",
+                "id_properties": false
+            },
+            {
+                "id": 6,
+                "price": 1500,
+                "required": false,
+                "param_name": "Накладка на порог",
+                "id_properties": false
+            },
+            {
+                "id": 8,
+                "price": -1000,
+                "required": false,
+                "param_name": "Ручка заказчика",
+                "id_properties": false
+            },
+            {
+                "id": 9,
+                "price": 1200,
+                "required": false,
+                "param_name": "Цинкогрунт",
+                "id_properties": false
+            },
+            {
+                "id": 10,
+                "price": 5500,
+                "required": false,
+                "param_name": "Стеклопакет",
+                "id_properties": false
+            },
+            {
+                "id": 11,
+                "price": 0,
+                "required": true,
+                "param_name": "Скрытое крепление мдф",
+                "id_properties": false
+            },
+            {
+                "id": 14,
+                "price": 0,
+                "required": false,
+                "param_name": "Панель снаружи 10мм мдф",
+                "id_properties": false
+            },
+            {
+                "id": 15,
+                "price": 0,
+                "required": false,
+                "param_name": "Панель снаружи 9.5мм корабельная фанера",
+                "id_properties": false
+            }
+        ],
+        "tr_inner_panel": [
+            {
+                "id": 2,
+                "price": 30950,
+                "param_name": "Крашеная 16мм c зеркалом",
+                "id_properties": false
+            },
+            {
+                "id": 3,
+                "price": 8100,
+                "param_name": "В плёнке 16мм",
+                "id_properties": false
+            },
+            {
+                "id": 4,
+                "price": 11100,
+                "param_name": "В плёнке 16мм с зеркалом",
+                "id_properties": false
+            },
+            {
+                "id": 1,
+                "price": 27950,
+                "param_name": "Крашеная 16мм",
+                "id_properties": false
+            },
+            {
+                "id": 5,
+                "price": 0,
+                "param_name": "Фреза",
+                "id_properties": true
+            },
+            {
+                "id": 6,
+                "price": 0,
+                "param_name": "Цвет панели",
+                "id_properties": true
+            }
+        ],
+        "tr_price_default": [
+            {
+                "id": 1,
+                "price": 58900,
+                "formula": "",
+                "width_to": 1080,
+                "height_to": 2100,
+                "width_from": 0,
+                "double_door": false,
+                "height_from": 0
+            },
+            {
+                "id": 2,
+                "price": 28050,
+                "formula": "width*height*1.2",
+                "width_to": 1080,
+                "height_to": 2250,
+                "width_from": 0,
+                "double_door": false,
+                "height_from": 2100
+            },
+            {
+                "id": 6,
+                "price": 28050,
+                "formula": "width*height*1.4",
+                "width_to": 1080,
+                "height_to": 2550,
+                "width_from": 0,
+                "double_door": false,
+                "height_from": 2250
+            },
+            {
+                "id": 7,
+                "price": 28050,
+                "formula": "width*height",
+                "width_to": 1600,
+                "height_to": 2550,
+                "width_from": 0,
+                "double_door": true,
+                "height_from": 0
+            }
+        ],
+        "tr_outside_panel_10": [
+            {
+                "id": 1,
+                "price": 25350,
+                "param_name": "Крашенная",
+                "id_properties": false
+            },
+            {
+                "id": 2,
+                "price": 0,
+                "param_name": "Фреза",
+                "id_properties": true
+            },
+            {
+                "id": 3,
+                "price": 0,
+                "param_name": "Цвет панели",
+                "id_properties": true
+            }
+        ],
+        "tr_outside_panel_9_5": [
+            {
+                "id": 1,
+                "price": 48750,
+                "param_name": "Крашенная",
+                "id_properties": false
+            },
+            {
+                "id": 2,
+                "price": 0,
+                "param_name": "Фреза",
+                "id_properties": true
+            },
+            {
+                "id": 3,
+                "price": 0,
+                "param_name": "Цвет панели",
+                "id_properties": true
+            }
+        ]
+    },
+    "film_type": [
+        {
+            "id": 1,
+            "type_name": "Стандарт",
+            "price": 0,
+            "double_door": false
+        },
+        {
+            "id": 3,
+            "type_name": "Софт + глянец",
+            "price": 5000,
+            "double_door": true
+        },
+        {
+            "id": 2,
+            "type_name": "Софт ",
+            "price": 3500,
+            "double_door": false
+        }
+    ],
+    "door_lock": [
+        {
+            "id": 2,
+            "name": "Комплект 2",
+            "price": 0
+        },
+        {
+            "id": 3,
+            "name": "Комплект 3",
+            "price": 0
+        },
+        {
+            "id": 4,
+            "name": "Комплект 4",
+            "price": 0
+        },
+        {
+            "id": 1,
+            "name": "Комплект 1",
+            "price": 50
+        }
+    ],
+    "door_still_cover": [
+        {
+            "id": 2,
+            "name": "Комплект 2",
+            "price": 0
+        },
+        {
+            "id": 3,
+            "name": "Комплект 3",
+            "price": 0
+        },
+        {
+            "id": 4,
+            "name": "Комплект 4",
+            "price": 0
+        },
+        {
+            "id": 1,
+            "name": "Комплект 1",
+            "price": 100
+        }
+    ]
+}
