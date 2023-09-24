@@ -8,21 +8,25 @@
 
             <!-- DOOR TYPE -->
             <div class="d-flex justify-content-around w-100 primary-bg py-30">
-                <div class="door-type">
+                <div
+                    v-for="doorType in calculatorStore.doorParams.door_type"
+                    :key="doorType.id"
+                    class="door-type"
+                >
                     <img
-                        src="../assets/icons/door-1.svg"
+                        :src="`../assets/icons/door-${doorType.id}.svg`"
                         alt=""
                     />
 
                     <ElButton
                         class="button-door"
-                        :class="{ active: door_type === calculatorStore.doorParams.door_type[0].id }"
-                        @click="changeDoorType(calculatorStore.doorParams.door_type[0].id)"
+                        :class="{ active: door_type === doorType.id }"
+                        @click="changeDoorType(doorType.id)"
                     >
-                        {{ calculatorStore.doorParams.door_type[0].type_name }}
+                        {{ doorType.type_name }}
                     </ElButton>
                 </div>
-
+                <!-- 
                 <div class="door-type">
                     <img
                         src="../assets/icons/door-2.svg"
@@ -36,9 +40,9 @@
                     >
                         {{ calculatorStore.doorParams.door_type[1].type_name }}
                     </ElButton>
-                </div>
+                </div> -->
 
-                <div class="door-type">
+                <!-- <div class="door-type">
                     <img
                         src="../assets/icons/door-2.1.svg"
                         alt=""
@@ -51,7 +55,7 @@
                     >
                         {{ calculatorStore.doorParams.door_type[2].type_name }}
                     </ElButton>
-                </div>
+                </div> -->
             </div>
 
             <!-- DOOR OPEN TYPE -->
@@ -279,9 +283,11 @@
                                         v-model="construction_inner_color[item.id]"
                                         class="mw-250"
                                         size="large"
+                                        type="number"
                                         placeholder="Введите id"
                                     />
-                                    {{ construction_inner_color }}
+                                    {{ construction_inner_color }} <br />
+                                    construction_inner_color
                                 </div>
                             </template>
 
@@ -386,6 +392,7 @@
                                             v-model="tr_type_items[item.id]"
                                             class="mw-250"
                                             size="large"
+                                            type="number"
                                             placeholder="Введите id"
                                         />
 
@@ -458,6 +465,7 @@
                                         v-model="construction_color[item.id]"
                                         class="mw-250"
                                         size="large"
+                                        type="number"
                                         placeholder="Введите id"
                                     />
 
@@ -465,7 +473,7 @@
                                 </div>
                             </template>
 
-                            <!-- <div
+                            <div
                                 :class="outside_panel === 2 ? 'd-flex' : ''"
                                 class="d-none flex-column"
                             >
@@ -491,7 +499,7 @@
                                         />
                                     </template>
                                 </ElSelect>
-                            </div> -->
+                            </div>
                         </div>
 
                         <div class="line"></div>
@@ -512,6 +520,7 @@
                                         v-model="properties[property.id]"
                                         class="mw-250"
                                         size="large"
+                                        type="number"
                                         placeholder="Введите id"
                                     />
                                 </div>
@@ -544,6 +553,21 @@
                         {{ properties }}
                         <!-- PROPERTIES: LOCKS AND COVER -->
                         <div class="d-grid locks mt-20">
+                            <div
+                                v-if="properties['7']"
+                                class="d-flex flex-column"
+                            >
+                                <span class="upper-case mb-15 fs-12"> ID ручки</span>
+
+                                <ElInput
+                                    v-model="properties['7']"
+                                    class="mw-250"
+                                    size="large"
+                                    type="number"
+                                    placeholder="Введите id"
+                                />
+                            </div>
+
                             <div class="d-flex flex-column">
                                 <span class="upper-case mb-15 fs-12"> Накладки </span>
 
@@ -553,7 +577,7 @@
                                 >
                                     <ElSelect
                                         v-if="property.param_name === 'Накладки'"
-                                        v-model="door_still_cover"
+                                        v-model="properties[property.id]"
                                         class="m-2 mw-250"
                                         placeholder="Выберите:"
                                         size="large"
@@ -578,7 +602,7 @@
                                 >
                                     <ElSelect
                                         v-if="property.param_name === 'Замки'"
-                                        v-model="door_lock"
+                                        v-model="properties[property.id]"
                                         class="m-2 mw-250"
                                         placeholder="Выберите:"
                                         size="large"
@@ -605,19 +629,20 @@
                     </button>
                 </div>
 
-                info:
+                <!-- info:
                 {{ door_type }} doorType <br />
                 {{ doorOpenType }} doorOpenType <br />
                 {{ typeOfConstruction }} typeOfConstruction <br />
                 {{ construction_title }} construction_title <br />
+                {{ construction_inner_color }} construction_inner_color <br />
                 {{ inner_panel }}insidePanel <br />
-                {{ outside_panel }} outsidePanel <br />
+                {{ outside_panel }} outsidePanel <br /> -->
                 <!-- {{ film_type }} film_type <br /> -->
-                {{ freza }} freza <br />
+                <!-- {{ freza }} freza <br />
                 {{ construction_color }} construction_color <br />
                 {{ panel_color }} panel_color <br />
                 {{ tr_type_panel }} tr_type_panel <br />
-                {{ properties }} properties
+                {{ properties }} properties -->
             </div>
         </div>
     </div>
@@ -669,85 +694,89 @@ const outside_panel = ref()
 const properties = ref({})
 
 const film_type_inner = ref()
-// const film_type_outside = ref()
+const film_type_outside = ref()
 
-const freza = ref('')
 const construction_color = ref({})
 const construction_inner_color = ref({})
-const panel_color = ref('')
 
 const tr_type_panel = ref('')
 const tr_type = ref({})
 const tr_type_items = ref([])
 
-const door_lock = ref()
-const door_still_cover = ref()
-
 const sendForm = () => {
     let data = {}
     if (typeOfConstruction.value === 'tr') {
-        // console.log('tr')
         data = {
-            door_type: {
-                id: door_type.value
-            },
+            door_type_id: {
+                id: Number(door_type.value)
+            }
+        }
 
-            tr_properties_ids: Object.keys(properties.value)
-                .map((key) => ({ id: key }))
-                .filter((property) => properties.value[property.id] === true),
+        data.tr_properties_ids = []
 
-            tr_inner_panel_ids: [inner_panel.value.id],
+        for (const key in properties.value) {
+            if (Object.hasOwnProperty.call(properties.value, key)) {
+                const element = properties.value[key]
+                if (typeof element === 'boolean') {
+                    data.tr_properties_ids.push({ id: Number(key) })
+                } else {
+                    data.tr_properties_ids.push({ id: Number(key), id_properties: Number(element) })
+                }
+            }
+        }
 
-            film_type_id: { id: film_type_inner.value },
+        data.tr_inner_panel_ids = []
 
-            door_lock_id: { id: door_lock.value },
+        if (construction_inner_color.value !== undefined) {
+            for (const key in construction_inner_color.value) {
+                console.log(construction_inner_color, 'construction_inner_color')
+                const element = construction_inner_color.value[key]
+                data.tr_inner_panel_ids.push({ id: Number(key), id_properties: Number(element) })
+            }
+        }
 
-            door_still_cover_id: { id: door_still_cover.value }
+        if (film_type_inner.value !== 'undefined') {
+            data.tr_inner_panel_ids.push({ id: Number(inner_panel.value.id), id_properties: Number(film_type_inner.value) })
         }
 
         if (tr_type_panel.value === 'tr_outside_panel_9_5') {
             data.tr_outside_panel_9_5_ids = []
             if (tr_type.value.checked) {
-                data.tr_outside_panel_9_5_ids.push({ id: tr_type.value.id })
+                data.tr_outside_panel_9_5_ids.push({ id: Number(tr_type.value.id) })
             }
 
             for (let index = 0; index < tr_type_items.value.length; index++) {
                 const element = tr_type_items.value[index]
-                // console.log(element)
                 if (element !== undefined) {
-                    data.tr_outside_panel_9_5_ids.push({ id: index, id_properties: element })
+                    data.tr_outside_panel_9_5_ids.push({ id: Number(index), id_properties: Number(element) })
                 }
             }
         }
+
         if (tr_type_panel.value === 'tr_outside_panel_10') {
             data.tr_outside_panel_10_ids = []
             if (tr_type.value.checked) {
-                data.tr_outside_panel_10_ids.push({ id: tr_type.value.id })
+                data.tr_outside_panel_10_ids.push({ id: Number(tr_type.value.id) })
             }
 
             for (let index = 0; index < tr_type_items.value.length; index++) {
                 const element = tr_type_items.value[index]
 
                 if (element !== undefined) {
-                    data.tr_outside_panel_10_ids.push({ id: index, id_properties: element })
+                    data.tr_outside_panel_10_ids.push({ id: Number(index), id_properties: Number(element) })
                 }
             }
         }
+
+        data.price_default = { width: Number(doorSizeWidth.value), height: Number(doorSizeHeight.value) }
     }
+
     // STBR
     else if (typeOfConstruction.value === 'stbr') {
         data = {
-            door_type: {
-                id: door_type.value
-            },
-
-            // stbr_properties_ids: Object.keys(properties.value)
-            //     .map((key) => ({ id: key }))
-            //     .filter((property) => properties.value[property.id] === true),
-
-            door_lock_id: { id: door_lock.value },
-
-            door_still_cover_id: { id: door_still_cover.value }
+            door_type_id: {
+                id: Number(door_type.value)
+            }
         }
 
         data.stbr_properties_ids = []
@@ -756,9 +785,9 @@ const sendForm = () => {
             if (Object.hasOwnProperty.call(properties.value, key)) {
                 const element = properties.value[key]
                 if (typeof element === 'boolean') {
-                    data.stbr_properties_ids.push({ id: key })
+                    data.stbr_properties_ids.push({ id: Number(key) })
                 } else {
-                    data.stbr_properties_ids.push({ id: key, id_properties: element })
+                    data.stbr_properties_ids.push({ id: Number(key), id_properties: Number(element) })
                 }
             }
         }
@@ -766,37 +795,36 @@ const sendForm = () => {
         data.stbr_inner_panel_ids = []
         data.stbr_outside_panel_ids = []
 
-        data.stbr_outside_panel_ids.push({ id: outside_panel.value })
-        data.stbr_inner_panel_ids.push({ id: inner_panel.value.id })
-
         // if (construction_color.value.length) {
-            for (const key in construction_color.value) {
-                const element = construction_color.value[key]
-                data.stbr_outside_panel_ids.push({ id: key, id_properties: element })
-            }
-        // }
+        for (const key in construction_color.value) {
+            const element = construction_color.value[key]
+            data.stbr_outside_panel_ids.push({ id: Number(key), id_properties: Number(element) })
+        }
+
+        if (film_type_inner.value !== 'undefined') {
+            data.stbr_outside_panel_ids.push({ id: Number(outside_panel.value), id_properties: Number(film_type_inner.value) })
+        }
+
+        if (film_type_outside.value !== 'undefined') {
+            data.stbr_inner_panel_ids.push({ id: Number(inner_panel.value), id_properties: Number(film_type_outside.value) })
+        }
 
         if (construction_inner_color.value !== undefined) {
             for (const key in construction_inner_color.value) {
                 const element = construction_inner_color.value[key]
-                data.stbr_inner_panel_ids.push({ id: key, id_properties: element })
+                data.stbr_inner_panel_ids.push({ id: Number(key), id_properties: Number(element) })
             }
         }
 
-        if (film_type_inner.value !== 'undefined') {
-            data.film_type_id = { id: film_type_inner.value }
-        }
+        data.price_default = { width: Number(doorSizeWidth.value), height: Number(doorSizeHeight.value) }
     }
+
     // ST
     else {
         data = {
-            door_type: {
-                id: door_type.value
-            },
-
-            door_lock_id: { id: door_lock.value },
-
-            door_still_cover_id: { id: door_still_cover.value }
+            door_type_id: {
+                id: Number(door_type.value)
+            }
         }
 
         data.st_properties_ids = []
@@ -805,34 +833,39 @@ const sendForm = () => {
             if (Object.hasOwnProperty.call(properties.value, key)) {
                 const element = properties.value[key]
                 if (typeof element === 'boolean') {
-                    data.st_properties_ids.push({ id: key })
+                    data.st_properties_ids.push({ id: Number(key) })
                 } else {
-                    data.st_properties_ids.push({ id: key, id_properties: element })
+                    data.st_properties_ids.push({ id: Number(key), id_properties: Number(element) })
                 }
             }
         }
 
         data.st_inner_panel_ids = []
 
-        data.st_inner_panel_ids.push({ id: inner_panel.value.id })
+        if (film_type_inner.value !== 'undefined') {
+            data.st_inner_panel_ids.push({ id: Number(inner_panel.value.id), id_properties: Number(film_type_inner.value) })
+        }
 
         for (const key in construction_inner_color.value) {
             const element = construction_inner_color.value[key]
-            data.st_inner_panel_ids.push({ id: key, id_properties: element })
+            data.st_inner_panel_ids.push({ id: Number(key), id_properties: Number(element) })
         }
 
         if (film_type_inner.value !== 'undefined') {
-            data.film_type_id = { id: film_type_inner.value }
+            data.film_type_id = { id: Number(film_type_inner.value) }
         }
+
+        data.price_default = { width: Number(doorSizeWidth.value), height: Number(doorSizeHeight.value) }
     }
     console.log(data, 'data')
-    // calculatorStore.sendForm(data)
+
+    calculatorStore.recieveTotalPrice(typeOfConstruction.value, data)
 }
 </script>
 
 <style scoped lang="scss">
 .locks {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
 }
 .count {
@@ -976,8 +1009,5 @@ header {
 
 .input-properties {
     grid-template-columns: repeat(3, 1fr);
-}
-
-@media (min-width: 1024px) {
 }
 </style>
