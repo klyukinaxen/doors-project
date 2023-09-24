@@ -359,7 +359,7 @@
                                 :key="item.id"
                             >
                                 <div
-                                    v-if="item.param_name === 'Крашенная'"
+                                    v-if="item.id === 1"
                                     class="d-flex align-items-center ml-30"
                                 >
                                     <ElCheckbox
@@ -511,7 +511,7 @@
                                 :key="property.id"
                             >
                                 <div
-                                    v-if="property.param_name === 'Цвет конструкции' || property.param_name === 'Внутрення панель'"
+                                    v-if="property.id === 1 || property.id === 2"
                                     class="d-flex flex-column mt-5"
                                 >
                                     <span class="upper-case mb-5 fs-12 mt-10"> {{ property.param_name }} </span>
@@ -535,12 +535,12 @@
                             >
                                 <ElCheckbox
                                     v-if="
-                                        property.param_name !== 'Цвет конструкции' &&
-                                        property.param_name !== 'Внутрення панель' &&
-                                        property.param_name !== 'Панель снаружи 9.5мм корабельная фанера' &&
-                                        property.param_name !== 'Панель снаружи 10мм мдф' &&
-                                        property.param_name !== 'Замки' &&
-                                        property.param_name !== 'Накладки'
+                                        property.id !== 1 &&
+                                        property.id !== 2 &&
+                                        property.id !== 15 &&
+                                        property.id !== 14 &&
+                                        property.id !== 12 &&
+                                        property.id !== 13
                                     "
                                     v-model="properties[property.id]"
                                     :label="property.param_name"
@@ -576,7 +576,7 @@
                                     :key="property.id"
                                 >
                                     <ElSelect
-                                        v-if="property.param_name === 'Накладки'"
+                                        v-if="property.id === 13"
                                         v-model="properties[property.id]"
                                         class="m-2 mw-250"
                                         placeholder="Выберите:"
@@ -601,7 +601,7 @@
                                     :key="property.id"
                                 >
                                     <ElSelect
-                                        v-if="property.param_name === 'Замки'"
+                                        v-if="property.id === 12"
                                         v-model="properties[property.id]"
                                         class="m-2 mw-250"
                                         placeholder="Выберите:"
