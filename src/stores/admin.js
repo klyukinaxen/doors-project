@@ -46,5 +46,12 @@ export const useAdminStore = defineStore('admin', () => {
         }
     }
 
-    return { users, usersPageCount, recieveUsers, deleteUser, createUser, changeUser }
+    async function changeParams(doorType, category, id, data) {
+        const response = await apiInstance.patch(`/admin/changeParams/${doorType}`, data, { params: { category, id } }).catch(console.log)
+        if (response?.data?.status === 'ok') {
+            return true
+        }
+    }
+
+    return { users, usersPageCount, recieveUsers, deleteUser, createUser, changeUser, changeParams }
 })
