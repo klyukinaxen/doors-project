@@ -97,26 +97,29 @@ const userForm = reactive({
     role_id: String(Roles.User)
 })
 
-function userFormSubmitHandler() {
+async function userFormSubmitHandler() {
+    let isSuccessful = false
     if (props.type === UserActionType.CREATE) {
-        adminStore.createUser({
+        isSuccessful = !!(await adminStore.createUser({
             login: userForm.login,
             password: userForm.password,
             name: userForm.name,
             surname: userForm.surname,
             role_id: Number(userForm.role_id)
-        })
+        }))
     } else {
-        adminStore.changeUser({
+        isSuccessful = !!(await adminStore.changeUser({
             user_id: props.userId,
             name: userForm.name,
             surname: userForm.surname,
             role_id: Number(userForm.role_id),
             password: userForm.password
-        })
+        }))
     }
 
-    emit('close')
+    if (isSuccessful === true) {
+        emit('close')
+    }
 }
 
 onMounted(() => {
