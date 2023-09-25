@@ -41,14 +41,23 @@ export const useCalculatorStore = defineStore('calculator', () => {
     }
 
     async function recieveTotalPrice(type, data) {
-        if (!authStore.accessToken) {
-            return
-        }
-
         const response = await apiInstance.post(`door/totalPrice/${String(type).toUpperCase()}`, data).catch(console.log)
         const message = response?.data.message
         return message?.total_price
     }
 
-    return { doorConstructions, doorParams, recieveDoorParams, recieveTotalPrice }
+    async function doorSave(type, data) {
+        const response = await apiInstance.post(`door/save/${String(type).toUpperCase()}`, data).catch(console.log)
+        const message = response?.data.message
+        return message?.id_order
+    }
+
+    async function doorSaveFile(orderId) {
+        const response = await apiInstance.get(`door/saveFile/${orderId}`, { responseType: 'blob' }).catch(console.log)
+        if (response) {
+            return response
+        }
+    }
+
+    return { doorConstructions, doorParams, recieveDoorParams, recieveTotalPrice, doorSave, doorSaveFile }
 })

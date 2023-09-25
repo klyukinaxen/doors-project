@@ -584,12 +584,19 @@
                     </div>
                 </div>
 
-                <div class="w-100 d-flex align-items-center justify-content-center">
+                <div class="w-100 d-flex align-items-center justify-content-center flex-column">
                     <button
                         class="upper-case count fs-16 ls-2 my-45 mw-270 fw-600"
                         @click="recieveTotalPrice"
                     >
                         рассчитать стоимость
+                    </button>
+
+                    <button
+                        class="upper-case count fs-16 ls-2 my-45 mw-270 fw-600"
+                        @click="doorSave"
+                    >
+                        Сохранить параметры
                     </button>
                 </div>
             </div>
@@ -599,8 +606,9 @@
 
 <script setup>
 import { useCalculatorStore } from '../stores/calculator'
-import { ElButton, ElRadioGroup, ElRadio, ElSlider, ElOption, ElSelect, ElInput, ElCheckbox, ElMessageBox } from 'element-plus'
+import { ElButton, ElRadioGroup, ElRadio, ElSlider, ElOption, ElSelect, ElInput, ElCheckbox, ElMessageBox, ElMessage } from 'element-plus'
 import { ref } from 'vue'
+import { saveAs } from 'file-saver'
 
 const calculatorStore = useCalculatorStore()
 
@@ -821,6 +829,36 @@ const recieveTotalPrice = async () => {
         confirmButtonText: 'ОК'
     })
 }
+
+const doorSave = async () => {
+    const idOrder = await calculatorStore.doorSave(typeOfConstruction.value, getFormData())
+    if (!idOrder) {
+        return
+    }
+
+    ElMessageBox.confirm(`Выбранные параметры двери сохранены. Номер заказа: ${idOrder}`, 'Успешно', {
+        confirmButtonText: 'Скачать файл заказа',
+        cancelButtonText: 'Закрыть',
+        type: 'success'
+    })
+        .then(async () => {
+            const response = await calculatorStore.doorSaveFile(idOrder)
+            if (!response) {
+                return
+            }
+
+            const contentDisposition = response.headers['Content-Disposition']
+            // attachment; filename=result.xlsx
+            const filename = String(contentDisposition).split('filename=')[1]
+            saveAs(response.data, filename || 'result.xlsx')
+
+            ElMessage({
+                type: 'success',
+                message: 'Успешно скачано'
+            })
+        })
+        .catch(() => {})
+}
 </script>
 
 <style scoped lang="scss">
@@ -967,7 +1005,6 @@ header {
     width: 100%;
 }
 // #tab-userManagement
-
 
 .input-properties {
     grid-template-columns: repeat(3, 1fr);
