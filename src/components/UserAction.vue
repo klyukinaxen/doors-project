@@ -1,6 +1,7 @@
 <template>
     <!-- <pre>{{ { userId, type } }}</pre> -->
     <ElForm
+        label-width="auto"
         :model="userForm"
         @submit.prevent="userFormSubmitHandler"
     >
