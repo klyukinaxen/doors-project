@@ -35,6 +35,7 @@
                 -->
                 <ElForm
                     :model="authForm"
+                    label-width="auto"
                     @submit.prevent="signInHandler"
                 >
                     <ElFormItem label="Логин">
