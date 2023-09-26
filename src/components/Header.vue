@@ -1,7 +1,3 @@
-<script setup>
-// import { ElButton } from 'element-plus'
-</script>
-
 <template>
     <div class="d-flex justify-content-around py-30">
         <div class="region">
@@ -29,8 +25,24 @@
 
             <span class="fw-600 mt-10">ВХОД</span>
         </div> -->
+
+        <ElButton
+            v-if="authStore.accessTokenDecode"
+            type="danger"
+            @click="authStore.signOut"
+        >
+            Выйти
+        </ElButton>
     </div>
 </template>
+
+<script setup>
+import { ElButton } from 'element-plus'
+
+import { useAuthStore } from '../stores/auth'
+
+const authStore = useAuthStore()
+</script>
 
 <style scoped lang="scss">
 .icon {

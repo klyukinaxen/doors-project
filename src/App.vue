@@ -3,7 +3,10 @@
         <div class="d-flex flex-column mx-15">
             <Header />
 
-            <ElTabs v-model="activeMenuItem">
+            <ElTabs
+                v-if="authStore.accessToken && authStore.accessTokenDecode"
+                v-model="activeMenuItem"
+            >
                 <ElTabPane
                     v-for="(item, index) in menuItems"
                     :key="index"
@@ -106,7 +109,7 @@ const menuItems = computed(() => {
         })
     }
 
-    if (authStore.isOwner) {
+    if (authStore.isOwner && calculatorStore.doorParams) {
         items.push({
             id: 'changeParams',
             name: 'Редактирование параметров'
@@ -123,9 +126,13 @@ function signInHandler() {
 }
 
 watch(
-    () => authStore.accessToken,
+    () => authStore.accessTokenDecode?.user_id,
     () => {
-        calculatorStore.recieveDoorParams()
+        if (authStore.accessTokenDecode) {
+            calculatorStore.recieveDoorParams()
+        } else {
+            activeMenuItem.value = 'calculator'
+        }
     }
 )
 </script>

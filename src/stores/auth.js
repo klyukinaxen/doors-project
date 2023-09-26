@@ -3,6 +3,8 @@ import { defineStore } from 'pinia'
 import jwtDecode from 'jwt-decode'
 
 import { apiInstance } from '../api/instance'
+import { useCalculatorStore } from './calculator'
+import { useAdminStore } from './admin'
 
 export const Roles = Object.freeze({
     User: 1,
@@ -11,6 +13,9 @@ export const Roles = Object.freeze({
 })
 
 export const useAuthStore = defineStore('auth', () => {
+    const calculatorStore = useCalculatorStore()
+    const adminStore = useAdminStore()
+
     const signInModalVisible = ref(false)
     const accessToken = ref('')
 
@@ -37,22 +42,35 @@ export const useAuthStore = defineStore('auth', () => {
         return accessTokenDecode.value?.role_id === Roles.Owner
     })
 
-    async function signIn({ login, password }) {
+    const signIn = async ({ login, password }) => {
         const response = await apiInstance
             .post('/auth/sign-in', {
                 login,
                 password
             })
             .catch(console.log)
-        const accessToken = response?.data.message.AccessToken
-        if (accessToken) {
-            this.accessToken = accessToken
+        const _accessToken = response?.data.message.AccessToken
+        if (_accessToken) {
+            accessToken.value = _accessToken
 
-            localStorage.setItem('accessToken', accessToken)
+            localStorage.setItem('accessToken', _accessToken)
 
-            this.signInModalVisible = false
+            signInModalVisible.value = false
         }
     }
 
-    return { accessToken, signInModalVisible, accessTokenDecode, isUser, isAdmin, isOwner, signIn }
+    const signOut = () => {
+        localStorage.removeItem('accessToken')
+
+        accessToken.value = ''
+        signInModalVisible.value = true
+
+        calculatorStore.$patch({ doorParams: null })
+        adminStore.$patch({
+            users: { 1: [] },
+            usersPageCount: 1
+        })
+    }
+
+    return { accessToken, signInModalVisible, accessTokenDecode, isUser, isAdmin, isOwner, signIn, signOut }
 })
