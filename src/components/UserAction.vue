@@ -127,7 +127,9 @@ onMounted(() => {
         return
     }
 
-    const user = adminStore.users.find((user) => user.id === props.userId)
+    const user = Object.values(adminStore.users)
+        .flat()
+        .find((user) => user.id === props.userId)
     if (!user) {
         return
     }
