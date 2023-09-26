@@ -1,72 +1,69 @@
 <template>
     <div class="change-params d-flex flex-column justify-content-center">
-        <div
+        <ElCollapse
             v-for="(categories, doorType) of params"
             :key="doorType"
-            class="door-type d-flex flex-wrap"
         >
-            <ElText
-                type="primary"
-                size="large"
-                class="door-type_name w-100"
+            <ElCollapseItem
+                :title="doorType"
+                :name="doorType"
             >
-                {{ doorType }}
-            </ElText>
-
-            <ElCard
-                v-for="(categoryParams, category) of categories"
-                :key="category"
-                class="category"
-            >
-                <template #header>
-                    {{ t(category) }}
-                </template>
-
-                <div
-                    v-for="(param, paramIndex) in categoryParams"
-                    :key="param.id"
+                <ElCard
+                    v-for="(categoryParams, category) of categories"
+                    :key="category"
+                    class="category"
                 >
-                    <ElDivider v-if="paramIndex !== 0" />
+                    <template #header>
+                        {{ t(category) }}
+                    </template>
 
-                    <ElForm
-                        :model="param"
-                        @submit.prevent="changeParams(doorType, category, param)"
+                    <div
+                        v-for="(param, paramIndex) in categoryParams"
+                        :key="param.id"
                     >
-                        <ElFormItem
-                            v-if="Object.hasOwn(param, 'name')"
-                            label="Название"
-                        >
-                            <ElInput v-model="param.name" />
-                        </ElFormItem>
+                        <ElDivider v-if="paramIndex !== 0" />
 
-                        <ElFormItem
-                            v-if="Object.hasOwn(param, 'price')"
-                            :label="param.priceLabel || 'Цена'"
+                        <ElForm
+                            label-width="auto"
+                            :model="param"
+                            @submit.prevent="changeParams(doorType, category, param)"
                         >
-                            <ElInput
-                                v-model="param.price"
-                                type="number"
-                            />
-                        </ElFormItem>
-
-                        <ElFormItem>
-                            <ElButton
-                                type="success"
-                                :icon="Check"
-                                native-type="submit"
+                            <ElFormItem
+                                v-if="Object.hasOwn(param, 'name')"
+                                label="Название"
                             >
-                                Сохранить
-                            </ElButton>
-                        </ElFormItem>
-                    </ElForm>
-                </div>
-            </ElCard>
-        </div>
+                                <ElInput v-model="param.name" />
+                            </ElFormItem>
+
+                            <ElFormItem
+                                v-if="Object.hasOwn(param, 'price')"
+                                :label="param.priceLabel || 'Цена'"
+                            >
+                                <ElInput
+                                    v-model="param.price"
+                                    type="number"
+                                />
+                            </ElFormItem>
+
+                            <ElFormItem>
+                                <ElButton
+                                    type="success"
+                                    :icon="Check"
+                                    native-type="submit"
+                                >
+                                    Сохранить
+                                </ElButton>
+                            </ElFormItem>
+                        </ElForm>
+                    </div>
+                </ElCard>
+            </ElCollapseItem>
+        </ElCollapse>
     </div>
 </template>
 
 <script setup>
-import { ElButton, ElCard, ElDivider, ElForm, ElFormItem, ElInput, ElMessage, ElText } from 'element-plus'
+import { ElButton, ElCard, ElCollapse, ElCollapseItem, ElDivider, ElForm, ElFormItem, ElInput, ElMessage } from 'element-plus'
 import { Check } from '@element-plus/icons-vue'
 import { ref } from 'vue'
 
@@ -150,18 +147,15 @@ async function changeParams(doorType, category, param) {
 
 <style scoped lang="scss">
 .change-params {
-    .door-type {
-        gap: 8px;
-        justify-content: space-between;
+    .category {
+        min-width: 320px;
+        flex: 1;
+        margin: 8px;
+    }
 
-        .door-type_name {
-            margin-top: 16px;
-        }
-
-        .category {
-            min-width: 320px;
-            flex: 1;
-        }
+    :deep(.el-collapse-item__content) {
+        display: flex;
+        flex-wrap: wrap;
     }
 }
 </style>
