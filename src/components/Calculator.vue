@@ -217,6 +217,7 @@
                         <div class="dropdowns d-grid grid-3 mb-20">
                             <div class="d-flex flex-column">
                                 <span class="upper-case mb-15 fs-12"> внутренняя панель </span>
+                                <!-- TODO: фреза -->
 
                                 <ElSelect
                                     v-model="inner_panel"
@@ -376,6 +377,8 @@
                             >
                                 <span class="upper-case mb-15 fs-12"> внешняя панель </span>
 
+                                <!-- TODO: может не быть -->
+
                                 <ElSelect
                                     v-if="typeOfConstruction !== 'tr'"
                                     v-model="outside_panel"
@@ -497,6 +500,8 @@
                                 v-for="property in selected_construction[`${typeOfConstruction}_properties`]"
                                 :key="property.id"
                             >
+                                <!-- TODO: добавить цены -->
+                                <!-- TODO: снимается галка при изменении инпута с id -->
                                 <ElCheckbox
                                     v-if="
                                         property.id !== 1 &&
@@ -612,6 +617,7 @@ import { saveAs } from 'file-saver'
 
 const calculatorStore = useCalculatorStore()
 
+// TODO: при изменении очищать состояние выбранных параметров двери
 const door_type = ref(calculatorStore.doorParams.door_type[0].id)
 const changeDoorType = (event) => {
     door_type.value = event
