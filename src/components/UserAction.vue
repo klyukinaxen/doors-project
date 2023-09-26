@@ -4,14 +4,12 @@
         :model="userForm"
         @submit.prevent="userFormSubmitHandler"
     >
-        <ElFormItem
-            v-if="type === UserActionType.CREATE"
-            label="Логин"
-        >
+        <ElFormItem label="Логин">
             <ElInput
                 v-model="userForm.login"
                 name="login"
                 required
+                :disabled="type !== UserActionType.CREATE"
             />
         </ElFormItem>
 
@@ -134,6 +132,7 @@ onMounted(() => {
         return
     }
 
+    userForm.login = user.login
     userForm.password = user.password
     userForm.name = user.name
     userForm.surname = user.surname

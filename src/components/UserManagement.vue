@@ -15,6 +15,12 @@
                 </template>
             </ElTableColumn>
 
+            <ElTableColumn label="Логин">
+                <template #default="scope">
+                    {{ scope.row.login }}
+                </template>
+            </ElTableColumn>
+
             <ElTableColumn label="Имя">
                 <template #default="scope">
                     {{ scope.row.name }}
