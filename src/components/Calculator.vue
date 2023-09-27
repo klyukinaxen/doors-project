@@ -701,9 +701,17 @@ const changeDoorType = (event) => {
     isInnerPanel.value = false
     isOutsidePanel.value = false
 
-    // TODO: реактивность страдает на чекбоксах
-    properties.value = {}
-    propertiesConditions.value = {}
+    for (const key in properties.value) {
+        if (Object.hasOwnProperty.call(properties.value, key)) {
+            properties.value[key] = undefined
+        }
+    }
+
+    for (const key in propertiesConditions.value) {
+        if (Object.hasOwnProperty.call(propertiesConditions.value, key)) {
+            propertiesConditions.value[key] = false
+        }
+    }
 
     film_type_inner.value = undefined
     film_type_outside.value = undefined
