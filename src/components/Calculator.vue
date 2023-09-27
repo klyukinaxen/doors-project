@@ -196,11 +196,10 @@
                 </div>
             </div>
 
+            <!-- DOOR PROPERTIES -->
             <span class="upper-case fs-16 ls-2 my-45"> выберите дополнительные параметры: </span>
 
             <div v-if="typeOfConstruction !== ''">
-                <!-- DOOR PROPERTIES -->
-
                 <div class="container-4 d-flex justify-content-center w-100 primary-bg py-30">
                     <div class="d-flex flex-column align-items-center justify-content-start mr-20">
                         <span class="upper-case fs-16 ls-2 fw-600">{{ construction_title }}</span>
@@ -214,7 +213,19 @@
 
                     <div>
                         <!-- PROPERTIES: INSIDE PANEL -->
-                        <div class="dropdowns d-grid grid-3 mb-20">
+
+                        <ElCheckbox
+                            v-model="isInnerPanel"
+                            label="Внутренняя панель"
+                            size="large"
+                            class="mw-250 my-30"
+                            border
+                        />
+
+                        <div
+                            class="dropdowns grid-3 mb-20"
+                            :class="isInnerPanel ? 'd-grid' : 'd-none'"
+                        >
                             <div class="d-flex flex-column">
                                 <span class="upper-case mb-15 fs-12"> внутренняя панель </span>
 
@@ -296,9 +307,17 @@
 
                         <div class="line"></div>
 
+                        <ElCheckbox
+                            v-model="isOutsidePanel"
+                            label="Внешняя панель"
+                            size="large"
+                            class="mw-250 my-10"
+                            border
+                        />
+
                         <div
-                            :class="typeOfConstruction === 'tr' ? 'd-grid grid-3' : ''"
-                            class="d-none w-100"
+                            :class="typeOfConstruction === 'tr' ? 'd-grid' : 'd-none'"
+                            class="grid-3 w-100"
                         >
                             <ElRadioGroup
                                 v-model="tr_type_panel"
@@ -372,11 +391,14 @@
                             </div>
                         </div>
 
-                        <div class="outside_panel dropdowns d-grid grid-3 my-20">
+                        <div
+                            :class="isOutsidePanel ? 'd-grid' : 'd-none'"
+                            class="outside_panel dropdowns grid-3 my-20"
+                        >
                             <div
                                 v-if="typeOfConstruction"
                                 class="d-none flex-column"
-                                :class="typeOfConstruction === 'stbr' ? 'd-flex' : ''"
+                                :class="typeOfConstruction === 'stbr' || 'st' ? 'd-flex' : ''"
                             >
                                 <span class="upper-case mb-15 fs-12"> внешняя панель </span>
 
@@ -503,7 +525,6 @@
                                 v-for="property in selected_construction[`${typeOfConstruction}_properties`]"
                                 :key="property.id"
                             >
-                                <!-- TODO: добавить цены -->
                                 <!-- TODO: снимается галка при изменении инпута с id -->
                                 <ElCheckbox
                                     v-if="
@@ -515,7 +536,7 @@
                                         property.id !== 13
                                     "
                                     v-model="propertiesConditions[property.id]"
-                                    :label="property.param_name"
+                                    :label="`${property.param_name}: \n ${property.price} ₽`"
                                     size="large"
                                     class="mw-250"
                                     border
@@ -656,6 +677,9 @@ const selectConstruction = (event) => {
 
 const inner_panel = ref({ id: '', param_name: '' })
 const outside_panel = ref()
+
+const isInnerPanel = ref(false)
+const isOutsidePanel = ref(false)
 
 const properties = ref({})
 const propertiesConditions = ref({})
