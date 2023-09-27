@@ -1,20 +1,34 @@
 {
     "door_type": [
         {
-            "id": 1,
-            "type_name": "Однопольная"
-        },
-        {
             "id": 2,
             "type_name": "Двупольная"
         },
         {
             "id": 3,
             "type_name": "Двупольная с импостом"
+        },
+        {
+            "id": 1,
+            "type_name": "Однопольная"
         }
     ],
     "st_config": {
         "st_properties": [
+            {
+                "id": 1,
+                "price": 0,
+                "required": true,
+                "param_name": "Цвет конструкции",
+                "id_properties": true
+            },
+            {
+                "id": 2,
+                "price": 0,
+                "required": false,
+                "param_name": "Внутрення панель",
+                "id_properties": false
+            },
             {
                 "id": 3,
                 "price": 5000,
@@ -42,6 +56,13 @@
                 "required": false,
                 "param_name": "Накладка на порог",
                 "id_properties": false
+            },
+            {
+                "id": 7,
+                "price": 0,
+                "required": false,
+                "param_name": "Заменить ручку",
+                "id_properties": true
             },
             {
                 "id": 8,
@@ -72,13 +93,6 @@
                 "id_properties": false
             },
             {
-                "id": 2,
-                "price": 0,
-                "required": false,
-                "param_name": "Внутрення панель",
-                "id_properties": false
-            },
-            {
                 "id": 12,
                 "price": 0,
                 "required": false,
@@ -91,23 +105,27 @@
                 "required": false,
                 "param_name": "Накладки",
                 "id_properties": true
-            },
-            {
-                "id": 7,
-                "price": 0,
-                "required": false,
-                "param_name": "Заменить ручку",
-                "id_properties": true
-            },
-            {
-                "id": 1,
-                "price": 0,
-                "required": true,
-                "param_name": "Цвет конструкции",
-                "id_properties": true
             }
         ],
         "st_inner_panel": [
+            {
+                "id": 1,
+                "price": 25350,
+                "param_name": "Крашеная 10мм",
+                "id_properties": false
+            },
+            {
+                "id": 2,
+                "price": 27950,
+                "param_name": "Крашеная 16мм",
+                "id_properties": false
+            },
+            {
+                "id": 3,
+                "price": 30950,
+                "param_name": "Крашеная 16мм с зеркалом",
+                "id_properties": false
+            },
             {
                 "id": 4,
                 "price": 5100,
@@ -133,24 +151,6 @@
                 "id_properties": false
             },
             {
-                "id": 1,
-                "price": 25350,
-                "param_name": "Крашеная 10мм",
-                "id_properties": false
-            },
-            {
-                "id": 2,
-                "price": 27950,
-                "param_name": "Крашеная 16мм",
-                "id_properties": false
-            },
-            {
-                "id": 3,
-                "price": 30950,
-                "param_name": "Крашеная 16мм с зеркалом",
-                "id_properties": false
-            },
-            {
                 "id": 8,
                 "price": 0,
                 "param_name": "Цвет панели",
@@ -159,11 +159,21 @@
             {
                 "id": 9,
                 "price": 0,
-                "param_name": "Фреза",
+                "param_name": "Фреза ",
                 "id_properties": true
             }
         ],
         "st_price_default": [
+            {
+                "id": 1,
+                "price": 35400,
+                "formula": "",
+                "width_to": 1080,
+                "height_to": 2100,
+                "width_from": 0,
+                "double_door": false,
+                "height_from": 0
+            },
             {
                 "id": 2,
                 "price": 17700,
@@ -193,16 +203,6 @@
                 "width_from": 0,
                 "double_door": true,
                 "height_from": 0
-            },
-            {
-                "id": 1,
-                "price": 35400,
-                "formula": "",
-                "width_to": 1080,
-                "height_to": 2100,
-                "width_from": 0,
-                "double_door": false,
-                "height_from": 0
             }
         ]
     },
@@ -220,27 +220,6 @@
                 "price": 0,
                 "required": false,
                 "param_name": "Внутрення панель",
-                "id_properties": false
-            },
-            {
-                "id": 7,
-                "price": 0,
-                "required": false,
-                "param_name": "Заменить ручку",
-                "id_properties": true
-            },
-            {
-                "id": 12,
-                "price": 0,
-                "required": false,
-                "param_name": "Замки",
-                "id_properties": false
-            },
-            {
-                "id": 13,
-                "price": 0,
-                "required": false,
-                "param_name": "Накладки",
                 "id_properties": false
             },
             {
@@ -272,6 +251,13 @@
                 "id_properties": false
             },
             {
+                "id": 7,
+                "price": 0,
+                "required": false,
+                "param_name": "Заменить ручку",
+                "id_properties": true
+            },
+            {
                 "id": 8,
                 "price": -1000,
                 "required": false,
@@ -300,6 +286,20 @@
                 "id_properties": false
             },
             {
+                "id": 12,
+                "price": 0,
+                "required": false,
+                "param_name": "Замки",
+                "id_properties": false
+            },
+            {
+                "id": 13,
+                "price": 0,
+                "required": false,
+                "param_name": "Накладки",
+                "id_properties": false
+            },
+            {
                 "id": 14,
                 "price": 0,
                 "required": false,
@@ -313,6 +313,24 @@
                 "price": 0,
                 "param_name": "Цвет панели",
                 "id_properties": true
+            },
+            {
+                "id": 2,
+                "price": 25350,
+                "param_name": "Крашеная 10мм",
+                "id_properties": false
+            },
+            {
+                "id": 3,
+                "price": 27950,
+                "param_name": "Крашеная 16мм",
+                "id_properties": false
+            },
+            {
+                "id": 4,
+                "price": 30950,
+                "param_name": "Крашеная 16мм с зеркалом",
+                "id_properties": false
             },
             {
                 "id": 5,
@@ -343,24 +361,6 @@
                 "price": 0,
                 "param_name": "Фреза",
                 "id_properties": true
-            },
-            {
-                "id": 2,
-                "price": 25350,
-                "param_name": "Крашеная 10мм",
-                "id_properties": false
-            },
-            {
-                "id": 3,
-                "price": 27950,
-                "param_name": "Крашеная 16мм",
-                "id_properties": false
-            },
-            {
-                "id": 4,
-                "price": 30950,
-                "param_name": "Крашеная 16мм с зеркалом",
-                "id_properties": false
             }
         ],
         "stbr_price_default": [
@@ -407,6 +407,12 @@
         ],
         "stbr_outside_panel": [
             {
+                "id": 1,
+                "price": 25350,
+                "param_name": "Крашеная",
+                "id_properties": false
+            },
+            {
                 "id": 2,
                 "price": 6100,
                 "param_name": "В плёнке",
@@ -423,12 +429,6 @@
                 "price": 0,
                 "param_name": "Цвет панели",
                 "id_properties": true
-            },
-            {
-                "id": 1,
-                "price": 25350,
-                "param_name": "Крашеная",
-                "id_properties": false
             }
         ]
     },
@@ -446,27 +446,6 @@
                 "price": 0,
                 "required": false,
                 "param_name": "Внутрення панель",
-                "id_properties": false
-            },
-            {
-                "id": 7,
-                "price": 0,
-                "required": false,
-                "param_name": "Заменить ручку",
-                "id_properties": true
-            },
-            {
-                "id": 12,
-                "price": 0,
-                "required": false,
-                "param_name": "Замки",
-                "id_properties": false
-            },
-            {
-                "id": 13,
-                "price": 0,
-                "required": false,
-                "param_name": "Накладки",
                 "id_properties": false
             },
             {
@@ -498,6 +477,13 @@
                 "id_properties": false
             },
             {
+                "id": 7,
+                "price": 0,
+                "required": false,
+                "param_name": "Заменить ручку",
+                "id_properties": true
+            },
+            {
                 "id": 8,
                 "price": -1000,
                 "required": false,
@@ -526,6 +512,20 @@
                 "id_properties": false
             },
             {
+                "id": 12,
+                "price": 0,
+                "required": false,
+                "param_name": "Замки",
+                "id_properties": false
+            },
+            {
+                "id": 13,
+                "price": 0,
+                "required": false,
+                "param_name": "Накладки",
+                "id_properties": false
+            },
+            {
                 "id": 14,
                 "price": 0,
                 "required": false,
@@ -542,6 +542,12 @@
         ],
         "tr_inner_panel": [
             {
+                "id": 1,
+                "price": 27950,
+                "param_name": "Крашеная 16мм",
+                "id_properties": false
+            },
+            {
                 "id": 2,
                 "price": 30950,
                 "param_name": "Крашеная 16мм c зеркалом",
@@ -557,12 +563,6 @@
                 "id": 4,
                 "price": 11100,
                 "param_name": "В плёнке 16мм с зеркалом",
-                "id_properties": false
-            },
-            {
-                "id": 1,
-                "price": 27950,
-                "param_name": "Крашеная 16мм",
                 "id_properties": false
             },
             {
@@ -669,20 +669,25 @@
             "double_door": false
         },
         {
-            "id": 3,
-            "type_name": "Софт + глянец",
-            "price": 5000,
-            "double_door": true
-        },
-        {
             "id": 2,
             "type_name": "Софт ",
             "price": 3500,
             "double_door": false
+        },
+        {
+            "id": 3,
+            "type_name": "Софт ",
+            "price": 5000,
+            "double_door": true
         }
     ],
     "door_lock": [
         {
+            "id": 1,
+            "name": "Комплект 1",
+            "price": 50
+        },
+        {
             "id": 2,
             "name": "Комплект 2",
             "price": 0
@@ -690,24 +695,24 @@
         {
             "id": 3,
             "name": "Комплект 3",
-            "price": 0
+            "price": 30
         },
         {
             "id": 4,
             "name": "Комплект 4",
             "price": 0
-        },
-        {
-            "id": 1,
-            "name": "Комплект 1",
-            "price": 50
         }
     ],
     "door_still_cover": [
         {
+            "id": 1,
+            "name": "Комплект 1",
+            "price": 100
+        },
+        {
             "id": 2,
             "name": "Комплект 2",
-            "price": 0
+            "price": 20
         },
         {
             "id": 3,
@@ -718,11 +723,6 @@
             "id": 4,
             "name": "Комплект 4",
             "price": 0
-        },
-        {
-            "id": 1,
-            "name": "Комплект 1",
-            "price": 100
         }
     ]
 }

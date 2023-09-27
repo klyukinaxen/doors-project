@@ -217,7 +217,6 @@
                         <div class="dropdowns d-grid grid-3 mb-20">
                             <div class="d-flex flex-column">
                                 <span class="upper-case mb-15 fs-12"> внутренняя панель </span>
-                                <!-- TODO: фреза -->
 
                                 <ElSelect
                                     v-model="inner_panel"
@@ -231,7 +230,11 @@
                                         :key="item.id"
                                     >
                                         <ElOption
-                                            v-if="item.param_name !== 'Фреза' && item.param_name !== 'Цвет панели'"
+                                            v-if="
+                                                item.param_name !== 'Фреза' &&
+                                                item.param_name !== 'Цвет панели' &&
+                                                item.param_name !== 'Фреза '
+                                            "
                                             :key="item.id"
                                             :label="item.param_name"
                                             :value="item"
@@ -245,7 +248,7 @@
                                 :key="item.id"
                             >
                                 <div
-                                    v-if="item.param_name === 'Фреза' || item.param_name === 'Цвет панели'"
+                                    v-if="item.param_name === 'Фреза' || item.param_name === 'Цвет панели' || item.param_name === 'Фреза '"
                                     class="d-flex flex-column"
                                 >
                                     <span class="upper-case mb-15 fs-12"> {{ item.param_name }} </span>
