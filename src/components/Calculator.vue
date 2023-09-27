@@ -202,10 +202,10 @@
             <div v-if="typeOfConstruction !== ''">
                 <div class="container-4 d-flex justify-content-center w-100 primary-bg py-30">
                     <div class="d-flex flex-column align-items-center justify-content-start mr-20">
-                        <span class="upper-case fs-16 ls-2 fw-600">{{ construction_title }}</span>
+                        <span class="upper-case fs-16 ls-2 fw-600">{{ typeOfConstructionTitle }}</span>
 
                         <img
-                            :src="construction_image"
+                            :src="constructionImage"
                             alt=""
                             class="p-50 pr-80 pt-20"
                         />
@@ -237,7 +237,7 @@
                                     size="large"
                                 >
                                     <template
-                                        v-for="item in selected_construction[`${typeOfConstruction}_inner_panel`]"
+                                        v-for="item in selectedConstruction[`${typeOfConstruction}_inner_panel`]"
                                         :key="item.id"
                                     >
                                         <ElOption
@@ -255,7 +255,7 @@
                             </div>
 
                             <template
-                                v-for="item in selected_construction[`${typeOfConstruction}_inner_panel`]"
+                                v-for="item in selectedConstruction[`${typeOfConstruction}_inner_panel`]"
                                 :key="item.id"
                             >
                                 <div
@@ -347,7 +347,7 @@
                             </ElRadioGroup>
 
                             <template
-                                v-for="item in selected_construction[`${tr_type_panel}`]"
+                                v-for="item in selectedConstruction[`${tr_type_panel}`]"
                                 :key="item.id"
                             >
                                 <div
@@ -371,7 +371,7 @@
 
                             <div class="d-flex flex-column w-100">
                                 <template
-                                    v-for="item in selected_construction[`${tr_type_panel}`]"
+                                    v-for="item in selectedConstruction[`${tr_type_panel}`]"
                                     :key="item.id"
                                 >
                                     <div
@@ -414,7 +414,7 @@
                                     size="large"
                                 >
                                     <template
-                                        v-for="item in selected_construction[`${typeOfConstruction}_outside_panel`]"
+                                        v-for="item in selectedConstruction[`${typeOfConstruction}_outside_panel`]"
                                         :key="item.id"
                                     >
                                         <ElOption
@@ -434,7 +434,7 @@
                                     size="large"
                                 >
                                     <template
-                                        v-for="item in selected_construction[`${tr_type_panel}`]"
+                                        v-for="item in selectedConstruction[`${tr_type_panel}`]"
                                         :key="item.id"
                                     >
                                         <ElOption
@@ -447,7 +447,7 @@
                             </div>
 
                             <template
-                                v-for="item in selected_construction[`${typeOfConstruction}_outside_panel`]"
+                                v-for="item in selectedConstruction[`${typeOfConstruction}_outside_panel`]"
                                 :key="item.id"
                             >
                                 <div
@@ -500,7 +500,7 @@
                         <!-- PROPERTIES: PANELS -->
                         <div class="d-grid input-properties">
                             <template
-                                v-for="property in selected_construction[`${typeOfConstruction}_properties`]"
+                                v-for="property in selectedConstruction[`${typeOfConstruction}_properties`]"
                                 :key="property.id"
                             >
                                 <div
@@ -523,7 +523,7 @@
                         <!-- PROPERTIES: CHECKBOXES -->
                         <div class="checkboxes mt-30">
                             <template
-                                v-for="property in selected_construction[`${typeOfConstruction}_properties`]"
+                                v-for="property in selectedConstruction[`${typeOfConstruction}_properties`]"
                                 :key="property.id"
                             >
                                 <!-- TODO: снимается галка при изменении инпута с id -->
@@ -566,7 +566,7 @@
                                 <span class="upper-case mb-15 fs-12"> Накладки </span>
 
                                 <template
-                                    v-for="property in selected_construction[`${typeOfConstruction}_properties`]"
+                                    v-for="property in selectedConstruction[`${typeOfConstruction}_properties`]"
                                     :key="property.id"
                                 >
                                     <ElSelect
@@ -591,7 +591,7 @@
                                 <span class="upper-case mb-15 fs-12"> Замки </span>
 
                                 <template
-                                    v-for="property in selected_construction[`${typeOfConstruction}_properties`]"
+                                    v-for="property in selectedConstruction[`${typeOfConstruction}_properties`]"
                                     :key="property.id"
                                 >
                                     <ElSelect
@@ -637,7 +637,7 @@
 <script setup>
 import { useCalculatorStore } from '../stores/calculator'
 import { ElButton, ElRadioGroup, ElRadio, ElSlider, ElOption, ElSelect, ElInput, ElCheckbox, ElMessageBox, ElMessage } from 'element-plus'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { saveAs } from 'file-saver'
 
 const calculatorStore = useCalculatorStore()
@@ -654,26 +654,31 @@ const doorSizeWidth = ref(180)
 const doorSizeHeight = ref(550)
 
 const typeOfConstruction = ref('') //tr-stbr-st
-const selected_construction = ref(0)
-const construction_title = ref('')
-const construction_image = ref('../assets/icons/door-1.0.svg')
 
-const selectConstruction = (event) => {
-    typeOfConstruction.value = event
-    selected_construction.value = calculatorStore.doorParams[`${event}_config`]
-    if (event === 'st') {
-        construction_title.value = 'СТ'
-    } else if (event === 'stbr') {
-        construction_title.value = 'СТБР'
+const typeOfConstructionTitle = computed(() => {
+    if (typeOfConstruction.value === 'st') {
+        return 'СТ'
+    } else if (typeOfConstruction.value === 'stbr') {
+        return 'СТБР'
     } else {
-        construction_title.value = 'ТР'
+        return 'ТР'
     }
+})
 
+const selectedConstruction = computed(() => {
+    return calculatorStore.doorParams[`${typeOfConstruction.value}_config`]
+})
+
+const constructionImage = computed(() => {
     if (door_type.value === 1) {
-        construction_image.value = '../assets/icons/door-1.svg'
+        return '../assets/icons/door-1.svg'
     } else {
-        construction_image.value = '../assets/icons/door-2.svg'
+        return '../assets/icons/door-2.svg'
     }
+})
+
+const selectConstruction = (type) => {
+    typeOfConstruction.value = type
 }
 
 const inner_panel = ref({ id: '', param_name: '' })
