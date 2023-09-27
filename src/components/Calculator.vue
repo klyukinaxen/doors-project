@@ -291,12 +291,10 @@
                                         :key="item.id"
                                     >
                                         <ElOption
-                                            v-if="
-                                                ((door_type === 2 || door_type === 3) && item.double_door === true) ||
-                                                (door_type === 1 && item.double_door === false)
-                                            "
+                                            v-if="item.id === 1 || (door_type === 1 && item.id === 2) || (door_type !== 1 && item.id === 3)"
                                             :label="item.type_name"
                                             :value="item.id"
+                                            :aria-label="`Цена: ${item.price}`"
                                         />
                                     </template>
                                 </ElSelect>
@@ -402,8 +400,6 @@
                             >
                                 <span class="upper-case mb-15 fs-12"> внешняя панель </span>
 
-                                <!-- TODO: может не быть -->
-
                                 <ElSelect
                                     v-if="typeOfConstruction !== 'tr'"
                                     v-model="outside_panel"
@@ -482,12 +478,10 @@
                                         :key="item.id"
                                     >
                                         <ElOption
-                                            v-if="
-                                                ((door_type === 2 || door_type === 3) && item.double_door === true) ||
-                                                (door_type === 1 && item.double_door === false)
-                                            "
+                                            v-if="item.id === 1 || (door_type === 1 && item.id === 2) || (door_type !== 1 && item.id === 3)"
                                             :label="item.type_name"
                                             :value="item.id"
+                                            :aria-label="`Цена: ${item.price}`"
                                         />
                                     </template>
                                 </ElSelect>
@@ -525,7 +519,6 @@
                                 v-for="property in selectedConstruction[`${typeOfConstruction}_properties`]"
                                 :key="property.id"
                             >
-                                <!-- TODO: снимается галка при изменении инпута с id -->
                                 <ElCheckbox
                                     v-if="
                                         property.id !== 1 &&
