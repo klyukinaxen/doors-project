@@ -205,7 +205,7 @@
                         <span class="upper-case fs-16 ls-2 fw-600">{{ typeOfConstructionTitle }}</span>
 
                         <img
-                            :src="construction_image"
+                            :src="constructionImage"
                             alt=""
                             class="p-50 pr-80 pt-20"
                         />
@@ -653,7 +653,6 @@ const doorSizeWidth = ref(180)
 const doorSizeHeight = ref(550)
 
 const typeOfConstruction = ref('') //tr-stbr-st
-const construction_image = ref('../assets/icons/door-1.0.svg')
 
 const typeOfConstructionTitle = computed(() => {
     if (typeOfConstruction.value === 'st') {
@@ -669,14 +668,16 @@ const selectedConstruction = computed(() => {
     return calculatorStore.doorParams[`${typeOfConstruction.value}_config`]
 })
 
+const constructionImage = computed(() => {
+    if (door_type.value === 1) {
+        return '../assets/icons/door-1.svg'
+    } else {
+        return '../assets/icons/door-2.svg'
+    }
+})
+
 const selectConstruction = (type) => {
     typeOfConstruction.value = type
-
-    if (door_type.value === 1) {
-        construction_image.value = '../assets/icons/door-1.svg'
-    } else {
-        construction_image.value = '../assets/icons/door-2.svg'
-    }
 }
 
 const inner_panel = ref({ id: '', param_name: '' })
