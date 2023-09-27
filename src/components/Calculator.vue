@@ -637,11 +637,7 @@ import { saveAs } from 'file-saver'
 
 const calculatorStore = useCalculatorStore()
 
-// TODO: при изменении очищать состояние выбранных параметров двери
 const door_type = ref(calculatorStore.doorParams.door_type[0].id)
-const changeDoorType = (event) => {
-    door_type.value = event
-}
 
 const doorOpenType = ref('left')
 
@@ -694,6 +690,31 @@ const construction_inner_color = ref({})
 const tr_type_panel = ref('')
 const tr_type = ref({})
 const tr_type_items = ref([])
+
+const changeDoorType = (event) => {
+    door_type.value = event
+
+    // reset
+    inner_panel.value = { id: '', param_name: '' }
+    outside_panel.value = undefined
+
+    isInnerPanel.value = false
+    isOutsidePanel.value = false
+
+    // TODO: реактивность страдает на чекбоксах
+    properties.value = {}
+    propertiesConditions.value = {}
+
+    film_type_inner.value = undefined
+    film_type_outside.value = undefined
+
+    construction_color.value = {}
+    construction_inner_color.value = {}
+
+    tr_type_panel.value = ''
+    tr_type.value = {}
+    tr_type_items.value = []
+}
 
 const getFormData = () => {
     const mergedProperties = { ...propertiesConditions.value, ...properties.value }
