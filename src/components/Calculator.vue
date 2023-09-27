@@ -305,9 +305,10 @@
 
                         <!-- PROPERTIES: OUTSIDE PANEL -->
 
-                        <div class="line"></div>
+                        <div :class="typeOfConstruction !== 'st' ? 'line' : ''"></div>
 
                         <ElCheckbox
+                            v-if="typeOfConstruction === 'stbr'"
                             v-model="isOutsidePanel"
                             label="Внешняя панель"
                             size="large"
@@ -398,7 +399,7 @@
                             <div
                                 v-if="typeOfConstruction"
                                 class="d-none flex-column"
-                                :class="typeOfConstruction === 'stbr' || 'st' ? 'd-flex' : ''"
+                                :class="typeOfConstruction === 'stbr' ? 'd-flex' : ''"
                             >
                                 <span class="upper-case mb-15 fs-12"> внешняя панель </span>
 
