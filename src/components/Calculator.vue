@@ -514,7 +514,7 @@
                                         property.id !== 12 &&
                                         property.id !== 13
                                     "
-                                    v-model="properties[property.id]"
+                                    v-model="propertiesConditions[property.id]"
                                     :label="property.param_name"
                                     size="large"
                                     class="mw-250"
@@ -526,7 +526,7 @@
                         <!-- PROPERTIES: LOCKS AND COVER -->
                         <div class="d-grid locks mt-20">
                             <div
-                                v-if="properties['7']"
+                                v-if="propertiesConditions['7']"
                                 class="d-flex flex-column"
                             >
                                 <span class="upper-case mb-15 fs-12"> ID ручки</span>
@@ -658,6 +658,7 @@ const inner_panel = ref({ id: '', param_name: '' })
 const outside_panel = ref()
 
 const properties = ref({})
+const propertiesConditions = ref({})
 
 const film_type_inner = ref()
 const film_type_outside = ref()
@@ -670,6 +671,8 @@ const tr_type = ref({})
 const tr_type_items = ref([])
 
 const getFormData = () => {
+    const mergedProperties = { ...propertiesConditions.value, ...properties.value }
+
     let data = {}
     if (typeOfConstruction.value === 'tr') {
         data = {
@@ -680,14 +683,14 @@ const getFormData = () => {
 
         data.tr_properties_ids = []
 
-        for (const key in properties.value) {
-            if (Object.hasOwnProperty.call(properties.value, key)) {
-                const element = properties.value[key]
-                if (typeof element === 'boolean') {
+        for (const key in mergedProperties) {
+            const element = mergedProperties[key]
+            if (typeof element === 'boolean') {
+                if (element) {
                     data.tr_properties_ids.push({ id: Number(key) })
-                } else {
-                    data.tr_properties_ids.push({ id: Number(key), id_properties: Number(element) })
                 }
+            } else {
+                data.tr_properties_ids.push({ id: Number(key), id_properties: Number(element) })
             }
         }
 
@@ -701,7 +704,7 @@ const getFormData = () => {
             }
         }
 
-        if (film_type_inner.value !== 'undefined') {
+        if (film_type_inner.value !== undefined) {
             data.tr_inner_panel_ids.push({ id: Number(inner_panel.value.id), id_properties: Number(film_type_inner.value) })
         }
 
@@ -747,14 +750,14 @@ const getFormData = () => {
 
         data.stbr_properties_ids = []
 
-        for (const key in properties.value) {
-            if (Object.hasOwnProperty.call(properties.value, key)) {
-                const element = properties.value[key]
-                if (typeof element === 'boolean') {
+        for (const key in mergedProperties) {
+            const element = mergedProperties[key]
+            if (typeof element === 'boolean') {
+                if (element) {
                     data.stbr_properties_ids.push({ id: Number(key) })
-                } else {
-                    data.stbr_properties_ids.push({ id: Number(key), id_properties: Number(element) })
                 }
+            } else {
+                data.stbr_properties_ids.push({ id: Number(key), id_properties: Number(element) })
             }
         }
 
@@ -767,11 +770,11 @@ const getFormData = () => {
             data.stbr_outside_panel_ids.push({ id: Number(key), id_properties: Number(element) })
         }
 
-        if (film_type_inner.value !== 'undefined') {
+        if (film_type_inner.value !== undefined) {
             data.stbr_outside_panel_ids.push({ id: Number(outside_panel.value), id_properties: Number(film_type_inner.value) })
         }
 
-        if (film_type_outside.value !== 'undefined') {
+        if (film_type_outside.value !== undefined) {
             data.stbr_inner_panel_ids.push({ id: Number(inner_panel.value), id_properties: Number(film_type_outside.value) })
         }
 
@@ -795,20 +798,20 @@ const getFormData = () => {
 
         data.st_properties_ids = []
 
-        for (const key in properties.value) {
-            if (Object.hasOwnProperty.call(properties.value, key)) {
-                const element = properties.value[key]
-                if (typeof element === 'boolean') {
+        for (const key in mergedProperties) {
+            const element = mergedProperties[key]
+            if (typeof element === 'boolean') {
+                if (element) {
                     data.st_properties_ids.push({ id: Number(key) })
-                } else {
-                    data.st_properties_ids.push({ id: Number(key), id_properties: Number(element) })
                 }
+            } else {
+                data.st_properties_ids.push({ id: Number(key), id_properties: Number(element) })
             }
         }
 
         data.st_inner_panel_ids = []
 
-        if (film_type_inner.value !== 'undefined') {
+        if (film_type_inner.value !== undefined) {
             data.st_inner_panel_ids.push({ id: Number(inner_panel.value.id), id_properties: Number(film_type_inner.value) })
         }
 
@@ -817,7 +820,7 @@ const getFormData = () => {
             data.st_inner_panel_ids.push({ id: Number(key), id_properties: Number(element) })
         }
 
-        if (film_type_inner.value !== 'undefined') {
+        if (film_type_inner.value !== undefined) {
             data.film_type_id = { id: Number(film_type_inner.value) }
         }
 
