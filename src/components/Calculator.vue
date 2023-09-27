@@ -32,7 +32,10 @@
             <span class="upper-case fs-16 ls-2 my-45"> укажите размер и способ открывания: </span>
 
             <div class="d-flex justify-content-around w-100 primary-bg py-30">
-                <div :class="door_type === 2 || door_type === 3 ? 'd-none' : 'd-flex'">
+                <div
+                    v-if="door_type === 1"
+                    :class="'d-flex'"
+                >
                     <ElSlider
                         v-model="doorSizeHeight"
                         class="row-reverse"
@@ -42,7 +45,6 @@
                         height="230px"
                         show-input
                         size="small"
-                        @change="doorSizeHeight = $event"
                     />
 
                     <div class="door-1-range">
@@ -52,7 +54,6 @@
                             :max="1080"
                             show-input
                             size="small"
-                            @change="doorSizeWidth = $event"
                         />
 
                         <img
@@ -91,7 +92,10 @@
                     </ElRadioGroup>
                 </div>
 
-                <div :class="door_type === 1 ? 'd-none' : 'd-flex'">
+                <div
+                    v-if="door_type !== 1"
+                    :class="'d-flex'"
+                >
                     <ElSlider
                         v-model="doorSizeHeight"
                         class="row-reverse range-2"
@@ -101,7 +105,6 @@
                         height="280px"
                         show-input
                         size="small"
-                        @change="doorSizeHeight = $event"
                     />
 
                     <div class="door-2-range">
@@ -112,7 +115,6 @@
                             show-input
                             size="small"
                             class="mb-10 ml-15"
-                            @change="doorSizeWidth = $event"
                         />
 
                         <img
