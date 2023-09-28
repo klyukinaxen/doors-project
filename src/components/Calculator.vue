@@ -225,8 +225,8 @@
                         />
 
                         <div
-                            class="dropdowns grid-3 mb-20"
-                            :class="isInnerPanel ? 'd-grid' : 'd-none'"
+                            v-if="isInnerPanel"
+                            class="dropdowns d-grid grid-3 mb-20"
                         >
                             <div class="d-flex flex-column">
                                 <span class="upper-case mb-15 fs-12"> внутренняя панель </span>
@@ -277,8 +277,8 @@
                             </template>
 
                             <div
-                                :class="inner_panel.param_name.startsWith('В плёнке') ? 'd-flex' : ''"
-                                class="d-none flex-column"
+                                v-if="inner_panel.param_name.startsWith('В плёнке')"
+                                class="d-flex flex-column"
                             >
                                 <span class="upper-case mb-15 fs-12"> тип пленки внутренней панели </span>
 
@@ -294,7 +294,7 @@
                                     >
                                         <ElOption
                                             v-if="item.id === 1 || (door_type === 1 && item.id === 2) || (door_type !== 1 && item.id === 3)"
-                                            :label="item.type_name"
+                                            :label="`${item.type_name}:  ${item.price}₽`"
                                             :value="item.id"
                                             :aria-label="`Цена: ${item.price}`"
                                         />
@@ -308,7 +308,7 @@
                         <div :class="typeOfConstruction !== 'st' ? 'line' : ''"></div>
 
                         <ElCheckbox
-                            v-if="typeOfConstruction === 'stbr'"
+                            v-if="typeOfConstruction === 'stbr' || typeOfConstruction === 'tr'"
                             v-model="isOutsidePanel"
                             label="Внешняя панель"
                             size="large"
@@ -317,8 +317,8 @@
                         />
 
                         <div
-                            :class="typeOfConstruction === 'tr' ? 'd-grid' : 'd-none'"
-                            class="grid-3 w-100"
+                            v-if="typeOfConstruction === 'tr' && isOutsidePanel"
+                            class="d-grid grid-3 w-100"
                         >
                             <ElRadioGroup
                                 v-model="tr_type_panel"
@@ -393,13 +393,12 @@
                         </div>
 
                         <div
-                            :class="isOutsidePanel ? 'd-grid' : 'd-none'"
-                            class="outside_panel dropdowns grid-3 my-20"
+                            v-if="isOutsidePanel"
+                            class="outside_panel dropdowns d-grid grid-3 my-20"
                         >
                             <div
-                                v-if="typeOfConstruction"
-                                class="d-none flex-column"
-                                :class="typeOfConstruction === 'stbr' ? 'd-flex' : ''"
+                                v-if="typeOfConstruction === 'stbr'"
+                                class="d-flex flex-column"
                             >
                                 <span class="upper-case mb-15 fs-12"> внешняя панель </span>
 
@@ -465,8 +464,8 @@
                             </template>
 
                             <div
-                                :class="outside_panel === 2 ? 'd-flex' : ''"
-                                class="d-none flex-column"
+                                v-if="outside_panel === 2"
+                                class="d-flex flex-column"
                             >
                                 <span class="upper-case mb-15 fs-12"> тип пленки внешней панели </span>
 
@@ -482,9 +481,8 @@
                                     >
                                         <ElOption
                                             v-if="item.id === 1 || (door_type === 1 && item.id === 2) || (door_type !== 1 && item.id === 3)"
-                                            :label="item.type_name"
+                                            :label="`${item.type_name}:  ${item.price}₽`"
                                             :value="item.id"
-                                            :aria-label="`Цена: ${item.price}`"
                                         />
                                     </template>
                                 </ElSelect>
