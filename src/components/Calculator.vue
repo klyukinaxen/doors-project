@@ -200,7 +200,7 @@
             <span class="upper-case fs-16 ls-2 my-45"> выберите дополнительные параметры: </span>
 
             <div v-if="typeOfConstruction !== ''">
-                <div class="container-4 d-flex justify-content-center w-100 primary-bg py-30">
+                <div class="container-4 d-grid justify-content-center w-100 primary-bg py-30">
                     <div class="d-flex flex-column align-items-center justify-content-start mr-20">
                         <span class="upper-case fs-16 ls-2 fw-600">{{ typeOfConstructionTitle }}</span>
 
@@ -970,6 +970,10 @@ const doorSave = async () => {
 
 header {
     line-height: 1.5;
+}
+
+.container-4 {
+    grid-template-columns: 1fr 2fr 0.5fr;
 }
 
 .logo {
