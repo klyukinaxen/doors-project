@@ -626,7 +626,7 @@
 <script setup>
 import { useCalculatorStore } from '../stores/calculator'
 import { ElButton, ElRadioGroup, ElRadio, ElSlider, ElOption, ElSelect, ElInput, ElCheckbox, ElMessageBox, ElMessage } from 'element-plus'
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { saveAs } from 'file-saver'
 
 const calculatorStore = useCalculatorStore()
@@ -710,6 +710,34 @@ const reset = () => {
     tr_type.value = {}
     tr_type_items.value = []
 }
+
+const innerPanelReset = () => {
+    inner_panel.value = undefined
+    construction_inner_color.value = {}
+    film_type_inner.value = undefined
+}
+
+const outsidePanelReset = () => {
+    outside_panel.value = undefined
+    film_type_outside.value = undefined
+
+    tr_type_panel.value = ''
+    tr_type.value = {}
+    tr_type_items.value = []
+    construction_color.value = {}
+}
+
+watch(isInnerPanel, (newValue, oldValue) => {
+    if (oldValue === true && newValue === false) {
+        innerPanelReset()
+    }
+})
+
+watch(isOutsidePanel, (newValue, oldValue) => {
+    if (oldValue === true && newValue === false) {
+        outsidePanelReset()
+    }
+})
 
 const changeDoorType = (event) => {
     door_type.value = event
