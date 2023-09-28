@@ -240,6 +240,7 @@
                                         v-for="item in selectedConstruction[`${typeOfConstruction}_inner_panel`]"
                                         :key="item.id"
                                     >
+                                        <!-- TODO: переделать на id, т.к. название редактируется -->
                                         <ElOption
                                             v-if="
                                                 item.param_name !== 'Фреза' &&
@@ -258,6 +259,7 @@
                                 v-for="item in selectedConstruction[`${typeOfConstruction}_inner_panel`]"
                                 :key="item.id"
                             >
+                                <!-- TODO: переделать на id, т.к. название редактируется -->
                                 <div
                                     v-if="item.param_name === 'Фреза' || item.param_name === 'Цвет панели' || item.param_name === 'Фреза '"
                                     class="d-flex flex-column"
@@ -370,6 +372,7 @@
                                     v-for="item in selectedConstruction[`${tr_type_panel}`]"
                                     :key="item.id"
                                 >
+                                    <!-- TODO: переделать на id, т.к. название редактируется -->
                                     <div
                                         v-if="item.param_name === 'Фреза' || item.param_name === 'Цвет панели'"
                                         class="d-flex flex-column mt-10"
@@ -410,6 +413,7 @@
                                         v-for="item in selectedConstruction[`${typeOfConstruction}_outside_panel`]"
                                         :key="item.id"
                                     >
+                                        <!-- TODO: переделать на id, т.к. название редактируется -->
                                         <ElOption
                                             v-if="item.param_name !== 'Фреза' && item.param_name !== 'Цвет панели'"
                                             :label="item.param_name"
@@ -430,6 +434,7 @@
                                         v-for="item in selectedConstruction[`${tr_type_panel}`]"
                                         :key="item.id"
                                     >
+                                        <!-- TODO: переделать на id, т.к. название редактируется -->
                                         <ElOption
                                             v-if="item.param_name !== 'Фреза' && item.param_name !== 'Цвет панели'"
                                             :label="item.param_name"
@@ -443,6 +448,7 @@
                                 v-for="item in selectedConstruction[`${typeOfConstruction}_outside_panel`]"
                                 :key="item.id"
                             >
+                                <!-- TODO: переделать на id, т.к. название редактируется -->
                                 <div
                                     v-if="item.param_name === 'Фреза' || item.param_name === 'Цвет панели'"
                                     class="d-flex flex-column"
