@@ -275,7 +275,7 @@
                             </template>
 
                             <div
-                                v-if="inner_panel.param_name.startsWith('В плёнке')"
+                                v-if="inner_panel?.param_name.startsWith('В плёнке')"
                                 class="d-flex flex-column"
                             >
                                 <span class="upper-case mb-15 fs-12"> тип пленки внутренней панели </span>
@@ -662,7 +662,7 @@ const constructionImage = computed(() => {
     }
 })
 
-const inner_panel = ref({ id: '', param_name: '' })
+const inner_panel = ref()
 const outside_panel = ref()
 
 const isInnerPanel = ref(false)
@@ -682,7 +682,7 @@ const tr_type = ref({})
 const tr_type_items = ref([])
 
 const reset = () => {
-    inner_panel.value = { id: '', param_name: '' }
+    inner_panel.value = undefined
     outside_panel.value = undefined
 
     isInnerPanel.value = false
@@ -757,7 +757,7 @@ const getFormData = () => {
             }
         }
 
-        if (film_type_inner.value !== undefined) {
+        if (film_type_inner.value !== undefined && inner_panel.value) {
             data.tr_inner_panel_ids.push({ id: Number(inner_panel.value.id), id_properties: Number(film_type_inner.value) })
         }
 
@@ -827,8 +827,8 @@ const getFormData = () => {
             data.stbr_outside_panel_ids.push({ id: Number(outside_panel.value), id_properties: Number(film_type_inner.value) })
         }
 
-        if (film_type_outside.value !== undefined) {
-            data.stbr_inner_panel_ids.push({ id: Number(inner_panel.value), id_properties: Number(film_type_outside.value) })
+        if (film_type_outside.value !== undefined && inner_panel.value) {
+            data.stbr_inner_panel_ids.push({ id: Number(inner_panel.value.id), id_properties: Number(film_type_outside.value) })
         }
 
         if (construction_inner_color.value !== undefined) {
@@ -864,7 +864,7 @@ const getFormData = () => {
 
         data.st_inner_panel_ids = []
 
-        if (film_type_inner.value !== undefined) {
+        if (film_type_inner.value !== undefined && inner_panel.value) {
             data.st_inner_panel_ids.push({ id: Number(inner_panel.value.id), id_properties: Number(film_type_inner.value) })
         }
 
