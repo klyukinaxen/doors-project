@@ -158,4 +158,14 @@ async function changeParams(doorType, category, param) {
         flex-wrap: wrap;
     }
 }
+
+:deep(.el-collapse-item__content) {
+    background: var(--bg-color);
+    color: var(--lite);
+}
+
+:deep(.el-collapse-item__header) {
+    background: var(--bg-color);
+    color: var(--lite);
+}
 </style>
