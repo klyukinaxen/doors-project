@@ -7,7 +7,7 @@
             <span class="upper-case fs-16 ls-2 mb-40 ml-20"> Выберите тип двери </span>
 
             <!-- DOOR TYPE -->
-            <div class="d-flex justify-content-around w-100 primary-bg py-30">
+            <div class="d-flex align-items-baseline justify-content-around w-100 primary-bg py-30">
                 <div
                     v-for="doorType in calculatorStore.doorParams.door_type"
                     :key="doorType.id"
