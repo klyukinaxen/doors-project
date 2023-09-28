@@ -500,7 +500,7 @@
                                 :key="property.id"
                             >
                                 <div
-                                    v-if="property.id === 1 || property.id === 2"
+                                    v-if="property.id === 1"
                                     class="d-flex flex-column mt-5"
                                 >
                                     <span class="upper-case mb-5 fs-12 mt-10"> {{ property.param_name }} </span>
@@ -1058,7 +1058,7 @@ header {
     }
 
     :deep(.el-checkbox.el-checkbox--large.is-bordered.is-checked) {
-        border: 2px solid #fff;
+        border-color: #fff;
     }
 
     :deep(span.el-checkbox__label) {
