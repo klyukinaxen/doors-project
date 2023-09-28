@@ -749,6 +749,14 @@ const selectConstruction = (type) => {
     typeOfConstruction.value = type
 
     reset()
+
+    // Выбираем 'Скрытое крепление мдф' по умолчанию для TR
+    if (typeOfConstruction.value === 'tr') {
+        const construction = selectedConstruction.value[`${typeOfConstruction.value}_properties`].find((c) => c.id === 11)
+        if (construction) {
+            propertiesConditions.value[11] = true
+        }
+    }
 }
 
 const getFormData = () => {
