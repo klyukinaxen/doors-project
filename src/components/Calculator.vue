@@ -76,7 +76,6 @@
                             size="large"
                             class="my-30"
                             border
-                            @click="doorOpenType = label"
                         >
                             Правое
                         </ElRadio>
@@ -85,7 +84,6 @@
                             label="left"
                             size="large"
                             border
-                            @click="doorOpenType = label"
                         >
                             Левое
                         </ElRadio>
@@ -329,7 +327,6 @@
                                     size="large"
                                     class="my-30 mw-260"
                                     border
-                                    @click="tr_type_panel = label"
                                 >
                                     Панель снаружи 9.5мм<br />
                                     корабельная фанера
@@ -340,7 +337,6 @@
                                     size="large"
                                     class="mw-260"
                                     border
-                                    @click="tr_type_panel = label"
                                 >
                                     Панель снаружи 10мм мдф
                                 </ElRadio>
@@ -668,10 +664,6 @@ const constructionImage = computed(() => {
     }
 })
 
-const selectConstruction = (type) => {
-    typeOfConstruction.value = type
-}
-
 const inner_panel = ref({ id: '', param_name: '' })
 const outside_panel = ref()
 
@@ -691,10 +683,7 @@ const tr_type_panel = ref('')
 const tr_type = ref({})
 const tr_type_items = ref([])
 
-const changeDoorType = (event) => {
-    door_type.value = event
-
-    // reset
+const reset = () => {
     inner_panel.value = { id: '', param_name: '' }
     outside_panel.value = undefined
 
@@ -722,6 +711,18 @@ const changeDoorType = (event) => {
     tr_type_panel.value = ''
     tr_type.value = {}
     tr_type_items.value = []
+}
+
+const changeDoorType = (event) => {
+    door_type.value = event
+
+    reset()
+}
+
+const selectConstruction = (type) => {
+    typeOfConstruction.value = type
+
+    reset()
 }
 
 const getFormData = () => {
