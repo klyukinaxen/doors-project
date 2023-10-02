@@ -42,6 +42,7 @@
                         vertical
                         :min="0"
                         :max="2550"
+                        :step="10"
                         height="230px"
                         show-input
                         size="small"
@@ -52,6 +53,7 @@
                             v-model="doorSizeWidth"
                             :min="0"
                             :max="1080"
+                            :step="10"
                             show-input
                             size="small"
                         />
@@ -100,6 +102,7 @@
                         vertical
                         :min="0"
                         :max="2550"
+                        :step="10"
                         height="280px"
                         show-input
                         size="small"
@@ -110,6 +113,7 @@
                             v-model="doorSizeWidth"
                             :min="0"
                             :max="1600"
+                            :step="10"
                             show-input
                             size="small"
                             class="mb-10 ml-15"
