@@ -776,7 +776,7 @@ const getFormData = () => {
     if (typeOfConstruction.value === 'tr') {
         data = {
             door_type_id: {
-                id: Number(door_type.value)
+                id: door_type.value
             }
         }
 
@@ -786,10 +786,10 @@ const getFormData = () => {
             const element = mergedProperties[key]
             if (typeof element === 'boolean') {
                 if (element) {
-                    data.tr_properties_ids.push({ id: Number(key) })
+                    data.tr_properties_ids.push({ id: key })
                 }
             } else {
-                data.tr_properties_ids.push({ id: Number(key), id_properties: Number(element) })
+                data.tr_properties_ids.push({ id: key, id_properties: element })
             }
         }
 
@@ -799,24 +799,24 @@ const getFormData = () => {
             for (const key in construction_inner_color.value) {
                 // console.log(construction_inner_color, 'construction_inner_color')
                 const element = construction_inner_color.value[key]
-                data.tr_inner_panel_ids.push({ id: Number(key), id_properties: Number(element) })
+                data.tr_inner_panel_ids.push({ id: key, id_properties: element })
             }
         }
 
         if (film_type_inner.value !== undefined && inner_panel.value) {
-            data.tr_inner_panel_ids.push({ id: Number(inner_panel.value.id), id_properties: Number(film_type_inner.value) })
+            data.tr_inner_panel_ids.push({ id: inner_panel.value.id, id_properties: film_type_inner.value })
         }
 
         if (tr_type_panel.value === 'tr_outside_panel_9_5') {
             data.tr_outside_panel_9_5_ids = []
             if (tr_type.value.checked) {
-                data.tr_outside_panel_9_5_ids.push({ id: Number(tr_type.value.id) })
+                data.tr_outside_panel_9_5_ids.push({ id: tr_type.value.id })
             }
 
             for (let index = 0; index < tr_type_items.value.length; index++) {
                 const element = tr_type_items.value[index]
                 if (element !== undefined) {
-                    data.tr_outside_panel_9_5_ids.push({ id: Number(index), id_properties: Number(element) })
+                    data.tr_outside_panel_9_5_ids.push({ id: index, id_properties: element })
                 }
             }
         }
@@ -824,26 +824,26 @@ const getFormData = () => {
         if (tr_type_panel.value === 'tr_outside_panel_10') {
             data.tr_outside_panel_10_ids = []
             if (tr_type.value.checked) {
-                data.tr_outside_panel_10_ids.push({ id: Number(tr_type.value.id) })
+                data.tr_outside_panel_10_ids.push({ id: tr_type.value.id })
             }
 
             for (let index = 0; index < tr_type_items.value.length; index++) {
                 const element = tr_type_items.value[index]
 
                 if (element !== undefined) {
-                    data.tr_outside_panel_10_ids.push({ id: Number(index), id_properties: Number(element) })
+                    data.tr_outside_panel_10_ids.push({ id: index, id_properties: element })
                 }
             }
         }
 
-        data.price_default = { width: Number(doorSizeWidth.value), height: Number(doorSizeHeight.value) }
+        data.price_default = { width: doorSizeWidth.value, height: doorSizeHeight.value }
     }
 
     // STBR
     else if (typeOfConstruction.value === 'stbr') {
         data = {
             door_type_id: {
-                id: Number(door_type.value)
+                id: door_type.value
             }
         }
 
@@ -853,10 +853,10 @@ const getFormData = () => {
             const element = mergedProperties[key]
             if (typeof element === 'boolean') {
                 if (element) {
-                    data.stbr_properties_ids.push({ id: Number(key) })
+                    data.stbr_properties_ids.push({ id: key })
                 }
             } else {
-                data.stbr_properties_ids.push({ id: Number(key), id_properties: Number(element) })
+                data.stbr_properties_ids.push({ id: key, id_properties: element })
             }
         }
 
@@ -866,32 +866,32 @@ const getFormData = () => {
         // if (construction_color.value.length) {
         for (const key in construction_color.value) {
             const element = construction_color.value[key]
-            data.stbr_outside_panel_ids.push({ id: Number(key), id_properties: Number(element) })
+            data.stbr_outside_panel_ids.push({ id: key, id_properties: element })
         }
 
         if (film_type_inner.value !== undefined) {
-            data.stbr_outside_panel_ids.push({ id: Number(outside_panel.value), id_properties: Number(film_type_inner.value) })
+            data.stbr_outside_panel_ids.push({ id: outside_panel.value, id_properties: film_type_inner.value })
         }
 
         if (film_type_outside.value !== undefined && inner_panel.value) {
-            data.stbr_inner_panel_ids.push({ id: Number(inner_panel.value.id), id_properties: Number(film_type_outside.value) })
+            data.stbr_inner_panel_ids.push({ id: inner_panel.value.id, id_properties: film_type_outside.value })
         }
 
         if (construction_inner_color.value !== undefined) {
             for (const key in construction_inner_color.value) {
                 const element = construction_inner_color.value[key]
-                data.stbr_inner_panel_ids.push({ id: Number(key), id_properties: Number(element) })
+                data.stbr_inner_panel_ids.push({ id: key, id_properties: element })
             }
         }
 
-        data.price_default = { width: Number(doorSizeWidth.value), height: Number(doorSizeHeight.value) }
+        data.price_default = { width: doorSizeWidth.value, height: doorSizeHeight.value }
     }
 
     // ST
     else {
         data = {
             door_type_id: {
-                id: Number(door_type.value)
+                id: door_type.value
             }
         }
 
@@ -901,29 +901,29 @@ const getFormData = () => {
             const element = mergedProperties[key]
             if (typeof element === 'boolean') {
                 if (element) {
-                    data.st_properties_ids.push({ id: Number(key) })
+                    data.st_properties_ids.push({ id: key })
                 }
             } else {
-                data.st_properties_ids.push({ id: Number(key), id_properties: Number(element) })
+                data.st_properties_ids.push({ id: key, id_properties: element })
             }
         }
 
         data.st_inner_panel_ids = []
 
         if (film_type_inner.value !== undefined && inner_panel.value) {
-            data.st_inner_panel_ids.push({ id: Number(inner_panel.value.id), id_properties: Number(film_type_inner.value) })
+            data.st_inner_panel_ids.push({ id: inner_panel.value.id, id_properties: film_type_inner.value })
         }
 
         for (const key in construction_inner_color.value) {
             const element = construction_inner_color.value[key]
-            data.st_inner_panel_ids.push({ id: Number(key), id_properties: Number(element) })
+            data.st_inner_panel_ids.push({ id: key, id_properties: element })
         }
 
         if (film_type_inner.value !== undefined) {
-            data.film_type_id = { id: Number(film_type_inner.value) }
+            data.film_type_id = { id: film_type_inner.value }
         }
 
-        data.price_default = { width: Number(doorSizeWidth.value), height: Number(doorSizeHeight.value) }
+        data.price_default = { width: doorSizeWidth.value, height: doorSizeHeight.value }
     }
     // console.log(data, 'data')
 
