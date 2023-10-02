@@ -246,11 +246,7 @@
                                     >
                                         <!-- TODO: переделать на id, т.к. название редактируется -->
                                         <ElOption
-                                            v-if="
-                                                item.param_name !== 'Фреза' &&
-                                                item.param_name !== 'Цвет панели' &&
-                                                item.param_name !== 'Фреза '
-                                            "
+                                            v-if="item.param_name !== 'Фреза' && item.param_name !== 'Цвет панели'"
                                             :key="item.id"
                                             :label="item.param_name"
                                             :value="item"
@@ -265,7 +261,7 @@
                             >
                                 <!-- TODO: переделать на id, т.к. название редактируется -->
                                 <div
-                                    v-if="item.param_name === 'Фреза' || item.param_name === 'Цвет панели' || item.param_name === 'Фреза '"
+                                    v-if="item.param_name === 'Фреза' || item.param_name === 'Цвет панели'"
                                     class="d-flex flex-column"
                                 >
                                     <span class="upper-case mb-15 fs-12"> {{ item.param_name }} </span>
@@ -274,7 +270,6 @@
                                         v-model="construction_inner_color[item.id]"
                                         class="mw-250"
                                         size="large"
-                                        type="number"
                                         placeholder="Введите id"
                                     />
                                 </div>
@@ -387,7 +382,6 @@
                                             v-model="tr_type_items[item.id]"
                                             class="mw-250"
                                             size="large"
-                                            type="number"
                                             placeholder="Введите id"
                                         />
                                     </div>
@@ -463,7 +457,6 @@
                                         v-model="construction_color[item.id]"
                                         class="mw-250"
                                         size="large"
-                                        type="number"
                                         placeholder="Введите id"
                                     />
                                 </div>
@@ -513,7 +506,6 @@
                                         v-model="properties[property.id]"
                                         class="mw-250"
                                         size="large"
-                                        type="number"
                                         placeholder="Введите id"
                                     />
                                 </div>
@@ -556,7 +548,6 @@
                                     v-model="properties['7']"
                                     class="mw-250"
                                     size="large"
-                                    type="number"
                                     placeholder="Введите id"
                                 />
                             </div>
@@ -609,6 +600,18 @@
                                     </ElSelect>
                                 </template>
                             </div>
+                        </div>
+
+                        <div class="d-flex flex-column mt-20">
+                            <span class="upper-case mb-15 fs-12">Добавить комментарий:</span>
+
+                            <ElInput
+                                v-model="comment"
+                                maxlength="1000"
+                                placeholder="Введите комментарий"
+                                show-word-limit
+                                type="textarea"
+                            />
                         </div>
                     </div>
                 </div>
@@ -690,6 +693,8 @@ const construction_inner_color = ref({})
 const tr_type_panel = ref('')
 const tr_type = ref({})
 const tr_type_items = ref([])
+
+const comment = ref('')
 
 const reset = () => {
     inner_panel.value = undefined
@@ -776,7 +781,7 @@ const getFormData = () => {
     if (typeOfConstruction.value === 'tr') {
         data = {
             door_type_id: {
-                id: door_type.value
+                id: String(door_type.value)
             }
         }
 
@@ -843,7 +848,7 @@ const getFormData = () => {
     else if (typeOfConstruction.value === 'stbr') {
         data = {
             door_type_id: {
-                id: door_type.value
+                id: String(door_type.value)
             }
         }
 
@@ -891,7 +896,7 @@ const getFormData = () => {
     else {
         data = {
             door_type_id: {
-                id: door_type.value
+                id: String(door_type.value)
             }
         }
 
@@ -925,6 +930,8 @@ const getFormData = () => {
 
         data.price_default = { width: doorSizeWidth.value, height: doorSizeHeight.value }
     }
+
+    data.comment = comment.value
     // console.log(data, 'data')
 
     return data

@@ -159,7 +159,7 @@
             {
                 "id": 9,
                 "price": 0,
-                "param_name": "Фреза ",
+                "param_name": "Фреза",
                 "id_properties": true
             }
         ],
@@ -199,10 +199,30 @@
                 "price": 17700,
                 "formula": "width*height",
                 "width_to": 1600,
-                "height_to": 2550,
+                "height_to": 2100,
                 "width_from": 0,
                 "double_door": true,
                 "height_from": 0
+            },
+            {
+                "id": 8,
+                "price": 17700,
+                "formula": "width*height*1.2",
+                "width_to": 1600,
+                "height_to": 2250,
+                "width_from": 0,
+                "double_door": true,
+                "height_from": 2100
+            },
+            {
+                "id": 9,
+                "price": 17700,
+                "formula": "width*height*1.4",
+                "width_to": 1600,
+                "height_to": 2550,
+                "width_from": 0,
+                "double_door": true,
+                "height_from": 2250
             }
         ]
     },
@@ -375,6 +395,16 @@
                 "height_from": 0
             },
             {
+                "id": 1,
+                "price": 19750,
+                "formula": "width*height*1.2",
+                "width_to": 1600,
+                "height_to": 2250,
+                "width_from": 0,
+                "double_door": true,
+                "height_from": 2100
+            },
+            {
                 "id": 2,
                 "price": 19750,
                 "formula": "width*height*1.2",
@@ -383,6 +413,16 @@
                 "width_from": 0,
                 "double_door": false,
                 "height_from": 2100
+            },
+            {
+                "id": 2,
+                "price": 19750,
+                "formula": "width*height*1.4",
+                "width_to": 1600,
+                "height_to": 2550,
+                "width_from": 0,
+                "double_door": true,
+                "height_from": 2250
             },
             {
                 "id": 6,
@@ -399,7 +439,7 @@
                 "price": 19750,
                 "formula": "width*height",
                 "width_to": 1600,
-                "height_to": 2550,
+                "height_to": 2100,
                 "width_from": 0,
                 "double_door": true,
                 "height_from": 0
@@ -593,6 +633,16 @@
                 "id": 2,
                 "price": 28050,
                 "formula": "width*height*1.2",
+                "width_to": 1600,
+                "height_to": 2250,
+                "width_from": 0,
+                "double_door": true,
+                "height_from": 2100
+            },
+            {
+                "id": 3,
+                "price": 28050,
+                "formula": "width*height*1.2",
                 "width_to": 1080,
                 "height_to": 2250,
                 "width_from": 0,
@@ -600,7 +650,17 @@
                 "height_from": 2100
             },
             {
-                "id": 6,
+                "id": 4,
+                "price": 28050,
+                "formula": "width*height*1.4",
+                "width_to": 1600,
+                "height_to": 2550,
+                "width_from": 0,
+                "double_door": true,
+                "height_from": 2250
+            },
+            {
+                "id": 5,
                 "price": 28050,
                 "formula": "width*height*1.4",
                 "width_to": 1080,
@@ -610,11 +670,11 @@
                 "height_from": 2250
             },
             {
-                "id": 7,
+                "id": 6,
                 "price": 28050,
                 "formula": "width*height",
                 "width_to": 1600,
-                "height_to": 2550,
+                "height_to": 2100,
                 "width_from": 0,
                 "double_door": true,
                 "height_from": 0
