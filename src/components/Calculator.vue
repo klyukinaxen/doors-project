@@ -42,10 +42,11 @@
                         vertical
                         :min="0"
                         :max="2550"
-                        :step="10"
+                        :step="DOOR_SIZE_STEP"
                         height="230px"
                         show-input
                         size="small"
+                        @change="validate"
                     />
 
                     <div class="door-1-range">
@@ -53,9 +54,10 @@
                             v-model="doorSizeWidth"
                             :min="0"
                             :max="1080"
-                            :step="10"
+                            :step="DOOR_SIZE_STEP"
                             show-input
                             size="small"
+                            @change="validate"
                         />
 
                         <img
@@ -102,10 +104,11 @@
                         vertical
                         :min="0"
                         :max="2550"
-                        :step="10"
+                        :step="DOOR_SIZE_STEP"
                         height="280px"
                         show-input
                         size="small"
+                        @change="validate"
                     />
 
                     <div class="door-2-range">
@@ -113,10 +116,11 @@
                             v-model="doorSizeWidth"
                             :min="0"
                             :max="1600"
-                            :step="10"
+                            :step="DOOR_SIZE_STEP"
                             show-input
                             size="small"
                             class="mb-10 ml-15"
+                            @change="validate"
                         />
 
                         <img
@@ -639,6 +643,8 @@ import { ElButton, ElRadioGroup, ElRadio, ElSlider, ElOption, ElSelect, ElInput,
 import { computed, ref, watch } from 'vue'
 import { saveAs } from 'file-saver'
 
+const DOOR_SIZE_STEP = 10
+
 const calculatorStore = useCalculatorStore()
 
 const door_type = ref(calculatorStore.doorParams.door_type[0].id)
@@ -930,7 +936,22 @@ const getFormData = () => {
     return data
 }
 
+const validate = () => {
+    if ([doorSizeWidth.value, doorSizeHeight.value].some((value) => value % DOOR_SIZE_STEP !== 0)) {
+        ElMessageBox.alert(`Размеры (высота, ширина) должны быть кратны ${DOOR_SIZE_STEP}`, 'Ошибка', {
+            confirmButtonText: 'ОК'
+        })
+        return false
+    }
+
+    return true
+}
+
 const recieveTotalPrice = async () => {
+    if (!validate()) {
+        return
+    }
+
     const totalPrice = await calculatorStore.recieveTotalPrice(typeOfConstruction.value, getFormData())
     if (!totalPrice) {
         return
@@ -942,6 +963,10 @@ const recieveTotalPrice = async () => {
 }
 
 const doorSave = async () => {
+    if (!validate()) {
+        return
+    }
+
     const idOrder = await calculatorStore.doorSave(typeOfConstruction.value, getFormData())
     if (!idOrder) {
         return
