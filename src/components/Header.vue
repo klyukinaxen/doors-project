@@ -1,20 +1,6 @@
 <template>
     <div class="d-flex justify-content-around py-30">
         <div class="region">
-            <div class="my-15 d-flex align-items-center">
-                <img
-                    src="../assets/icons/location.svg"
-                    alt="map-point"
-                    class="icon pr-15"
-                />
-                <span class="fs-14 ls-2 fw-500">Кировская обл.</span>
-            </div>
-            <!-- <ElButton
-                class="upper-case region__button"
-                type="info"
-            >
-                Изменить регион
-            </ElButton> -->
         </div>
         <!-- <div class="lk d-flex flex-column align-items-center justify-content-center">
             <img

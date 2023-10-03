@@ -264,9 +264,8 @@
                                 v-for="item in selectedConstruction[`${typeOfConstruction}_inner_panel`]"
                                 :key="item.id"
                             >
-                                <!-- TODO: переделать на id, т.к. название редактируется -->
                                 <div
-                                    v-if="item.param_name === 'Фреза' || item.param_name === 'Цвет панели'"
+                                    v-if="item.id === 2 || item.id === 1"
                                     class="d-flex flex-column"
                                 >
                                     <span class="upper-case mb-15 fs-12"> {{ item.param_name }} </span>
@@ -353,7 +352,7 @@
                                 :key="item.id"
                             >
                                 <div
-                                    v-if="item.id === 1"
+                                    v-if="item.id === 3"
                                     class="d-flex align-items-center ml-30"
                                 >
                                     <ElCheckbox
@@ -376,9 +375,8 @@
                                     v-for="item in selectedConstruction[`${tr_type_panel}`]"
                                     :key="item.id"
                                 >
-                                    <!-- TODO: переделать на id, т.к. название редактируется -->
                                     <div
-                                        v-if="item.param_name === 'Фреза' || item.param_name === 'Цвет панели'"
+                                        v-if="item.id === 1 || item.id === 2"
                                         class="d-flex flex-column mt-10"
                                     >
                                         <span class="upper-case mb-15 fs-12"> {{ item.param_name }} </span>
@@ -451,9 +449,8 @@
                                 v-for="item in selectedConstruction[`${typeOfConstruction}_outside_panel`]"
                                 :key="item.id"
                             >
-                                <!-- TODO: переделать на id, т.к. название редактируется -->
                                 <div
-                                    v-if="item.param_name === 'Фреза' || item.param_name === 'Цвет панели'"
+                                    v-if="item.id === 2 || item.id === 1"
                                     class="d-flex flex-column"
                                 >
                                     <span class="upper-case mb-15 fs-12"> {{ item.param_name }} </span>
@@ -468,7 +465,7 @@
                             </template>
 
                             <div
-                                v-if="outside_panel === 2"
+                                v-if="outside_panel === 3"
                                 class="d-flex flex-column"
                             >
                                 <span class="upper-case mb-15 fs-12"> тип пленки внешней панели </span>
