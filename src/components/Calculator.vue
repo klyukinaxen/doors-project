@@ -1164,6 +1164,10 @@ header {
     white-space: pre-line;
     width: 100%;
 }
+
+:deep(.el-checkbox.is-disabled) {
+    opacity: 0.5;
+}
 // #tab-userManagement
 
 .input-properties {
