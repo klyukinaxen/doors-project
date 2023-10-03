@@ -807,7 +807,9 @@ const getFormData = () => {
                     data.tr_properties_ids.push({ id: Number(key) })
                 }
             } else {
-                data.tr_properties_ids.push({ id: Number(key), id_properties: String(element) })
+                if (element !== undefined) {
+                    data.tr_properties_ids.push({ id: Number(key), id_properties: String(element) })
+                }
             }
         }
 
@@ -874,7 +876,9 @@ const getFormData = () => {
                     data.stbr_properties_ids.push({ id: Number(key) })
                 }
             } else {
-                data.stbr_properties_ids.push({ id: Number(key), id_properties: String(element) })
+                if (element !== undefined) {
+                    data.stbr_properties_ids.push({ id: Number(key), id_properties: String(element) })
+                }
             }
         }
 
@@ -922,7 +926,9 @@ const getFormData = () => {
                     data.st_properties_ids.push({ id: Number(key) })
                 }
             } else {
-                data.st_properties_ids.push({ id: Number(key), id_properties: String(element) })
+                if (element !== undefined) {
+                    data.st_properties_ids.push({ id: Number(key), id_properties: String(element) })
+                }
             }
         }
 
