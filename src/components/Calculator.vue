@@ -243,6 +243,7 @@
                                     class="m-2 mw-250"
                                     placeholder="Выберите:"
                                     size="large"
+                                    @change="innerPanelOnChange"
                                 >
                                     <template
                                         v-for="item in selectedConstruction[`${typeOfConstruction}_inner_panel`]"
@@ -536,6 +537,9 @@
                                     size="large"
                                     class="mw-250"
                                     border
+                                    :disabled="
+                                        inner_panel?.id === INNER_PANEL_6MM_FILM_ID && property.id === PROPERTIES_CONCEALED_MDF_MOUNTING_ID
+                                    "
                                 />
                             </template>
                         </div>
@@ -645,8 +649,7 @@ import { useCalculatorStore } from '../stores/calculator'
 import { ElButton, ElRadioGroup, ElRadio, ElSlider, ElOption, ElSelect, ElInput, ElCheckbox, ElMessageBox, ElMessage } from 'element-plus'
 import { computed, ref, watch } from 'vue'
 import { saveAs } from 'file-saver'
-
-const DOOR_SIZE_STEP = 10
+import { DOOR_SIZE_STEP, INNER_PANEL_6MM_FILM_ID, PROPERTIES_CONCEALED_MDF_MOUNTING_ID } from '../config/constants'
 
 const calculatorStore = useCalculatorStore()
 
@@ -773,10 +776,18 @@ const selectConstruction = (type) => {
 
     // Выбираем 'Скрытое крепление мдф' по умолчанию для TR
     if (typeOfConstruction.value === 'tr') {
-        const construction = selectedConstruction.value[`${typeOfConstruction.value}_properties`].find((c) => c.id === 11)
+        const construction = selectedConstruction.value[`${typeOfConstruction.value}_properties`].find(
+            (c) => c.id === PROPERTIES_CONCEALED_MDF_MOUNTING_ID
+        )
         if (construction) {
-            propertiesConditions.value[11] = true
+            propertiesConditions.value[PROPERTIES_CONCEALED_MDF_MOUNTING_ID] = true
         }
+    }
+}
+
+const innerPanelOnChange = () => {
+    if (inner_panel.value?.id === INNER_PANEL_6MM_FILM_ID) {
+        propertiesConditions.value[PROPERTIES_CONCEALED_MDF_MOUNTING_ID] = false
     }
 }
 

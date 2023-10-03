@@ -110,57 +110,57 @@
         "st_inner_panel": [
             {
                 "id": 1,
+                "price": 0,
+                "param_name": "Цвет панели",
+                "id_properties": true
+            },
+            {
+                "id": 2,
                 "price": 25350,
                 "param_name": "Крашеная 10мм",
                 "id_properties": false
             },
             {
                 "id": 2,
+                "price": 0,
+                "param_name": "Фреза",
+                "id_properties": true
+            },
+            {
+                "id": 3,
                 "price": 27950,
                 "param_name": "Крашеная 16мм",
                 "id_properties": false
             },
             {
-                "id": 3,
+                "id": 4,
                 "price": 30950,
                 "param_name": "Крашеная 16мм с зеркалом",
                 "id_properties": false
             },
             {
-                "id": 4,
+                "id": 5,
                 "price": 5100,
                 "param_name": "В плёнке 6мм",
                 "id_properties": false
             },
             {
-                "id": 5,
+                "id": 6,
                 "price": 6100,
                 "param_name": "В плёнке 10мм",
                 "id_properties": false
             },
             {
-                "id": 6,
+                "id": 7,
                 "price": 8100,
                 "param_name": "В плёнке 16мм ",
                 "id_properties": false
             },
             {
-                "id": 7,
+                "id": 8,
                 "price": 11100,
                 "param_name": "В плёнке 16мм с зеркалом",
                 "id_properties": false
-            },
-            {
-                "id": 8,
-                "price": 0,
-                "param_name": "Цвет панели",
-                "id_properties": true
-            },
-            {
-                "id": 9,
-                "price": 0,
-                "param_name": "Фреза",
-                "id_properties": true
             }
         ],
         "st_price_default": [
@@ -336,9 +336,9 @@
             },
             {
                 "id": 2,
-                "price": 25350,
-                "param_name": "Крашеная 10мм",
-                "id_properties": false
+                "price": 0,
+                "param_name": "Фреза",
+                "id_properties": true
             },
             {
                 "id": 3,
@@ -378,9 +378,9 @@
             },
             {
                 "id": 9,
-                "price": 0,
-                "param_name": "Фреза",
-                "id_properties": true
+                "price": 25350,
+                "param_name": "Крашеная 10мм",
+                "id_properties": false
             }
         ],
         "stbr_price_default": [
@@ -448,27 +448,27 @@
         "stbr_outside_panel": [
             {
                 "id": 1,
-                "price": 25350,
-                "param_name": "Крашеная",
-                "id_properties": false
+                "price": 0,
+                "param_name": "Цвет панели",
+                "id_properties": true
             },
             {
                 "id": 2,
-                "price": 6100,
-                "param_name": "В плёнке",
-                "id_properties": false
-            },
-            {
-                "id": 3,
                 "price": 0,
                 "param_name": "Фреза",
                 "id_properties": true
             },
             {
+                "id": 3,
+                "price": 6100,
+                "param_name": "В плёнке",
+                "id_properties": false
+            },
+            {
                 "id": 4,
-                "price": 0,
-                "param_name": "Цвет панели",
-                "id_properties": true
+                "price": 25350,
+                "param_name": "Крашеная",
+                "id_properties": false
             }
         ]
     },
@@ -583,15 +583,15 @@
         "tr_inner_panel": [
             {
                 "id": 1,
-                "price": 27950,
-                "param_name": "Крашеная 16мм",
-                "id_properties": false
+                "price": 0,
+                "param_name": "Цвет панели",
+                "id_properties": true
             },
             {
                 "id": 2,
-                "price": 30950,
-                "param_name": "Крашеная 16мм c зеркалом",
-                "id_properties": false
+                "price": 0,
+                "param_name": "Фреза",
+                "id_properties": true
             },
             {
                 "id": 3,
@@ -607,15 +607,15 @@
             },
             {
                 "id": 5,
-                "price": 0,
-                "param_name": "Фреза",
-                "id_properties": true
+                "price": 30950,
+                "param_name": "Крашеная 16мм c зеркалом",
+                "id_properties": false
             },
             {
                 "id": 6,
-                "price": 0,
-                "param_name": "Цвет панели",
-                "id_properties": true
+                "price": 27950,
+                "param_name": "Крашеная 16мм",
+                "id_properties": false
             }
         ],
         "tr_price_default": [
@@ -683,9 +683,9 @@
         "tr_outside_panel_10": [
             {
                 "id": 1,
-                "price": 25350,
-                "param_name": "Крашенная",
-                "id_properties": false
+                "price": 0,
+                "param_name": "Цвет панели",
+                "id_properties": true
             },
             {
                 "id": 2,
@@ -695,17 +695,17 @@
             },
             {
                 "id": 3,
-                "price": 0,
-                "param_name": "Цвет панели",
-                "id_properties": true
+                "price": 25350,
+                "param_name": "Крашенная",
+                "id_properties": false
             }
         ],
         "tr_outside_panel_9_5": [
             {
                 "id": 1,
-                "price": 48750,
-                "param_name": "Крашенная",
-                "id_properties": false
+                "price": 0,
+                "param_name": "Цвет панели",
+                "id_properties": true
             },
             {
                 "id": 2,
@@ -715,9 +715,9 @@
             },
             {
                 "id": 3,
-                "price": 0,
-                "param_name": "Цвет панели",
-                "id_properties": true
+                "price": 48750,
+                "param_name": "Крашенная",
+                "id_properties": false
             }
         ]
     },
