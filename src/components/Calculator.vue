@@ -911,15 +911,17 @@ const getFormData = () => {
         data.stbr_inner_panel_ids = []
         data.stbr_outside_panel_ids = []
 
-        for (const key in construction_color.value) {
-            const element = construction_color.value[key]
-            data.stbr_outside_panel_ids.push({ id: Number(key), id_properties: String(element) })
-        }
-
-        if (film_type_outside.value !== undefined) {
-            data.stbr_outside_panel_ids.push({ id: Number(outside_panel.value), id_properties: String(film_type_inner.value) })
+        if (outside_panel.value && film_type_outside.value) {
+            data.stbr_outside_panel_ids.push({ id: Number(outside_panel.value), id_properties: String(film_type_outside.value) })
         } else if (outside_panel.value) {
             data.stbr_outside_panel_ids.push({ id: Number(outside_panel.value) })
+        }
+
+        for (const key in construction_color.value) {
+            const element = construction_color.value[key]
+            if (element) {
+                data.stbr_outside_panel_ids.push({ id: Number(key), id_properties: String(element) })
+            }
         }
 
         if (inner_panel.value && film_type_inner.value) {
