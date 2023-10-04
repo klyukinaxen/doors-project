@@ -841,18 +841,17 @@ const getFormData = () => {
 
         data.tr_inner_panel_ids = []
 
-        if (construction_inner_color.value !== undefined) {
-            for (const key in construction_inner_color.value) {
-                // console.log(construction_inner_color, 'construction_inner_color')
-                const element = construction_inner_color.value[key]
-                data.tr_inner_panel_ids.push({ id: Number(key), id_properties: String(element) })
-            }
+        if (inner_panel.value && film_type_inner.value) {
+            data.tr_inner_panel_ids.push({ id: inner_panel.value.id, id_properties: String(film_type_inner.value) })
+        } else if (inner_panel.value) {
+            data.tr_inner_panel_ids.push({ id: inner_panel.value.id })
         }
 
-        if (film_type_inner.value !== undefined && inner_panel.value) {
-            data.tr_inner_panel_ids.push({ id: inner_panel.value.id, id_properties: String(film_type_inner.value) })
-        } else if (inner_panel.value?.id) {
-            data.tr_inner_panel_ids.push({ id: Number(inner_panel.value.id) })
+        for (const key in construction_inner_color.value) {
+            const element = construction_inner_color.value[key]
+            if (element) {
+                data.tr_inner_panel_ids.push({ id: Number(key), id_properties: String(element) })
+            }
         }
 
         if (tr_type_panel.value === 'tr_outside_panel_9_5') {
@@ -912,7 +911,6 @@ const getFormData = () => {
         data.stbr_inner_panel_ids = []
         data.stbr_outside_panel_ids = []
 
-        // if (construction_color.value.length) {
         for (const key in construction_color.value) {
             const element = construction_color.value[key]
             data.stbr_outside_panel_ids.push({ id: Number(key), id_properties: String(element) })
@@ -924,15 +922,15 @@ const getFormData = () => {
             data.stbr_outside_panel_ids.push({ id: Number(outside_panel.value) })
         }
 
-        if (film_type_inner.value !== undefined && inner_panel.value) {
-            data.stbr_inner_panel_ids.push({ id: inner_panel.value.id, id_properties: String(film_type_outside.value) })
-        } else if (inner_panel.value?.id) {
-            data.stbr_inner_panel_ids.push({ id: Number(inner_panel.value.id) })
+        if (inner_panel.value && film_type_inner.value) {
+            data.stbr_inner_panel_ids.push({ id: inner_panel.value.id, id_properties: String(film_type_inner.value) })
+        } else if (inner_panel.value) {
+            data.stbr_inner_panel_ids.push({ id: inner_panel.value.id })
         }
 
-        if (construction_inner_color.value !== undefined) {
-            for (const key in construction_inner_color.value) {
-                const element = construction_inner_color.value[key]
+        for (const key in construction_inner_color.value) {
+            const element = construction_inner_color.value[key]
+            if (element) {
                 data.stbr_inner_panel_ids.push({ id: Number(key), id_properties: String(element) })
             }
         }
@@ -965,15 +963,17 @@ const getFormData = () => {
 
         data.st_inner_panel_ids = []
 
-        if (film_type_inner.value !== undefined && inner_panel.value) {
+        if (inner_panel.value && film_type_inner.value) {
             data.st_inner_panel_ids.push({ id: inner_panel.value.id, id_properties: String(film_type_inner.value) })
         } else if (inner_panel.value) {
-            data.st_inner_panel_ids.push({ id: Number(inner_panel.value.id) })
+            data.st_inner_panel_ids.push({ id: inner_panel.value.id })
         }
 
         for (const key in construction_inner_color.value) {
             const element = construction_inner_color.value[key]
-            data.st_inner_panel_ids.push({ id: Number(key), id_properties: String(element) })
+            if (element) {
+                data.st_inner_panel_ids.push({ id: Number(key), id_properties: String(element) })
+            }
         }
 
         if (film_type_inner.value !== undefined) {
