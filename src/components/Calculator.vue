@@ -289,7 +289,7 @@
                                     class="m-2 mw-250"
                                     placeholder="Выберите"
                                     size="large"
-                                >
+                                    >
                                     <template
                                         v-for="item in calculatorStore.doorParams.film_type"
                                         :key="item.id"
@@ -1168,6 +1168,15 @@ header {
 
 :deep(.el-checkbox.is-disabled) {
     opacity: 0.5;
+}
+
+:deep(.el-checkbox__input.is-disabled.is-checked .el-checkbox__inner) {
+    background: #409eff;
+}
+
+:deep(.el-checkbox__input.is-disabled.is-checked .el-checkbox__inner::after) {
+    border-color: #fff;
+    opacity: 1;
 }
 // #tab-userManagement
 
