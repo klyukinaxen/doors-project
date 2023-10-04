@@ -289,7 +289,7 @@
                                     class="m-2 mw-250"
                                     placeholder="Выберите"
                                     size="large"
-                                    >
+                                >
                                     <template
                                         v-for="item in calculatorStore.doorParams.film_type"
                                         :key="item.id"
@@ -415,7 +415,7 @@
                                     >
                                         <!-- TODO: переделать на id, т.к. название редактируется -->
                                         <ElOption
-                                            v-if="item.param_name !== 'Фреза' && item.param_name !== 'Цвет панели'"
+                                            v-if="item.id !== 1 && item.id !== 2"
                                             :label="item.param_name"
                                             :value="item.id"
                                         />
@@ -436,7 +436,7 @@
                                     >
                                         <!-- TODO: переделать на id, т.к. название редактируется -->
                                         <ElOption
-                                            v-if="item.param_name !== 'Фреза' && item.param_name !== 'Цвет панели'"
+                                            v-if="item.id !== 1 && item.id !== 2"
                                             :label="item.param_name"
                                             :value="item.id"
                                         />
@@ -808,10 +808,8 @@ const getFormData = () => {
                 if (element) {
                     data.tr_properties_ids.push({ id: Number(key) })
                 }
-            } else {
-                if (element !== undefined) {
-                    data.tr_properties_ids.push({ id: Number(key), id_properties: String(element) })
-                }
+            } else if (element !== undefined) {
+                data.tr_properties_ids.push({ id: Number(key), id_properties: String(element) })
             }
         }
 
@@ -827,6 +825,8 @@ const getFormData = () => {
 
         if (film_type_inner.value !== undefined && inner_panel.value) {
             data.tr_inner_panel_ids.push({ id: inner_panel.value.id, id_properties: String(film_type_inner.value) })
+        } else if (inner_panel.value.id) {
+            data.tr_inner_panel_ids.push({ id: Number(inner_panel.value.id) })
         }
 
         if (tr_type_panel.value === 'tr_outside_panel_9_5') {
@@ -893,12 +893,16 @@ const getFormData = () => {
             data.stbr_outside_panel_ids.push({ id: Number(key), id_properties: String(element) })
         }
 
-        if (film_type_inner.value !== undefined) {
+        if (film_type_outside.value !== undefined) {
             data.stbr_outside_panel_ids.push({ id: Number(outside_panel.value), id_properties: String(film_type_inner.value) })
+        } else if (outside_panel.value) {
+            data.stbr_outside_panel_ids.push({ id: Number(outside_panel.value) })
         }
 
-        if (film_type_outside.value !== undefined && inner_panel.value) {
+        if (film_type_inner.value !== undefined && inner_panel.value) {
             data.stbr_inner_panel_ids.push({ id: inner_panel.value.id, id_properties: String(film_type_outside.value) })
+        } else if (inner_panel.value.id) {
+            data.stbr_inner_panel_ids.push({ id: Number(inner_panel.value.id) })
         }
 
         if (construction_inner_color.value !== undefined) {
@@ -938,6 +942,8 @@ const getFormData = () => {
 
         if (film_type_inner.value !== undefined && inner_panel.value) {
             data.st_inner_panel_ids.push({ id: inner_panel.value.id, id_properties: String(film_type_inner.value) })
+        } else if (inner_panel.value) {
+            data.st_inner_panel_ids.push({ id: Number(inner_panel.value.id) })
         }
 
         for (const key in construction_inner_color.value) {
