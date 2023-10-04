@@ -534,7 +534,8 @@
                                     class="mw-250"
                                     border
                                     :disabled="
-                                        inner_panel?.id === INNER_PANEL_6MM_FILM_ID && property.id === PROPERTIES_CONCEALED_MDF_MOUNTING_ID
+                                        (inner_panel?.id === INNER_PANEL_6MM_FILM_ID || typeOfConstruction === 'tr') &&
+                                        property.id === PROPERTIES_CONCEALED_MDF_MOUNTING_ID
                                     "
                                 />
                             </template>
