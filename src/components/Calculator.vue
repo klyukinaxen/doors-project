@@ -707,7 +707,7 @@ const construction_inner_color = ref({})
 
 const tr_type_panel = ref('')
 const tr_type = ref({})
-const tr_type_items = ref([])
+const tr_type_items = ref({})
 
 const comment = ref('')
 
@@ -738,7 +738,7 @@ const reset = () => {
 
     tr_type_panel.value = ''
     tr_type.value = {}
-    tr_type_items.value = []
+    tr_type_items.value = {}
 }
 
 const innerPanelReset = () => {
@@ -753,7 +753,7 @@ const outsidePanelReset = () => {
 
     tr_type_panel.value = ''
     tr_type.value = {}
-    tr_type_items.value = []
+    tr_type_items.value = {}
     construction_color.value = {}
 }
 
@@ -851,7 +851,7 @@ const getFormData = () => {
 
         if (film_type_inner.value !== undefined && inner_panel.value) {
             data.tr_inner_panel_ids.push({ id: inner_panel.value.id, id_properties: String(film_type_inner.value) })
-        } else if (inner_panel.value.id) {
+        } else if (inner_panel.value?.id) {
             data.tr_inner_panel_ids.push({ id: Number(inner_panel.value.id) })
         }
 
@@ -861,10 +861,10 @@ const getFormData = () => {
                 data.tr_outside_panel_9_5_ids.push({ id: tr_type.value.id })
             }
 
-            for (let index = 0; index < tr_type_items.value.length; index++) {
-                const element = tr_type_items.value[index]
-                if (element !== undefined) {
-                    data.tr_outside_panel_9_5_ids.push({ id: index, id_properties: String(element) })
+            for (const key in tr_type_items.value) {
+                const element = tr_type_items.value[key]
+                if (element) {
+                    data.tr_outside_panel_9_5_ids.push({ id: Number(key), id_properties: String(element) })
                 }
             }
         }
@@ -875,11 +875,10 @@ const getFormData = () => {
                 data.tr_outside_panel_10_ids.push({ id: tr_type.value.id })
             }
 
-            for (let index = 0; index < tr_type_items.value.length; index++) {
-                const element = tr_type_items.value[index]
-
-                if (element !== undefined) {
-                    data.tr_outside_panel_10_ids.push({ id: index, id_properties: String(element) })
+            for (const key in tr_type_items.value) {
+                const element = tr_type_items.value[key]
+                if (element) {
+                    data.tr_outside_panel_10_ids.push({ id: Number(key), id_properties: String(element) })
                 }
             }
         }
@@ -927,7 +926,7 @@ const getFormData = () => {
 
         if (film_type_inner.value !== undefined && inner_panel.value) {
             data.stbr_inner_panel_ids.push({ id: inner_panel.value.id, id_properties: String(film_type_outside.value) })
-        } else if (inner_panel.value.id) {
+        } else if (inner_panel.value?.id) {
             data.stbr_inner_panel_ids.push({ id: Number(inner_panel.value.id) })
         }
 
