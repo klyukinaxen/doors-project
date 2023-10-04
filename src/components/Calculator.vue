@@ -243,12 +243,12 @@
                                     class="m-2 mw-250"
                                     placeholder="Выберите:"
                                     size="large"
-                                    @change="innerPanelOnChange"
                                 >
                                     <template
                                         v-for="item in selectedConstruction[`${typeOfConstruction}_inner_panel`]"
                                         :key="item.id"
                                     >
+                                        <!-- TODO: Тут наверно более правильно будет проверять на item.id_properties === false, ну и у ElInput соответственно на true  -->
                                         <ElOption
                                             v-if="item.id !== 1 && item.id !== 2"
                                             :key="item.id"
@@ -279,7 +279,7 @@
                             </template>
 
                             <div
-                                v-if="inner_panel?.param_name.startsWith('В плёнке')"
+                                v-if="isInnerPanelInFilm"
                                 class="d-flex flex-column"
                             >
                                 <span class="upper-case mb-15 fs-12"> тип пленки внутренней панели </span>
@@ -464,7 +464,7 @@
                             </template>
 
                             <div
-                                v-if="outside_panel === 3"
+                                v-if="isOutsidePanelInFilm"
                                 class="d-flex flex-column"
                             >
                                 <span class="upper-case mb-15 fs-12"> тип пленки внешней панели </span>
@@ -682,6 +682,14 @@ const constructionImage = computed(() => {
     }
 })
 
+const isInnerPanelInFilm = computed(() => {
+    return inner_panel.value?.param_name.startsWith('В плёнке')
+})
+
+const isOutsidePanelInFilm = computed(() => {
+    return outside_panel.value === 3
+})
+
 const inner_panel = ref()
 const outside_panel = ref()
 
@@ -787,7 +795,25 @@ const innerPanelOnChange = () => {
     if (['st', 'stbr'].includes(typeOfConstruction.value) && inner_panel.value?.id === INNER_PANEL_6MM_FILM_ID) {
         propertiesConditions.value[PROPERTIES_CONCEALED_MDF_MOUNTING_ID] = false
     }
+
+    if (isInnerPanelInFilm.value) {
+        film_type_inner.value = 1
+    } else {
+        film_type_inner.value = undefined
+    }
 }
+
+watch(inner_panel, innerPanelOnChange)
+
+const outsidePanelOnChange = () => {
+    if (isOutsidePanelInFilm.value) {
+        film_type_outside.value = 1
+    } else {
+        film_type_outside.value = undefined
+    }
+}
+
+watch(outside_panel, outsidePanelOnChange)
 
 const getFormData = () => {
     const mergedProperties = { ...propertiesConditions.value, ...properties.value }
