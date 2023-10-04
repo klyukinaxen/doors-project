@@ -534,7 +534,8 @@
                                     class="mw-250"
                                     border
                                     :disabled="
-                                        (inner_panel?.id === INNER_PANEL_6MM_FILM_ID || typeOfConstruction === 'tr') &&
+                                        ((['st', 'stbr'].includes(typeOfConstruction) && inner_panel?.id === INNER_PANEL_6MM_FILM_ID) ||
+                                            typeOfConstruction === 'tr') &&
                                         property.id === PROPERTIES_CONCEALED_MDF_MOUNTING_ID
                                     "
                                 />
@@ -783,7 +784,7 @@ const selectConstruction = (type) => {
 }
 
 const innerPanelOnChange = () => {
-    if (inner_panel.value?.id === INNER_PANEL_6MM_FILM_ID) {
+    if (['st', 'stbr'].includes(typeOfConstruction.value) && inner_panel.value?.id === INNER_PANEL_6MM_FILM_ID) {
         propertiesConditions.value[PROPERTIES_CONCEALED_MDF_MOUNTING_ID] = false
     }
 }

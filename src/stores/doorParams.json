@@ -116,12 +116,6 @@
             },
             {
                 "id": 2,
-                "price": 25350,
-                "param_name": "Крашеная 10мм",
-                "id_properties": false
-            },
-            {
-                "id": 2,
                 "price": 0,
                 "param_name": "Фреза",
                 "id_properties": true
@@ -160,6 +154,12 @@
                 "id": 8,
                 "price": 11100,
                 "param_name": "В плёнке 16мм с зеркалом",
+                "id_properties": false
+            },
+            {
+                "id": 9,
+                "price": 25350,
+                "param_name": "Крашеная 10мм",
                 "id_properties": false
             }
         ],
@@ -608,7 +608,7 @@
             {
                 "id": 5,
                 "price": 30950,
-                "param_name": "Крашеная 16мм c зеркалом",
+                "param_name": "Крашеная 16мм с зеркалом",
                 "id_properties": false
             },
             {
