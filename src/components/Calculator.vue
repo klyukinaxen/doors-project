@@ -40,7 +40,7 @@
                         v-model="doorSizeHeight"
                         class="row-reverse"
                         vertical
-                        :min="0"
+                        :min="DOOR_SIZE.MIN_SINGLE_DOOR_HEIGHT"
                         :max="2550"
                         :step="DOOR_SIZE_STEP"
                         height="230px"
@@ -52,7 +52,7 @@
                     <div class="door-1-range">
                         <ElSlider
                             v-model="doorSizeWidth"
-                            :min="0"
+                            :min="DOOR_SIZE.MIN_SINGLE_DOOR_WIDTH"
                             :max="1080"
                             :step="DOOR_SIZE_STEP"
                             show-input
@@ -76,7 +76,7 @@
                         class="d-flex flex-column radio-group"
                     >
                         <ElRadio
-                            label="right"
+                            label="1"
                             size="large"
                             class="my-30"
                             border
@@ -85,7 +85,7 @@
                         </ElRadio>
 
                         <ElRadio
-                            label="left"
+                            label="2"
                             size="large"
                             border
                         >
@@ -102,7 +102,7 @@
                         v-model="doorSizeHeight"
                         class="row-reverse range-2"
                         vertical
-                        :min="0"
+                        :min="DOOR_SIZE.MIN_DOUBLE_DOOR_HEIGHT"
                         :max="2550"
                         :step="DOOR_SIZE_STEP"
                         height="280px"
@@ -114,7 +114,7 @@
                     <div class="door-2-range">
                         <ElSlider
                             v-model="doorSizeWidth"
-                            :min="0"
+                            :min="DOOR_SIZE.MIN_DOUBLE_DOOR_WIDTH"
                             :max="1600"
                             :step="DOOR_SIZE_STEP"
                             show-input
@@ -147,16 +147,11 @@
                         :class="{ active: typeOfConstruction === 'st' }"
                         @click="selectConstruction('st')"
                     >
-                        СТ
+                        {{ doorConstructions[0].name }}
                     </ElButton>
 
-                    <span class="fs-14 ls-2 mw-250 fw-300">
-                        Стандартная конструкция на двух «шарикоподшипниковых» петлях, без возможности установить МДФ панель снаружи.
-                        <br />
-                        <br />
-                        - Толщина листа 2мм
-                        <br />
-                        - 2 контура уплотнения
+                    <span class="fs-14 ls-2 mw-300 pre-line fw-300">
+                        {{ doorConstructions[0].description }}
                     </span>
                 </div>
 
@@ -171,16 +166,11 @@
                         :class="{ active: typeOfConstruction === 'stbr' }"
                         @click="selectConstruction('stbr')"
                     >
-                        СТБР
+                        {{ doorConstructions[1].name }}
                     </ElButton>
 
-                    <span class="fs-14 ls-2 mw-250 fw-300">
-                        Усовершенствованная конструкция на двух петлях «Барк» с возможностью выбора расширенных характеристик.
-                        <br />
-                        <br />
-                        - толщина листа 2мм <br />
-                        - 2 контура уплотнения<br />
-                        - есть возможность установить панель снаружи
+                    <span class="fs-14 ls-2 mw-300 pre-line fw-300">
+                        {{ doorConstructions[1].description }}
                     </span>
                 </div>
 
@@ -195,11 +185,11 @@
                         :class="{ active: typeOfConstruction === 'tr' }"
                         @click="selectConstruction('tr')"
                     >
-                        ТР
+                        {{ doorConstructions[2].name }}
                     </ElButton>
 
-                    <span class="fs-14 ls-2 mw-250 fw-300">
-                        Конструкция, которая предназначена для проёмов, которые граничат с улицей.
+                    <span class="fs-14 ls-2 fw-300 mw-300 pre-line">
+                        {{ doorConstructions[2].description }}
                     </span>
                 </div>
             </div>
@@ -643,17 +633,17 @@
 </template>
 
 <script setup>
-import { useCalculatorStore } from '../stores/calculator'
+import { useCalculatorStore, doorConstructions } from '../stores/calculator'
 import { ElButton, ElRadioGroup, ElRadio, ElSlider, ElOption, ElSelect, ElInput, ElCheckbox, ElMessageBox, ElMessage } from 'element-plus'
 import { computed, ref, watch } from 'vue'
 import { saveAs } from 'file-saver'
-import { DOOR_SIZE_STEP, INNER_PANEL_6MM_FILM_ID, PROPERTIES_CONCEALED_MDF_MOUNTING_ID } from '../config/constants'
+import { DOOR_SIZE_STEP, INNER_PANEL_6MM_FILM_ID, PROPERTIES_CONCEALED_MDF_MOUNTING_ID, DOOR_SIZE } from '../config/constants'
 
 const calculatorStore = useCalculatorStore()
 
 const door_type = ref(calculatorStore.doorParams.door_type[0].id)
 
-const doorOpenType = ref('left')
+const doorOpenType = ref('1')
 
 const doorSizeWidth = ref(180)
 const doorSizeHeight = ref(550)
@@ -757,6 +747,14 @@ const outsidePanelReset = () => {
     construction_color.value = {}
 }
 
+watch(door_type, () => {
+    if (door_type.value === 1) {
+        doorSizeWidth.value = DOOR_SIZE.MIN_SINGLE_DOOR_WIDTH
+    } else {
+        doorSizeWidth.value = DOOR_SIZE.MIN_DOUBLE_DOOR_WIDTH
+    }
+})
+
 watch(isInnerPanel, (newValue, oldValue) => {
     if (oldValue === true && newValue === false) {
         innerPanelReset()
@@ -819,13 +817,14 @@ const getFormData = () => {
     const mergedProperties = { ...propertiesConditions.value, ...properties.value }
 
     let data = {}
-    if (typeOfConstruction.value === 'tr') {
-        data = {
-            door_type_id: {
-                id: door_type.value
-            }
+    data = {
+        door_type_id: {
+            id: door_type.value
         }
-
+    }
+    data.door_opening_id = { id: Number(doorOpenType.value) }
+    console.log(data.door_opening_id)
+    if (typeOfConstruction.value === 'tr') {
         data.tr_properties_ids = []
 
         for (const key in mergedProperties) {
@@ -887,12 +886,6 @@ const getFormData = () => {
 
     // STBR
     else if (typeOfConstruction.value === 'stbr') {
-        data = {
-            door_type_id: {
-                id: door_type.value
-            }
-        }
-
         data.stbr_properties_ids = []
 
         for (const key in mergedProperties) {
@@ -942,12 +935,6 @@ const getFormData = () => {
 
     // ST
     else {
-        data = {
-            door_type_id: {
-                id: door_type.value
-            }
-        }
-
         data.st_properties_ids = []
 
         for (const key in mergedProperties) {
