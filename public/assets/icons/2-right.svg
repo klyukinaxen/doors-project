@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="435px" height="350px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 66.01 53.11"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str0 {stroke:#333333;stroke-width:0.14;stroke-miterlimit:22.9256}
+    .fil3 {fill:#1A1A1A}
+    .fil2 {fill:#242424}
+    .fil1 {fill:#333333;fill-rule:nonzero}
+    .fil12 {fill:url(#id0)}
+    .fil11 {fill:url(#id1)}
+    .fil10 {fill:url(#id2)}
+    .fil13 {fill:url(#id3)}
+    .fil4 {fill:url(#id4)}
+    .fil8 {fill:url(#id5)}
+    .fil7 {fill:url(#id6)}
+    .fil6 {fill:url(#id7)}
+    .fil9 {fill:url(#id8)}
+    .fil0 {fill:url(#id9)}
+    .fil5 {fill:url(#id10)}
+   ]]>
+  </style>
+  <linearGradient id="id0" gradientUnits="userSpaceOnUse" x1="63.7" y1="6.9" x2="64.38" y2="6.9">
+   <stop offset="0" style="stop-opacity:1; stop-color:#138548"/>
+   <stop offset="0.2" style="stop-opacity:1; stop-color:#71B474"/>
+   <stop offset="0.45098" style="stop-opacity:1; stop-color:#67B97F"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#138548"/>
+  </linearGradient>
+  <linearGradient id="id1" gradientUnits="userSpaceOnUse" xlink:href="#id0" x1="63.7" y1="48.17" x2="64.38" y2="48.17">
+  </linearGradient>
+  <linearGradient id="id2" gradientUnits="userSpaceOnUse" xlink:href="#id0" x1="63.7" y1="48.17" x2="64.38" y2="48.17">
+  </linearGradient>
+  <linearGradient id="id3" gradientUnits="userSpaceOnUse" xlink:href="#id0" x1="63.7" y1="6.9" x2="64.38" y2="6.9">
+  </linearGradient>
+  <linearGradient id="id4" gradientUnits="userSpaceOnUse" x1="26.84" y1="29.06" x2="30.94" y2="29.06">
+   <stop offset="0" style="stop-opacity:1; stop-color:#302F2F"/>
+   <stop offset="0.211765" style="stop-opacity:1; stop-color:#323232"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#242424"/>
+  </linearGradient>
+  <linearGradient id="id5" gradientUnits="userSpaceOnUse" xlink:href="#id0" x1="1.63" y1="6.9" x2="2.31" y2="6.9">
+  </linearGradient>
+  <linearGradient id="id6" gradientUnits="userSpaceOnUse" xlink:href="#id0" x1="1.63" y1="48.17" x2="2.31" y2="48.17">
+  </linearGradient>
+  <linearGradient id="id7" gradientUnits="userSpaceOnUse" xlink:href="#id0" x1="1.63" y1="48.17" x2="2.31" y2="48.17">
+  </linearGradient>
+  <linearGradient id="id8" gradientUnits="userSpaceOnUse" xlink:href="#id0" x1="1.63" y1="6.9" x2="2.31" y2="6.9">
+  </linearGradient>
+  <linearGradient id="id9" gradientUnits="userSpaceOnUse" x1="-11.57" y1="13.46" x2="77.58" y2="39.66">
+   <stop offset="0" style="stop-opacity:1; stop-color:#36AD67"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#2EB86F"/>
+  </linearGradient>
+  <linearGradient id="id10" gradientUnits="userSpaceOnUse" xlink:href="#id4" x1="34.84" y1="29.06" x2="38.94" y2="29.06">
+  </linearGradient>
+ </defs>
+ <g id="Слой_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_1772990783904">
+   <rect class="fil0" width="66.01" height="53.11"/>
+   <polygon class="fil1" points="1.87,53.11 1.87,1.87 64.14,1.87 64.14,53.11 63.95,53.11 63.95,2.07 33.1,2.07 33.1,53.11 32.91,53.11 32.91,2.07 2.06,2.07 2.06,53.11 "/>
+   <g>
+    <g>
+     <ellipse class="fil2" cx="30.63" cy="29.06" rx="0.84" ry="0.85"/>
+     <circle class="fil3" cx="30.63" cy="29.06" r="0.45"/>
+     <rect class="fil4" x="26.84" y="28.75" width="4.1" height="0.61" rx="0.41" ry="0.31"/>
+    </g>
+    <g>
+     <ellipse class="fil2" cx="35.15" cy="29.06" rx="0.84" ry="0.85"/>
+     <circle class="fil3" cx="35.15" cy="29.06" r="0.45"/>
+     <rect class="fil5" x="34.84" y="28.75" width="4.1" height="0.61" rx="0.41" ry="0.31"/>
+    </g>
+   </g>
+   <g>
+    <g>
+     <rect class="fil6 str0" x="1.63" y="46.27" width="0.68" height="3.8" rx="0.34" ry="0.34"/>
+     <rect class="fil7 str0" x="1.63" y="48.07" width="0.68" height="0.2"/>
+    </g>
+    <g>
+     <rect class="fil8 str0" x="1.63" y="5.01" width="0.68" height="3.8" rx="0.34" ry="0.34"/>
+     <rect class="fil9 str0" x="1.63" y="6.81" width="0.68" height="0.2"/>
+    </g>
+   </g>
+   <g>
+    <g>
+     <rect class="fil10 str0" x="63.7" y="46.27" width="0.68" height="3.8" rx="0.34" ry="0.34"/>
+     <rect class="fil11 str0" x="63.7" y="48.07" width="0.68" height="0.2"/>
+    </g>
+    <g>
+     <rect class="fil12 str0" x="63.7" y="5.01" width="0.68" height="3.8" rx="0.34" ry="0.34"/>
+     <rect class="fil13 str0" x="63.7" y="6.81" width="0.68" height="0.2"/>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

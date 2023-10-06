@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="225px" height="350px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 8.92 13.88"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil3 {fill:#1A1A1A}
+    .fil2 {fill:#242424}
+    .fil1 {fill:#7A6E65}
+    .fil5 {fill:url(#id0)}
+    .fil0 {fill:url(#id1)}
+    .fil7 {fill:url(#id2)}
+    .fil4 {fill:url(#id3)}
+    .fil6 {fill:url(#id4)}
+   ]]>
+  </style>
+  <linearGradient id="id0" gradientUnits="userSpaceOnUse" x1="6.71" y1="7.1" x2="6.8" y2="7.1">
+   <stop offset="0" style="stop-opacity:1; stop-color:#948881"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#CFBEB0"/>
+  </linearGradient>
+  <linearGradient id="id1" gradientUnits="userSpaceOnUse" x1="0.27" y1="3.03" x2="8.65" y2="10.85">
+   <stop offset="0" style="stop-opacity:1; stop-color:#ADA197"/>
+   <stop offset="0.760784" style="stop-opacity:1; stop-color:#B5A296"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#B3A49D"/>
+  </linearGradient>
+  <linearGradient id="id2" gradientUnits="userSpaceOnUse" xlink:href="#id0" x1="7.13" y1="7.1" x2="7.22" y2="7.1">
+  </linearGradient>
+  <linearGradient id="id3" gradientUnits="userSpaceOnUse" x1="0.92" y1="7.6" x2="1.99" y2="7.6">
+   <stop offset="0" style="stop-opacity:1; stop-color:#302F2F"/>
+   <stop offset="0.211765" style="stop-opacity:1; stop-color:#323232"/>
+   <stop offset="1" style="stop-opacity:1; stop-color:#242424"/>
+  </linearGradient>
+  <linearGradient id="id4" gradientUnits="userSpaceOnUse" xlink:href="#id0" x1="6.29" y1="7.1" x2="6.39" y2="7.1">
+  </linearGradient>
+ </defs>
+ <g id="Слой_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_1808569936496">
+   <rect class="fil0" width="8.92" height="13.88"/>
+   <path class="fil1" d="M8.2 0.89l0 -0.31c0,-0.01 0.01,-0.03 0.02,-0.04l0.05 -0.02 -7.73 -0.01 -0.02 0 0 13.18 7.87 0 0 -0.04 -0.14 0c-0.03,0 -0.05,-0.03 -0.05,-0.06l0 -0.28c0.06,0.02 0.14,0.03 0.21,-0.01l0 0 0 0 0 -0.01c0,-5.31 0,-7.08 0,-12.39l-0.02 -0.01 0 0c-0.07,-0.02 -0.13,-0.03 -0.19,0zm-0.05 -0.34c0,0.01 0,0.02 0,0.03l0 0.71c0,0 0,-0.02 0,0 0,0.03 0.07,0.04 0.12,0.04 0.03,0 0.08,-0.02 0.1,-0.03l0 11.6c-0.02,-0.01 -0.06,-0.01 -0.09,-0.01 -0.05,0 -0.13,0.01 -0.13,0.03 0,0.03 0,0 0,0l0 0.7c0,0.01 0.01,0.02 -0.01,0.03l-7.58 0 0 -13.1 7.59 0zm0.22 0.7l0 -0.34c-0.06,-0.02 -0.12,-0.02 -0.17,0l0 0.33c0,0.02 0,0.01 0.02,0.01 0.01,-0.01 0.04,-0.01 0.07,-0.01 0.03,0 0.06,0 0.08,0.01 0,0 0,0 0,0zm0 11.7c-0.02,0.01 -0.13,0.01 -0.15,0 -0.02,0 -0.02,-0.01 -0.02,0.01l0 0.33c0.05,0.02 0.11,0.02 0.17,0l0 -0.35c0,0.01 0,0.01 0,0.01z"/>
+   <g>
+    <circle class="fil2" cx="1" cy="7.6" r="0.22"/>
+    <circle class="fil3" cx="1" cy="7.6" r="0.12"/>
+    <rect class="fil4" x="0.92" y="7.52" width="1.07" height="0.16" rx="0.11" ry="0.08"/>
+   </g>
+   <g>
+    <rect class="fil5" x="6.71" y="0.55" width="0.09" height="13.1"/>
+    <rect class="fil6" x="6.29" y="0.55" width="0.09" height="13.1"/>
+    <rect class="fil7" x="7.13" y="0.55" width="0.09" height="13.1"/>
+   </g>
+  </g>
+ </g>
+</svg>

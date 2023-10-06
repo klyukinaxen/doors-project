@@ -14,7 +14,7 @@
                     class="door-type"
                 >
                     <img
-                        :src="`../assets/icons/door-${doorType.id}.svg`"
+                        :src="`/assets/icons/${doorType.id}.svg`"
                         alt=""
                     />
 
@@ -62,7 +62,7 @@
 
                         <img
                             class="door-1"
-                            src="../assets/icons/door-1.0.svg"
+                            src="/assets/icons/1.svg"
                             alt=""
                         />
                     </div>
@@ -125,7 +125,7 @@
 
                         <img
                             class="door-2"
-                            src="../assets/icons/door-2.0.svg"
+                            src="/assets/icons/2.svg"
                             alt=""
                         />
                     </div>
@@ -138,7 +138,7 @@
             <div class="container-3 d-flex justify-content-around w-100 primary-bg py-30">
                 <div class="door-type">
                     <img
-                        src="../assets/icons/door-standart.svg"
+                        :src="stImage"
                         alt=""
                     />
 
@@ -157,7 +157,7 @@
 
                 <div class="door-type">
                     <img
-                        src="../assets/icons/door-bark.svg"
+                        :src="stbrImage"
                         alt=""
                     />
 
@@ -176,7 +176,7 @@
 
                 <div class="door-type">
                     <img
-                        src="../assets/icons/door-thermo.svg"
+                        :src="trImage"
                         alt=""
                     />
 
@@ -664,12 +664,77 @@ const selectedConstruction = computed(() => {
     return calculatorStore.doorParams[`${typeOfConstruction.value}_config`]
 })
 
+// if (door_type.value === 1) {
+//     return '../assets/icons/door-1.svg'
+// } else {
+//     return '../assets/icons/door-2.svg'
+// }
+
+const stImage = computed(() => {
+    return `/assets/icons/${door_type.value}.svg`
+})
+
+const stbrImage = computed(() => {
+    return `/assets/icons/stbr-${door_type.value}.svg`
+})
+
+const trImage = computed(() => {
+    return `/assets/icons/tr-${door_type.value}.svg`
+})
+
 const constructionImage = computed(() => {
-    if (door_type.value === 1) {
-        return '../assets/icons/door-1.svg'
-    } else {
-        return '../assets/icons/door-2.svg'
+    let image = ''
+    console.log(typeOfConstruction.value, 'typeofcon')
+    console.log(doorOpenType.value, 'dooropentype')
+    console.log(door_type.value, 'door_type')
+
+    if (doorOpenType.value === '1') {
+        if (door_type.value === 1) {
+            if (typeOfConstruction.value === 'st') {
+                image = '/assets/icons/1-right.svg'
+            } else {
+                image = `/assets/icons/${typeOfConstruction.value}-1-right.svg`
+            }
+        }
+        if (door_type.value === 2) {
+            if (typeOfConstruction.value === 'st') {
+                image = '/assets/icons/2-right.svg'
+            } else {
+                image = `/assets/icons/${typeOfConstruction.value}-2-right.svg`
+            }
+        }
+        if (door_type.value === 3) {
+            if (typeOfConstruction.value === 'st') {
+                image = '/assets/icons/3-right.svg'
+            } else {
+                image = `/assets/icons/${typeOfConstruction.value}-3-right.svg`
+            }
+        }
+    } else if (doorOpenType.value === '2') {
+        if (door_type.value === 1) {
+            if (typeOfConstruction.value === 'st') {
+                image = '/assets/icons/1.svg'
+            } else {
+                image = `/assets/icons/${typeOfConstruction.value}-1.svg`
+            }
+        }
+        if (door_type.value === 2) {
+            if (typeOfConstruction.value === 'st') {
+                image = '/assets/icons/2.svg'
+            } else {
+                image = `/assets/icons/${typeOfConstruction.value}-2.svg`
+            }
+        }
+        if (door_type.value === 3) {
+            if (typeOfConstruction.value === 'st') {
+                image = '/assets/icons/3.svg'
+            } else {
+                image = `/assets/icons/${typeOfConstruction.value}-3.svg`
+            }
+        }
     }
+    console.log(image, 'image')
+    return image
 })
 
 const isInnerPanelInFilm = computed(() => {
