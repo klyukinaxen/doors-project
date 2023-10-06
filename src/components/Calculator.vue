@@ -62,7 +62,7 @@
 
                         <img
                             class="door-1"
-                            src="/assets/icons/1.svg"
+                            :src="doorOpenImage1"
                             alt=""
                         />
                     </div>
@@ -126,7 +126,7 @@
 
                         <img
                             class="door-2"
-                            src="/assets/icons/2.svg"
+                            :src="doorOpenImage2"
                             alt=""
                         />
                     </div>
@@ -664,29 +664,33 @@ const selectedConstruction = computed(() => {
     return calculatorStore.doorParams[`${typeOfConstruction.value}_config`]
 })
 
-// if (door_type.value === 1) {
-//     return '../assets/icons/door-1.svg'
-// } else {
-//     return '../assets/icons/door-2.svg'
-// }
+const doorOpenImage1 = computed(() => {
+    if (doorOpenType.value === '2') return `/assets/icons/${door_type.value}.svg`
+    else return `/assets/icons/${door_type.value}-right.svg`
+})
+
+const doorOpenImage2 = computed(() => {
+    if (doorOpenType.value === '2') return `/assets/icons/${door_type.value}.svg`
+    else return `/assets/icons/${door_type.value}-right.svg`
+})
 
 const stImage = computed(() => {
-    return `/assets/icons/${door_type.value}.svg`
+    if (doorOpenType.value === '2') return `/assets/icons/${door_type.value}.svg`
+    else return `/assets/icons/${door_type.value}-right.svg`
 })
 
 const stbrImage = computed(() => {
-    return `/assets/icons/stbr-${door_type.value}.svg`
+    if (doorOpenType.value === '2') return `/assets/icons/stbr-${door_type.value}.svg`
+    else return `/assets/icons/stbr-${door_type.value}-right.svg`
 })
 
 const trImage = computed(() => {
-    return `/assets/icons/tr-${door_type.value}.svg`
+    if (doorOpenType.value === '2') return `/assets/icons/tr-${door_type.value}.svg`
+    else return `/assets/icons/tr-${door_type.value}-right.svg`
 })
 
 const constructionImage = computed(() => {
     let image = ''
-    console.log(typeOfConstruction.value, 'typeofcon')
-    console.log(doorOpenType.value, 'dooropentype')
-    console.log(door_type.value, 'door_type')
 
     if (doorOpenType.value === '1') {
         if (door_type.value === 1) {
@@ -733,7 +737,6 @@ const constructionImage = computed(() => {
             }
         }
     }
-    console.log(image, 'image')
     return image
 })
 
@@ -888,7 +891,6 @@ const getFormData = () => {
         }
     }
     data.door_opening_id = { id: Number(doorOpenType.value) }
-    console.log(data.door_opening_id)
     if (typeOfConstruction.value === 'tr') {
         data.tr_properties_ids = []
 
@@ -1038,8 +1040,6 @@ const getFormData = () => {
     }
 
     data.comment = comment.value
-    // console.log(data, 'data')
-
     return data
 }
 
