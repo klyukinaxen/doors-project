@@ -75,6 +75,7 @@
                         v-model="doorOpenType"
                         class="d-flex flex-column radio-group"
                     >
+                        <!-- TODO: v-for -->
                         <ElRadio
                             label="1"
                             size="large"
@@ -136,6 +137,7 @@
             <span class="upper-case fs-16 ls-2 my-45"> Выберите конструкцию дверей: </span>
 
             <div class="container-3 d-flex justify-content-around w-100 primary-bg py-30">
+                <!-- TODO: v-for -->
                 <div class="door-type">
                     <img
                         :src="stImage"
@@ -403,7 +405,6 @@
                                         v-for="item in selectedConstruction[`${typeOfConstruction}_outside_panel`]"
                                         :key="item.id"
                                     >
-                                        <!-- TODO: переделать на id, т.к. название редактируется -->
                                         <ElOption
                                             v-if="item.id !== 1 && item.id !== 2"
                                             :label="item.param_name"
@@ -424,7 +425,6 @@
                                         v-for="item in selectedConstruction[`${tr_type_panel}`]"
                                         :key="item.id"
                                     >
-                                        <!-- TODO: переделать на id, т.к. название редактируется -->
                                         <ElOption
                                             v-if="item.id !== 1 && item.id !== 2"
                                             :label="item.param_name"
